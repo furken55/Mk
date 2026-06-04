@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<title>AI Leren & Beleid — Melanchthon Kralingen</title>
+<meta name="description" content="Stapsgewijs AI begrijpen en verantwoord AI-beleid formuleren voor MKR-medewerkers. Leerlijn, beslisboom en vakwerkplan-generator."/>
+<meta property="og:title" content="AI Leren & Beleid — Melanchthon Kralingen"/>
+<meta property="og:description" content="Tien modules van AI begrijpen tot beleid schrijven, met een beslisboom en vakwerkplan-generator voor docenten van MKR."/>
+<meta property="og:type" content="website"/>
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🏫&lt;/text&gt;&lt;/svg&gt;"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&amp;family=Inter:wght@400;450;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A2540;--navy-2:#0E3058;--navy-soft:#1B416E;
+  --blue:#3B82F6;--blue-2:#60A5FA;
+  --accent:#C9A25A;--accent-2:#E6C983;--accent-deep:#8F6F2E;
+  --teal:#0D9488;--teal-2:#2DD4BF;--teal-soft:rgba(13,148,136,.12);
+  --bg:#F7F5F0;--bg-2:#F0ECE3;
+  --surf:#FFFFFF;--surf-2:#FAF8F3;--surf-3:#F3EFE6;
+  --sb:#0A1930;--sb-2:#0E2340;--sb-3:#142B4E;
+  --sb-border:rgba(255,255,255,.07);--sb-text:rgba(255,255,255,.55);--sb-text-strong:#F5EFE2;
+  --t1:#0A1930;--t2:#475569;--t3:#8A98AD;--t4:#B4BECB;
+  --bdr:rgba(10,25,48,.08);--bdr-2:rgba(10,25,48,.14);--bdr-strong:rgba(10,25,48,.22);
+  --r:10px;--rl:16px;--rxl:22px;--rxxl:28px;
+  --sh-xs:0 1px 2px rgba(10,25,48,.04);
+  --sh:0 2px 6px rgba(10,25,48,.04),0 8px 24px rgba(10,25,48,.05);
+  --shh:0 8px 24px rgba(10,25,48,.08),0 24px 48px rgba(10,25,48,.08);
+  --shx:0 32px 80px rgba(10,25,48,.22),0 12px 32px rgba(10,25,48,.14);
+  --sh-gold:0 8px 28px rgba(201,162,90,.25);
+  --font-serif:'Fraunces','Instrument Serif',Georgia,serif;
+  --font-sans:'Inter','DM Sans',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono','DM Mono',ui-monospace,monospace;
+}
+[data-theme="dark"]{
+  --bg:#0A0F1A;--bg-2:#0E1424;--surf:#121A2B;--surf-2:#18233A;--surf-3:#1E2A45;
+  --sb:#060B17;--sb-2:#0A1223;--sb-3:#111B32;
+  --sb-border:rgba(255,255,255,.05);--sb-text:rgba(255,255,255,.55);--sb-text-strong:#F5EFE2;
+  --bdr:rgba(255,255,255,.06);--bdr-2:rgba(255,255,255,.1);--bdr-strong:rgba(255,255,255,.16);
+  --t1:#F1EBDC;--t2:#A4B0C3;--t3:#6F7D94;--t4:#505C72;
+  --sh:0 2px 8px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+  --shh:0 14px 40px rgba(0,0,0,.5),0 4px 12px rgba(0,0,0,.3);
+  --shx:0 32px 80px rgba(0,0,0,.6);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-height:100vh;display:flex;overflow-x:hidden;font-feature-settings:'ss01','cv11';letter-spacing:-.005em;line-height:1.5}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;background-image:radial-gradient(circle at 20% 10%,rgba(13,148,136,.05),transparent 55%),radial-gradient(circle at 85% 85%,rgba(59,130,246,.04),transparent 55%);mix-blend-mode:multiply}
+[data-theme="dark"] body::before{mix-blend-mode:screen}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bdr-2);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:var(--bdr-strong);background-clip:padding-box;border:2px solid transparent}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);background-clip:padding-box;border:2px solid transparent}
+
+/* ===== SIDEBAR ===== */
+.sidebar{width:276px;min-height:100vh;background:linear-gradient(180deg,var(--sb) 0%,var(--sb-2) 100%);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:hidden;z-index:50;border-right:1px solid var(--sb-border)}
+.sidebar::before{content:'';position:absolute;top:0;left:0;right:0;height:200px;background:radial-gradient(ellipse at top left,rgba(13,148,136,.08),transparent 70%);pointer-events:none}
+.sb-brand{padding:28px 22px 22px;border-bottom:1px solid var(--sb-border);flex-shrink:0;position:relative;text-decoration:none;display:block;color:inherit}
+.sb-logo{width:42px;height:42px;background:linear-gradient(135deg,#D4B366 0%,#B8955A 60%,#8F6F2E 100%);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;box-shadow:0 4px 16px rgba(201,162,90,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.sb-name{font-family:var(--font-serif);font-size:19px;font-weight:400;color:#F5EFE2;line-height:1.15;letter-spacing:-.015em;font-style:italic}
+.sb-sub{font-size:10.5px;color:rgba(245,239,226,.4);margin-top:4px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.sb-scroll{flex:1;overflow-y:auto;overflow-x:hidden;min-height:0;padding-bottom:8px}
+.sb-sec{padding:18px 22px 6px}
+.sb-sec-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
+.sb-page-link{display:flex;align-items:center;gap:10px;margin:2px 22px;padding:10px 14px;border-radius:var(--r);text-decoration:none;color:var(--sb-text);font-size:12.5px;font-weight:500;transition:.16s ease;cursor:pointer;border:1px solid transparent}
+.sb-page-link:hover{background:rgba(255,255,255,.06);color:var(--sb-text-strong)}
+.sb-page-link.active{background:rgba(13,148,136,.14);border-color:rgba(13,148,136,.28);color:var(--teal-2)}
+.sb-page-icon{font-size:13px;width:18px;text-align:center;flex-shrink:0}
+.sb-role{display:flex;align-items:center;gap:9px;padding:8px 14px;margin:2px 22px;border-radius:var(--r);cursor:pointer;transition:.15s ease;border:1px solid transparent}
+.sb-role:hover{background:rgba(255,255,255,.05)}
+.sb-role.active{background:rgba(255,255,255,.08);border-color:var(--sb-border)}
+.sb-role-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sb-role-name{font-size:12px;color:var(--sb-text);flex:1}
+.sb-role.active .sb-role-name{color:var(--sb-text-strong)}
+.sb-role-count{font-size:10.5px;color:rgba(255,255,255,.3);font-weight:600}
+.sb-mod-progress{padding:4px 22px}
+.sb-mod-item{display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer;border-radius:var(--r);transition:.14s ease}
+.sb-mod-item:hover .sb-mod-num{opacity:1}
+.sb-mod-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;transition:.2s ease}
+.sb-mod-dot.done{background:var(--teal);border-color:var(--teal)}
+.sb-mod-dot.done::after{content:'✓';color:#fff;font-size:8px}
+.sb-mod-label{font-size:11px;color:var(--sb-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.sb-mod-item:hover .sb-mod-label{color:var(--sb-text-strong)}
+.sb-progress-bar{margin:0 22px 4px;height:3px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.sb-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-2));border-radius:3px;transition:width .4s ease}
+.sb-footer{padding:12px 22px;border-top:1px solid var(--sb-border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sb-footer-hint{display:flex;gap:4px;align-items:center}
+.sb-footer-hint kbd{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:2px 6px;font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.4)}
+.dark-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);transition:.15s ease}
+.dark-toggle:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+.dark-toggle-icon{font-size:13px}
+.dark-toggle-lbl{font-size:10.5px;color:rgba(255,255,255,.5);font-weight:500}
+
+/* ===== MAIN ===== */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;gap:12px;padding:14px 32px;background:var(--surf);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:40;transition:box-shadow .2s}
+.topbar.scrolled{box-shadow:var(--sh)}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--t3);flex:1}
+.breadcrumb a{color:var(--t3);text-decoration:none;transition:.14s}
+.breadcrumb a:hover{color:var(--t1)}
+.breadcrumb-sep{opacity:.4}
+.breadcrumb-cur{color:var(--t1);font-weight:500}
+.tb-actions{display:flex;align-items:center;gap:8px}
+.tb-dark-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;border:1px solid var(--bdr-2);background:transparent;cursor:pointer;font-size:12px;color:var(--t2);font-family:var(--font-sans);transition:.15s}
+.tb-dark-btn:hover{background:var(--surf-3);color:var(--t1)}
+.content{flex:1;padding:32px 32px 80px;max-width:1200px;width:100%}
+
+/* ===== HERO ===== */
+.al-hero{background:linear-gradient(135deg,var(--sb) 0%,var(--sb-2) 60%,rgba(13,148,136,.3) 100%);border-radius:var(--rxxl);padding:48px 52px;margin-bottom:40px;position:relative;overflow:hidden}
+.al-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(13,148,136,.18),transparent 60%);pointer-events:none}
+.al-hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(13,148,136,.2);border:1px solid rgba(45,212,191,.3);border-radius:20px;padding:4px 14px;font-size:11.5px;font-weight:600;color:var(--teal-2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+.al-hero h1{font-family:var(--font-serif);font-size:38px;font-weight:400;color:#F5EFE2;line-height:1.1;letter-spacing:-.02em;font-style:italic;margin-bottom:14px}
+.al-hero p{font-size:15px;color:rgba(245,239,226,.7);line-height:1.65;max-width:560px;margin-bottom:28px}
+.al-hero-stats{display:flex;gap:24px;flex-wrap:wrap}
+.al-hero-stat{display:flex;flex-direction:column;gap:2px}
+.al-hero-stat-num{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--accent-2);letter-spacing:-.02em}
+.al-hero-stat-lbl{font-size:11px;color:rgba(245,239,226,.45);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+
+/* ===== SECTION HEADER ===== */
+.sec-hdr{margin-bottom:24px}
+.sec-hdr-top{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.sec-title{font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--t1);letter-spacing:-.02em;font-style:italic}
+.sec-badge{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;background:var(--surf-3);border-radius:20px;border:1px solid var(--bdr)}
+.sec-desc{font-size:13.5px;color:var(--t2);max-width:620px;line-height:1.6}
+
+/* ===== ROLE TABS ===== */
+.role-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.role-tab{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:22px;border:1px solid var(--bdr-2);background:var(--surf);cursor:pointer;font-size:12.5px;font-weight:500;color:var(--t2);transition:.18s ease}
+.role-tab:hover{border-color:var(--bdr-strong);color:var(--t1)}
+.role-tab.active{border-color:var(--teal);background:var(--teal-soft);color:var(--teal)}
+.role-tab-dot{width:6px;height:6px;border-radius:50%}
+[data-theme="dark"] .role-tab{background:var(--surf-2)}
+
+/* ===== MODULE GRID ===== */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:48px}
+.mod-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxl);padding:24px;cursor:pointer;transition:all .22s ease;position:relative;overflow:hidden}
+.mod-card:hover{border-color:var(--bdr-strong);box-shadow:var(--shh);transform:translateY(-3px)}
+.mod-card.done{border-color:rgba(13,148,136,.3)}
+.mod-card.done::after{content:'✓';position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.mod-num{font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--t4);margin-bottom:12px;letter-spacing:.04em}
+.mod-icon-wrap{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;flex-shrink:0}
+.mod-title{font-family:var(--font-serif);font-size:16px;font-weight:400;color:var(--t1);letter-spacing:-.015em;font-style:italic;margin-bottom:6px;line-height:1.3}
+.mod-subtitle{font-size:12px;color:var(--t3);margin-bottom:14px;line-height:1.4}
+.mod-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mod-tag{font-size:10.5px;padding:3px 9px;border-radius:12px;border:1px solid var(--bdr);background:var(--surf-3);color:var(--t3);font-weight:500}
+.mod-tag.level-basis{border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.06);color:#16a34a}
+.mod-tag.level-gevorderd{border-color:rgba(249,115,22,.2);background:rgba(249,115,22,.06);color:#ea580c}
+.mod-cta{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:12px;font-weight:600;color:var(--teal);border:none;background:none;cursor:pointer;padding:0;font-family:var(--font-sans)}
+[data-theme="dark"] .mod-card{background:var(--surf-2)}
+
+/* ===== MODULE OVERLAY ===== */
+.mod-overlay{display:none;position:fixed;inset:0;z-index:200;align-items:flex-start;justify-content:flex-end;padding:20px}
+.mod-overlay.open{display:flex}
+.mod-overlay-bg{position:absolute;inset:0;background:rgba(10,15,26,.5);backdrop-filter:blur(4px)}
+.mod-panel{position:relative;z-index:1;background:var(--surf);border-radius:var(--rxl);width:600px;max-width:calc(100vw - 40px);max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:var(--shx);display:flex;flex-direction:column}
+.mod-panel-top{padding:28px 28px 0}
+.mod-panel-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;border:1px solid var(--bdr-2);background:var(--surf-3);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s;color:var(--t2)}
+.mod-panel-close:hover{background:var(--navy);color:#fff}
+.mod-panel-body{padding:24px 28px 32px;flex:1}
+.mod-panel-badge{display:inline-flex;gap:6px;align-items:center;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);background:var(--teal-soft);border-radius:12px;padding:3px 10px;margin-bottom:16px}
+.mod-panel-title{font-family:var(--font-serif);font-size:26px;font-weight:400;letter-spacing:-.02em;font-style:italic;color:var(--t1);margin-bottom:8px;line-height:1.2}
+.mod-panel-subtitle{font-size:13.5px;color:var(--t2);margin-bottom:24px;line-height:1.6}
+.mod-section{margin-bottom:24px}
+.mod-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:12px}
+.mod-kp{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--surf-2);border-radius:var(--rl);margin-bottom:8px;border:1px solid var(--bdr)}
+.mod-kp-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.mod-kp-text{font-size:13px;color:var(--t1);line-height:1.55}
+.mod-tip-list{list-style:none;padding:0}
+.mod-tip-list li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--t2);padding:7px 0;border-bottom:1px solid var(--bdr);line-height:1.5}
+.mod-tip-list li:last-child{border-bottom:none}
+.mod-tip-list li::before{content:'→';color:var(--teal);flex-shrink:0;font-weight:600;margin-top:1px}
+.mod-done-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:var(--rl);background:var(--teal);color:#fff;border:none;cursor:pointer;font-size:14px;font-weight:600;font-family:var(--font-sans);transition:.2s ease;margin-top:8px}
+.mod-done-btn:hover{background:#0f766e;box-shadow:0 4px 16px rgba(13,148,136,.3)}
+.mod-done-btn.done{background:var(--surf-3);color:var(--teal);border:1px solid rgba(13,148,136,.3)}
+.mod-nav-btns{display:flex;gap:10px;margin-top:12px}
+.mod-nav-btn{flex:1;padding:10px;border-radius:var(--rl);border:1px solid var(--bdr-2);background:var(--surf);cursor:pointer;font-size:12.5px;font-weight:500;color:var(--t2);font-family:var(--font-sans);transition:.15s}
+.mod-nav-btn:hover{border-color:var(--bdr-strong);color:var(--t1)}
+[data-theme="dark"] .mod-panel{background:var(--surf);color:var(--t1)}
+[data-theme="dark"] .mod-kp{background:var(--surf-3)}
+
+/* ===== DECISION TREE ===== */
+.dt-wrap{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxxl);overflow:hidden;margin-bottom:48px;box-shadow:var(--sh)}
+.dt-header{padding:32px 36px 24px;border-bottom:1px solid var(--bdr);background:linear-gradient(135deg,var(--surf) 0%,var(--surf-3) 100%)}
+.dt-steps-bar{display:flex;gap:0;margin-bottom:28px}
+.dt-step-ind{flex:1;height:3px;background:var(--bdr-2);border-radius:3px;margin:0 2px;transition:background .3s}
+.dt-step-ind.active{background:var(--teal)}
+.dt-step-ind.done{background:var(--teal)}
+.dt-step-label{font-size:11px;color:var(--t3);margin-bottom:8px;font-weight:500}
+.dt-question{font-family:var(--font-serif);font-size:22px;font-weight:400;color:var(--t1);letter-spacing:-.015em;font-style:italic;line-height:1.3}
+.dt-body{padding:28px 36px}
+.dt-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.dt-opt{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1.5px solid var(--bdr-2);border-radius:var(--rl);cursor:pointer;transition:.18s ease;background:var(--surf)}
+.dt-opt:hover{border-color:var(--teal);background:var(--teal-soft)}
+.dt-opt.selected{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 0 0 3px rgba(13,148,136,.1)}
+.dt-opt-icon{font-size:20px;flex-shrink:0}
+.dt-opt-label{font-size:13.5px;font-weight:500;color:var(--t1);line-height:1.35}
+.dt-footer{padding:0 36px 32px;display:flex;align-items:center;justify-content:space-between}
+.dt-btn{padding:11px 24px;border-radius:var(--rl);border:none;font-size:13.5px;font-weight:600;font-family:var(--font-sans);cursor:pointer;transition:.18s ease}
+.dt-btn-back{background:var(--surf-3);color:var(--t2);border:1px solid var(--bdr-2)}
+.dt-btn-back:hover{background:var(--surf-2);color:var(--t1)}
+.dt-btn-next{background:var(--teal);color:#fff}
+.dt-btn-next:hover{background:#0f766e;box-shadow:0 4px 16px rgba(13,148,136,.3)}
+.dt-btn-next:disabled{opacity:.4;cursor:not-allowed}
+.dt-result{padding:32px 36px}
+.dt-result-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:22px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:20px}
+.dt-result-badge.verboden{background:rgba(220,38,38,.1);color:#dc2626;border:1px solid rgba(220,38,38,.2)}
+.dt-result-badge.beperkt{background:rgba(217,119,6,.1);color:#d97706;border:1px solid rgba(217,119,6,.2)}
+.dt-result-badge.vrij{background:rgba(34,197,94,.1);color:#16a34a;border:1px solid rgba(34,197,94,.2)}
+.dt-result-title{font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--t1);letter-spacing:-.02em;font-style:italic;margin-bottom:12px}
+.dt-result-text{font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:20px;max-width:560px}
+.dt-result-voorwaarden{background:var(--surf-2);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 22px;margin-bottom:20px}
+.dt-result-vw-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:10px}
+.dt-result-vw-list{list-style:none;padding:0}
+.dt-result-vw-list li{font-size:13px;color:var(--t1);padding:5px 0;display:flex;gap:9px;align-items:flex-start;border-bottom:1px solid var(--bdr);line-height:1.5}
+.dt-result-vw-list li:last-child{border:none}
+.dt-result-vw-list li::before{content:'•';color:var(--teal);font-weight:700;flex-shrink:0}
+.dt-formulering{background:var(--surf-3);border:1px solid var(--bdr-2);border-radius:var(--rl);padding:18px 22px;margin-bottom:20px}
+.dt-form-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:8px}
+.dt-form-text{font-family:var(--font-mono);font-size:12.5px;color:var(--t1);line-height:1.6;white-space:pre-wrap}
+.dt-result-btns{display:flex;gap:10px;flex-wrap:wrap}
+.dt-copy-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--rl);background:var(--teal);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font-sans);transition:.18s}
+.dt-copy-btn:hover{background:#0f766e}
+.dt-reset-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--rl);background:var(--surf-3);color:var(--t2);border:1px solid var(--bdr-2);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font-sans);transition:.18s}
+.dt-reset-btn:hover{background:var(--surf-2);color:var(--t1)}
+[data-theme="dark"] .dt-wrap{background:var(--surf-2)}
+[data-theme="dark"] .dt-opt{background:var(--surf-3)}
+[data-theme="dark"] .dt-formulering{background:var(--surf-3)}
+
+/* ===== VAKWERKPLAN GENERATOR ===== */
+.gen-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;align-items:start}
+@media(max-width:900px){.gen-wrap{grid-template-columns:1fr}}
+.gen-form-panel{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxxl);padding:32px;box-shadow:var(--sh)}
+.gen-output-panel{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxxl);padding:32px;box-shadow:var(--sh);position:sticky;top:80px}
+.gen-form-title{font-family:var(--font-serif);font-size:20px;font-weight:400;color:var(--t1);letter-spacing:-.015em;font-style:italic;margin-bottom:4px}
+.gen-form-sub{font-size:12.5px;color:var(--t3);margin-bottom:24px}
+.gen-field{margin-bottom:20px}
+.gen-label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom:7px;letter-spacing:.01em}
+.gen-input,.gen-select{width:100%;padding:10px 14px;border:1.5px solid var(--bdr-2);border-radius:var(--r);background:var(--surf);color:var(--t1);font-size:13.5px;font-family:var(--font-sans);transition:.15s;outline:none}
+.gen-input:focus,.gen-select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.1)}
+.gen-checks{display:flex;flex-direction:column;gap:8px}
+.gen-check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:.14s}
+.gen-check-item:hover{border-color:var(--bdr-strong);background:var(--surf-2)}
+.gen-check-item input[type=checkbox]{margin-top:2px;accent-color:var(--teal);width:15px;height:15px;flex-shrink:0;cursor:pointer}
+.gen-check-item label{font-size:12.5px;color:var(--t2);cursor:pointer;line-height:1.45}
+.gen-custom-input{width:100%;padding:8px 12px;border:1px dashed var(--bdr-2);border-radius:var(--r);background:transparent;font-size:12.5px;color:var(--t1);font-family:var(--font-sans);outline:none;margin-top:6px;transition:.15s}
+.gen-custom-input:focus{border-color:var(--teal);border-style:solid}
+.gen-custom-input::placeholder{color:var(--t4)}
+.gen-gen-btn{width:100%;padding:14px;border-radius:var(--rl);background:linear-gradient(135deg,var(--teal),#0f766e);color:#fff;border:none;cursor:pointer;font-size:14px;font-weight:700;font-family:var(--font-sans);transition:.2s;letter-spacing:-.005em;margin-top:8px;box-shadow:0 4px 14px rgba(13,148,136,.25)}
+.gen-gen-btn:hover{box-shadow:0 6px 20px rgba(13,148,136,.4);transform:translateY(-1px)}
+.gen-output-title{font-family:var(--font-serif);font-size:18px;font-weight:400;color:var(--t1);letter-spacing:-.015em;font-style:italic;margin-bottom:4px}
+.gen-output-sub{font-size:12px;color:var(--t3);margin-bottom:16px}
+.gen-output-area{min-height:240px;background:var(--surf-2);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 20px;font-family:var(--font-mono);font-size:12px;line-height:1.7;color:var(--t2);white-space:pre-wrap;word-break:break-word;margin-bottom:12px}
+.gen-output-area.has-content{color:var(--t1)}
+.gen-output-btns{display:flex;gap:8px}
+.gen-copy-btn{flex:1;padding:10px;border-radius:var(--rl);background:var(--teal);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font-sans);transition:.18s;display:flex;align-items:center;justify-content:center;gap:6px}
+.gen-copy-btn:hover{background:#0f766e}
+.gen-copy-btn:disabled{opacity:.4;cursor:not-allowed}
+.gen-dl-btn{padding:10px 16px;border-radius:var(--rl);background:var(--surf-3);color:var(--t2);border:1px solid var(--bdr-2);cursor:pointer;font-size:13px;font-weight:600;font-family:var(--font-sans);transition:.18s;display:flex;align-items:center;gap:6px}
+.gen-dl-btn:hover{background:var(--surf-2);color:var(--t1)}
+.gen-dl-btn:disabled{opacity:.4;cursor:not-allowed}
+[data-theme="dark"] .gen-form-panel,[data-theme="dark"] .gen-output-panel{background:var(--surf-2)}
+[data-theme="dark"] .gen-input,[data-theme="dark"] .gen-select{background:var(--surf-3);border-color:var(--bdr-2)}
+[data-theme="dark"] .gen-output-area{background:var(--surf-3)}
+
+/* ===== PER ROL SECTION ===== */
+.rol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:48px}
+.rol-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxl);padding:24px;transition:.2s ease}
+.rol-card:hover{border-color:var(--bdr-strong);box-shadow:var(--sh)}
+.rol-card-icon{font-size:28px;margin-bottom:14px}
+.rol-card-title{font-family:var(--font-serif);font-size:17px;font-weight:400;color:var(--t1);letter-spacing:-.015em;font-style:italic;margin-bottom:6px}
+.rol-card-desc{font-size:12.5px;color:var(--t2);line-height:1.55;margin-bottom:16px}
+.rol-card-tasks{list-style:none;padding:0}
+.rol-card-tasks li{font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--bdr);display:flex;gap:8px;line-height:1.45}
+.rol-card-tasks li:last-child{border:none}
+.rol-card-tasks li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+[data-theme="dark"] .rol-card{background:var(--surf-2)}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(24px);background:linear-gradient(135deg,#047857,#065F46);color:#F5EFE2;padding:12px 22px;border-radius:12px;font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(4,120,87,.35);z-index:400;opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;border:1px solid rgba(255,255,255,.1)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--surf);color:var(--navy);border:1px solid var(--bdr-2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;z-index:100;opacity:0;transform:translateY(12px);transition:all .28s cubic-bezier(.4,0,.2,1);box-shadow:var(--sh)}
+.scroll-top.vis{opacity:1;transform:translateY(0)}
+.scroll-top:hover{background:var(--navy);color:#fff;box-shadow:var(--shh)}
+
+/* ===== SCENARIOS (casussen) ===== */
+.scenario-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rxxl);padding:32px 36px;margin-bottom:48px;box-shadow:var(--sh)}
+.sc-top{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px}
+.sc-icon{width:52px;height:52px;border-radius:14px;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.sc-counter{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin-bottom:8px}
+.sc-situation{font-family:var(--font-serif);font-size:19px;font-weight:400;font-style:italic;color:var(--t1);line-height:1.4;letter-spacing:-.01em}
+.sc-choices{display:flex;flex-direction:column;gap:10px}
+.sc-choice{text-align:left;padding:15px 20px;border:1.5px solid var(--bdr-2);border-radius:var(--rl);background:var(--surf);cursor:pointer;font-size:13.5px;font-weight:500;color:var(--t1);font-family:var(--font-sans);transition:.16s ease;line-height:1.4}
+.sc-choice:hover:not(:disabled){border-color:var(--teal);background:var(--teal-soft)}
+.sc-choice:disabled{cursor:default;opacity:.55}
+.sc-choice.chosen{opacity:1;border-color:var(--teal);background:var(--teal-soft)}
+.sc-feedback{display:none;margin-top:18px;padding:18px 22px;border-radius:var(--rl);border:1px solid var(--bdr);animation:cardIn .35s ease}
+.sc-feedback.show{display:block}
+.sc-feedback.goed{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.25)}
+.sc-feedback.matig{background:rgba(217,119,6,.07);border-color:rgba(217,119,6,.25)}
+.sc-feedback.slecht{background:rgba(220,38,38,.07);border-color:rgba(220,38,38,.25)}
+.sc-fb-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px}
+.sc-feedback.goed .sc-fb-label{color:#16a34a}
+.sc-feedback.matig .sc-fb-label{color:#d97706}
+.sc-feedback.slecht .sc-fb-label{color:#dc2626}
+.sc-fb-text{font-size:13.5px;color:var(--t1);line-height:1.6}
+.sc-next{margin-top:16px;padding:9px 20px;border-radius:var(--rl);background:var(--teal);color:#fff;border:none;cursor:pointer;font-size:12.5px;font-weight:600;font-family:var(--font-sans);transition:.18s}
+.sc-next:hover{background:#0f766e}
+[data-theme="dark"] .scenario-card{background:var(--surf-2)}
+[data-theme="dark"] .sc-choice{background:var(--surf-3)}
+
+/* ===== MODULE CROSS-LINK ===== */
+.mod-cta-link{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;border-radius:var(--rl);background:var(--teal-soft);color:var(--teal);border:1px solid rgba(13,148,136,.3);cursor:pointer;font-size:13.5px;font-weight:600;font-family:var(--font-sans);transition:.18s ease;margin-bottom:10px}
+.mod-cta-link:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes panelIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bgIn{from{opacity:0}to{opacity:1}}
+.mod-card{animation:cardIn .5s cubic-bezier(.4,0,.2,1) backwards}
+.mod-overlay.open .mod-panel{animation:panelIn .32s cubic-bezier(.4,0,.2,1)}
+.mod-overlay.open .mod-overlay-bg{animation:bgIn .25s ease}
+@media(prefers-reduced-motion:reduce){.mod-card,.mod-panel,.mod-overlay-bg,.sc-feedback{animation:none!important}}
+
+/* anchor offset under sticky topbar */
+#beslisboom,#generator,#per-rol,#casussen{scroll-margin-top:78px}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  body{flex-direction:column}
+  .sidebar{width:100%;min-height:auto;height:auto;position:relative;flex-direction:row;align-items:center;padding:10px 16px;gap:12px;border-right:none;border-bottom:1px solid var(--sb-border);overflow:visible}
+  .sidebar::before{display:none}
+  .sb-brand{padding:0;border:none;display:flex;align-items:center;gap:10px;flex:1}
+  .sb-logo{width:32px;height:32px;font-size:15px;margin-bottom:0;border-radius:8px}
+  .sb-name{font-size:13px}
+  .sb-sub{display:none}
+  .sb-scroll,.sb-footer,.sb-mod-progress,.sb-progress-bar{display:none}
+  .topbar{padding:12px 16px}
+  .content{padding:20px 16px 60px}
+  .al-hero{padding:28px 22px}
+  .al-hero h1{font-size:26px}
+  .al-hero-stats{gap:18px}
+  .module-grid{grid-template-columns:1fr}
+  .dt-header,.dt-body,.dt-result{padding-left:22px;padding-right:22px}
+  .dt-footer{padding-left:22px;padding-right:22px}
+  .dt-options{grid-template-columns:1fr}
+  .gen-form-panel,.gen-output-panel{padding:22px}
+  .gen-output-panel{position:static}
+  .scenario-card{padding:24px 22px}
+  .sc-situation{font-size:17px}
+  .mod-overlay{padding:0}
+  .mod-panel{max-height:100vh;border-radius:var(--rxl) var(--rxl) 0 0}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <a href="index.html" class="sb-brand" style="text-decoration:none">
+    <div class="sb-logo">🏫</div>
+    <div class="sb-name">Melanchthon Kralingen</div>
+    <div class="sb-sub">AI Leren & Beleid 2026</div>
+  </a>
+  <div class="sb-scroll">
+    <div class="sb-sec"><div class="sb-sec-lbl">Navigatie</div></div>
+    <a href="index.html" class="sb-page-link">
+      <span class="sb-page-icon">📚</span>
+      <span>Promptbibliotheek</span>
+    </a>
+    <div class="sb-page-link active">
+      <span class="sb-page-icon">🎓</span>
+      <span>AI Leren & Beleid</span>
+    </div>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Interactieve tools</div></div>
+    <a href="#casussen" class="sb-page-link">
+      <span class="sb-page-icon">💬</span>
+      <span>Casussen</span>
+    </a>
+    <a href="#beslisboom" class="sb-page-link">
+      <span class="sb-page-icon">🌳</span>
+      <span>Beslisboom AI</span>
+    </a>
+    <a href="#generator" class="sb-page-link">
+      <span class="sb-page-icon">📝</span>
+      <span>Vakwerkplan-generator</span>
+    </a>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Voortgang leerlijn</div></div>
+    <div class="sb-progress-bar"><div class="sb-progress-fill" id="sbProgressFill" style="width:0%"></div></div>
+    <div class="sb-mod-progress" id="sbModProgress"></div>
+  </div>
+  <div class="sb-footer">
+    <div class="sb-footer-hint"><kbd>↑</kbd> scroll omhoog</div>
+    <div class="dark-toggle" onclick="toggleDark()" title="Wissel thema">
+      <div class="dark-toggle-icon" id="darkIcon">🌓</div>
+      <div class="dark-toggle-lbl" id="darkLbl">Auto</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar" id="topbar">
+    <div class="breadcrumb">
+      <a href="index.html">🏫 MKR</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-cur">AI Leren & Beleid</span>
+    </div>
+    <div class="tb-actions">
+      <span id="progressLabel" style="font-size:12px;color:var(--t3);font-weight:500"></span>
+      <button class="tb-dark-btn" onclick="toggleDark()">
+        <span id="tbDarkIcon">🌓</span>
+        <span id="tbDarkLbl">Auto</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- HERO -->
+    <div class="al-hero">
+      <div class="al-hero-badge">🎓 Leerlijn AI</div>
+      <h1>Van begrip naar beleid</h1>
+      <p>Tien stapsgewijze modules die je meenemen van AI begrijpen tot verantwoorde afspraken schrijven voor je eigen vak. Praktisch, herkenbaar en direct toepasbaar in de VMBO-klas.</p>
+      <div class="al-hero-stats">
+        <div class="al-hero-stat"><div class="al-hero-stat-num">10</div><div class="al-hero-stat-lbl">Modules</div></div>
+        <div class="al-hero-stat"><div class="al-hero-stat-num">~80</div><div class="al-hero-stat-lbl">Minuten totaal</div></div>
+        <div class="al-hero-stat"><div class="al-hero-stat-num">5</div><div class="al-hero-stat-lbl">Rollen</div></div>
+        <div class="al-hero-stat"><div class="al-hero-stat-num" id="heroDone">0</div><div class="al-hero-stat-lbl">Afgerond</div></div>
+      </div>
+    </div>
+
+    <!-- ROLE TABS -->
+    <div class="role-tabs" id="roleTabs">
+      <div class="role-tab active" data-role="all">
+        <span class="role-tab-dot" style="background:#94A3B8"></span> Alle rollen
+      </div>
+      <div class="role-tab" data-role="docent">
+        <span class="role-tab-dot" style="background:#0369A1"></span> Docent
+      </div>
+      <div class="role-tab" data-role="mentor">
+        <span class="role-tab-dot" style="background:#7C3AED"></span> Mentor
+      </div>
+      <div class="role-tab" data-role="tl">
+        <span class="role-tab-dot" style="background:#059669"></span> Teamleider
+      </div>
+      <div class="role-tab" data-role="dir">
+        <span class="role-tab-dot" style="background:#D97706"></span> Directie
+      </div>
+      <div class="role-tab" data-role="oop">
+        <span class="role-tab-dot" style="background:#475569"></span> OOP / ICT
+      </div>
+    </div>
+
+    <!-- LEERLIJN -->
+    <div class="sec-hdr">
+      <div class="sec-hdr-top">
+        <div class="sec-title">Leerlijn AI</div>
+        <div class="sec-badge">10 modules</div>
+      </div>
+      <div class="sec-desc">Doorloop de modules in volgorde voor het beste resultaat, of spring direct naar wat voor jou urgent is.</div>
+    </div>
+    <div class="module-grid" id="moduleGrid"></div>
+
+    <!-- CASUSSEN -->
+    <div class="sec-hdr" id="casussen">
+      <div class="sec-hdr-top">
+        <div class="sec-title">Casussen uit de praktijk</div>
+        <div class="sec-badge">Scenario's</div>
+      </div>
+      <div class="sec-desc">Herkenbare situaties uit de vmbo-praktijk. Kies hoe jij zou reageren en krijg direct onderbouwde feedback.</div>
+    </div>
+    <div class="scenario-card" id="scenarioCard"></div>
+
+    <!-- BESLISBOOM -->
+    <div class="sec-hdr" id="beslisboom">
+      <div class="sec-hdr-top">
+        <div class="sec-title">Mag AI bij deze opdracht?</div>
+        <div class="sec-badge">Beslisboom</div>
+      </div>
+      <div class="sec-desc">Beantwoord drie vragen en krijg een direct advies: verboden, beperkt of vrij toegestaan — inclusief een kant-en-klare formulering voor in je studiewijzer.</div>
+    </div>
+    <div class="dt-wrap">
+      <div id="dtContent"></div>
+    </div>
+
+    <!-- GENERATOR -->
+    <div class="sec-hdr" id="generator">
+      <div class="sec-hdr-top">
+        <div class="sec-title">Vakwerkplan-generator</div>
+        <div class="sec-badge">Interactieve tool</div>
+      </div>
+      <div class="sec-desc">Vul je keuzes in en genereer een complete AI-paragraaf voor je vakwerkplan — direct kopieerbaar of te downloaden als tekstbestand.</div>
+    </div>
+    <div class="gen-wrap">
+      <div class="gen-form-panel">
+        <div class="gen-form-title">Jouw keuzes</div>
+        <div class="gen-form-sub">Vul hieronder in voor welk vak en welke situaties je AI-afspraken wilt maken.</div>
+
+        <div class="gen-field">
+          <label class="gen-label" for="genVak">Vak of leergebied</label>
+          <input class="gen-input" id="genVak" type="text" placeholder="bijv. Nederlands, Wiskunde, Biologie…"/>
+        </div>
+        <div class="gen-field">
+          <label class="gen-label" for="genNiveau">Niveau</label>
+          <select class="gen-select" id="genNiveau">
+            <option value="">Kies een niveau…</option>
+            <option value="Basis">Basis</option>
+            <option value="Kader">Kader</option>
+            <option value="TL / Mavo">TL / Mavo</option>
+            <option value="KGT (dakpanklas)">KGT (dakpanklas)</option>
+            <option value="Alle niveaus">Alle niveaus</option>
+          </select>
+        </div>
+
+        <div class="gen-field">
+          <label class="gen-label">Toegestaan gebruik van AI</label>
+          <div class="gen-checks" id="genToegestaan">
+            <div class="gen-check-item"><input type="checkbox" id="t1" value="brainstormen en ideeën genereren"><label for="t1">Brainstormen en ideeën genereren</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="t2" value="spellingcontrole en grammaticacheck"><label for="t2">Spellingcontrole en grammaticacheck</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="t3" value="teksten samenvatten ter voorbereiding op studie"><label for="t3">Teksten samenvatten ter voorbereiding</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="t4" value="uitleg vragen over leerstof (als studie-assistent)"><label for="t4">Uitleg vragen over leerstof</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="t5" value="vertaalhulp bij vreemde talen"><label for="t5">Vertaalhulp bij vreemde talen</label></div>
+          </div>
+          <input class="gen-custom-input" id="genToegestaanCustom" type="text" placeholder="+ eigen toevoeging…"/>
+        </div>
+
+        <div class="gen-field">
+          <label class="gen-label">Beperkt toegestaan (met voorwaarden)</label>
+          <div class="gen-checks" id="genBeperkt">
+            <div class="gen-check-item"><input type="checkbox" id="b1" value="AI als feedbacktool op een zelf geschreven eerste versie"><label for="b1">AI als feedbacktool op een eigen eerste versie</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="b2" value="AI voor oriëntatie bij een onderzoeksopdracht (bronnen zelf verifiëren)"><label for="b2">Oriëntatie bij onderzoek (bronnen zelf verifiëren)</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="b3" value="AI voor het verkennen van creatieve ideeën (eigen uitwerking verplicht)"><label for="b3">Verkennen van creatieve ideeën (eigen uitwerking verplicht)</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="b4" value="AI voor stapsgewijze rekenhulp (uitwerking in eigen woorden schrijven)"><label for="b4">Stapsgewijze rekenhulp (uitwerking in eigen woorden)</label></div>
+          </div>
+          <input class="gen-custom-input" id="genBeperktCustom" type="text" placeholder="+ eigen toevoeging…"/>
+        </div>
+
+        <div class="gen-field">
+          <label class="gen-label">Verboden gebruik van AI</label>
+          <div class="gen-checks" id="genVerboden">
+            <div class="gen-check-item"><input type="checkbox" id="v1" value="het schrijven van teksten of antwoorden die de kern van de opdracht vormen"><label for="v1">Schrijven van teksten die de opdrachtkern vormen</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="v2" value="gebruik tijdens toetsen, proefwerken of examens"><label for="v2">Gebruik tijdens toetsen en examens</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="v3" value="het volledig laten uitwerken van opdrachten door AI"><label for="v3">Volledig laten uitwerken van opdrachten</label></div>
+            <div class="gen-check-item"><input type="checkbox" id="v4" value="gebruik bij opdrachten die kritisch redeneren of schrijfvaardigheid meten"><label for="v4">Opdrachten die kritisch redeneren meten</label></div>
+          </div>
+          <input class="gen-custom-input" id="genVerbodenCustom" type="text" placeholder="+ eigen toevoeging…"/>
+        </div>
+
+        <div class="gen-field">
+          <label class="gen-label" for="genVerantw">Verantwoordingseis van leerlingen</label>
+          <select class="gen-select" id="genVerantw">
+            <option value="">Kies een eis…</option>
+            <option value="Leerlingen vermelden in hun werk welke AI-tool is gebruikt en voor welk doel.">Vermelden welke tool en waarvoor</option>
+            <option value="Leerlingen leveren een korte reflectie in waarin ze uitleggen hoe AI is ingezet en wat hun eigen bijdrage is.">Reflectie over eigen bijdrage</option>
+            <option value="Leerlingen leveren conceptversies en aantekeningen in om het eigen werkproces zichtbaar te maken.">Conceptversies en aantekeningen inleveren</option>
+            <option value="Leerlingen kunnen op verzoek mondeling toelichten hoe ze hun opdracht hebben gemaakt.">Mondeling toelichting op verzoek</option>
+          </select>
+        </div>
+
+        <button class="gen-gen-btn" onclick="generateVakwerkplan()">✦ Genereer AI-paragraaf</button>
+      </div>
+
+      <div class="gen-output-panel">
+        <div class="gen-output-title">Jouw AI-paragraaf</div>
+        <div class="gen-output-sub">Gegenereerde tekst voor in je vakwerkplan. Kopieer of download.</div>
+        <div class="gen-output-area" id="genOutput">Vul de gegevens in en klik op "Genereer AI-paragraaf" om jouw vakwerkplan-tekst te genereren…</div>
+        <div class="gen-output-btns">
+          <button class="gen-copy-btn" id="genCopyBtn" onclick="copyGenOutput()" disabled>📋 Kopiëren</button>
+          <button class="gen-dl-btn" id="genDlBtn" onclick="downloadGenOutput()" disabled>⬇ .txt</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PER ROL -->
+    <div class="sec-hdr" id="per-rol">
+      <div class="sec-hdr-top">
+        <div class="sec-title">Per rol in de school</div>
+        <div class="sec-badge">Taakverdeling</div>
+      </div>
+      <div class="sec-desc">Elke rol draagt op een eigen manier bij aan verantwoord AI-gebruik op MKR.</div>
+    </div>
+    <div class="rol-grid" id="rolGrid"></div>
+
+  </div>
+</div>
+
+<!-- MODULE OVERLAY -->
+<div class="mod-overlay" id="modOverlay">
+  <div class="mod-overlay-bg" onclick="closeModule()"></div>
+  <div class="mod-panel" id="modPanel"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Gekopieerd naar klembord</div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── MODULES DATA ──────────────────────────────────────────────────────────
+const MODULES = [
+  {
+    id:'M01',icon:'🤖',color:'#3B82F6',bg:'rgba(59,130,246,.1)',
+    num:'Module 01',title:'AI Begrijpen',subtitle:'Wat is generatieve AI en hoe werkt het?',
+    time:'8 min',level:'basis',roles:['all','docent','mentor','tl','dir','oop'],
+    desc:'Leer wat generatieve AI is, hoe taalmodellen werken en wat de mogelijkheden én beperkingen zijn.',
+    keypoints:[
+      {icon:'⚙️',text:'AI leert van patronen in enorme hoeveelheden tekst en voorspelt statistisch het meest waarschijnlijke vervolg — niet het meest correcte.'},
+      {icon:'⚠️',text:'Hallucinaties: AI kan overtuigend klinkende feiten verzinnen die niet kloppen. Altijd controleren op betrouwbare bronnen.'},
+      {icon:'🔏',text:'AI heeft geen bewustzijn, begrip of intentie. Een taalmodel "weet" niets — het herkent patronen.'},
+      {icon:'💡',text:'Promptkwaliteit bepaalt outputkwaliteit. "Maak een toets over fotosynthese voor vmbo-TL, 5 vragen, meerkeuze" geeft veel betere resultaten dan "maak een toets".'},
+    ],
+    tips:[
+      'Controleer altijd of informatie uit AI klopt in een betrouwbare bron (leerboek, Kennisnet)',
+      'Leg aan leerlingen uit: AI is als autocorrect op steroïden — handig, maar niet onfeilbaar',
+      'MKR gebruikt Microsoft Copilot (M365-licentie) als gratis goedgekeurde tool',
+      'Begin klein: gebruik AI voor één taak (bijv. lesplan opstellen) en bouw zo vertrouwen op',
+    ]
+  },
+  {
+    id:'M02',icon:'🔍',color:'#8B5CF6',bg:'rgba(139,92,246,.1)',
+    num:'Module 02',title:'AI Herkennen',subtitle:'AI-gebruik signaleren in leerlingwerk',
+    time:'6 min',level:'basis',roles:['all','docent','mentor'],
+    desc:'Herken wanneer leerlingen AI hebben gebruikt, wat je dan doet en hoe je het kunt voorkomen.',
+    keypoints:[
+      {icon:'📝',text:'Signalen van AI-tekst: vlotte schrijfstijl zonder fouten, geen persoonlijke stem, generieke formuleringen, veel "echter" en "bovendien", plotselinge onderwerpwisselingen.'},
+      {icon:'🚫',text:'Detectie-tools (GPTZero, Turnitin AI) zijn onbetrouwbaar. Ze geven regelmatig false positives, ook bij leerlingen die zelf hebben geschreven.'},
+      {icon:'💬',text:'Beste aanpak: een gesprek voeren, niet direct beschuldigen. Vraag de leerling het werk te verduidelijken of mondeling toe te lichten.'},
+      {icon:'🛡️',text:'Preventie werkt beter dan detectie: tussenproducten inleveren, conceptversies vragen, en reflecties bij het eindproduct laten schrijven.'},
+    ],
+    tips:[
+      'Vraag bij twijfel: "Leg eens uit hoe je dit gedeelte hebt bedacht" — een leerling die AI gebruikte weet dit niet',
+      'Bouw procesevaluatie in: aantekeningen, kladversies en schrijflogboeken maken AI-gebruik zichtbaar',
+      'Ga uit van goed vertrouwen: baseer je handelen op bewijs, niet op vermoedens',
+      'Mentor: bespreek in de mentorles "wanneer gebruik je AI wel en niet?" als preventie',
+    ]
+  },
+  {
+    id:'M03',icon:'👨‍🏫',color:'#0EA5E9',bg:'rgba(14,165,233,.1)',
+    num:'Module 03',title:'Docent & AI',subtitle:'Zelf AI gebruiken als professional',
+    time:'7 min',level:'basis',roles:['all','docent','mentor','tl'],
+    desc:'Hoe gebruik je AI als docent effectief en veilig voor lesvoorbereiding, feedback en administratie?',
+    keypoints:[
+      {icon:'⏱️',text:'AI kan tijdwinst opleveren bij: lesplannen ontwerpen, differentiatiemateriaal maken, toetsvragen genereren, rubrics opstellen, terugkerende communicatieteksten schrijven.'},
+      {icon:'📚',text:'De MKR Promptbibliotheek bevat 69 kant-en-klare prompts voor docenten, mentoren, teamleiders en directie — gebruik die als startpunt.'},
+      {icon:'🔒',text:'Privacyregel: voer nooit namen, adresgegevens of andere persoonsgegevens van leerlingen in bij AI-tools die niet door MKR zijn goedgekeurd.'},
+      {icon:'✅',text:'Controleer AI-output altijd voor je het gebruikt in de les. AI maakt fouten, ook in vakinhoud. Jij blijft verantwoordelijk voor het materiaal.'},
+    ],
+    tips:[
+      'Gebruik Copilot (via M365) voor schoolwerk — dit is de goedgekeurde MKR-tool en valt onder de bestaande licentie',
+      'Begin met één taak waarbij AI echt tijd bespaart, bijv. "genereer 10 oefenvragen over [onderwerp] voor vmbo-[niveau]"',
+      'Maak je prompt specifiek: vermeld vak, niveau, leerdoel en gewenst format',
+      'Bewaar goede prompts in de promptbibliotheek onder je eigen collecties',
+    ]
+  },
+  {
+    id:'M04',icon:'📋',color:'#10B981',bg:'rgba(16,185,129,.1)',
+    num:'Module 04',title:'AI in Opdrachten',subtitle:'Wanneer mag AI en wanneer niet?',
+    time:'10 min',level:'basis',roles:['all','docent'],
+    desc:'Leer per opdracht bepalen of AI verboden, beperkt of vrij is — op basis van het leerdoel.',
+    cta:{label:'🌳 Open de beslisboom',target:'beslisboom'},
+    keypoints:[
+      {icon:'🎯',text:'Kernprincipe: het leerdoel bepaalt of AI mag. "Past AI-gebruik bij wat ik wil dat leerlingen ZELF leren?" is de centrale vraag.'},
+      {icon:'🚦',text:'Drie niveaus: Verboden (AI ondergraaft het leerdoel direct) → Beperkt (AI mag met duidelijke voorwaarden) → Vrij toegestaan (AI ondersteunt, eigen bijdrage is aantoonbaar).'},
+      {icon:'📖',text:'MKR-examenreglement: generatieve AI is in principe verboden, tenzij de vakdocent per opdracht expliciet anders bepaalt en voorwaarden stelt.'},
+      {icon:'🔎',text:'Verantwoording is altijd verplicht: leerlingen moeten aangeven wanneer en hoe ze AI hebben gebruikt, en hun eigen bijdrage laten zien.'},
+    ],
+    tips:[
+      'Gebruik de beslisboom hieronder om snel te bepalen welk niveau van toepassing is',
+      'Formuleer je AI-afspraak concreet in de studiewijzer — vage regels leiden tot misverstanden',
+      'Overleg met vakgenoten: wat doen collega\'s bij vergelijkbare opdrachten? Consistentie helpt leerlingen',
+      'Evalueer na een periode: werkt de afspraak in de praktijk, of moet je hem aanscherpen?',
+    ]
+  },
+  {
+    id:'M05',icon:'✏️',color:'#F59E0B',bg:'rgba(245,158,11,.1)',
+    num:'Module 05',title:'Toetsing & Beoordeling',subtitle:'Eerlijk beoordelen in tijden van AI',
+    time:'9 min',level:'gevorderd',roles:['all','docent','tl'],
+    desc:'Hoe borg je dat je het werk van de leerling zelf beoordeelt en niet dat van een AI-tool?',
+    keypoints:[
+      {icon:'📝',text:'Summatieve toetsen (tellen voor cijfer): AI vrijwel altijd verboden. Uitzondering alleen als het leerdoel juist is "AI verantwoord inzetten en evalueren".'},
+      {icon:'🔄',text:'Alternatieve toetsvormen die AI-fraude moeilijker maken: mondeling examen, portfolio (inclusief processtappen), presentatie, in-class schrijfopdracht.'},
+      {icon:'📊',text:'Formatieve toetsing: AI juist nuttig als feedbacktool. Leerlingen kunnen AI-feedback vergelijken met docent-feedback — leerzame oefening.'},
+      {icon:'⚖️',text:'Beoordeel proces én product: wie het werkproces (aantekeningen, kladversies, gesprekken) kan laten zien, heeft echt geleerd.'},
+    ],
+    tips:[
+      'Bouw "tussencheck-momenten" in bij langlopende opdrachten — zo zie je het groeiproces',
+      'Voeg een verplicht reflectieveld toe aan werkstukken: "Hoe heb je AI gebruikt en wat is jouw eigen bijdrage?"',
+      'Mondeling toetsen is de meest betrouwbare manier om eigen begrip vast te stellen',
+      'Verwijs leerlingen bij fraude naar de fraudeparagraaf van het MKR-examenreglement',
+    ]
+  },
+  {
+    id:'M06',icon:'🔒',color:'#6366F1',bg:'rgba(99,102,241,.1)',
+    num:'Module 06',title:'Privacy & AVG',subtitle:'Veilig omgaan met data bij AI-gebruik',
+    time:'5 min',level:'basis',roles:['all','docent','mentor','oop','tl','dir'],
+    desc:'Welke gegevens mag je NIET invoeren bij AI-tools en welke tools zijn goedgekeurd voor gebruik op MKR?',
+    keypoints:[
+      {icon:'🚫',text:'Gouden regel: voer NOOIT namen, BSN-nummers, adressen, ziektebeelden of andere persoonsgegevens van leerlingen of collega\'s in bij AI-tools.'},
+      {icon:'✅',text:'MKR-goedgekeurd: Microsoft Copilot via de M365-schoollicentie. Gegevens blijven binnen de Europese dataverwerkingsovereenkomst van Microsoft.'},
+      {icon:'⚠️',text:'ChatGPT, Claude en andere tools: bruikbaar voor algemeen gebruik, maar let op: invoer kan worden gebruikt voor modeltraining. Geen leerlingdata invoeren.'},
+      {icon:'🌍',text:'AVG-bewustzijn voor leerlingen: "Als je twijfelt of iets privacygevoelig is, gebruik dan geen AI voor die taak" — deze simpele regel is makkelijk te onthouden.'},
+    ],
+    tips:[
+      'Bij twijfel over een tool: vraag de ICT-coördinator of er een verwerkersovereenkomst is',
+      'Beschrijf leerlingcases in AI altijd geanonimiseerd: "een leerling in klas 2B" in plaats van een naam',
+      'Leg aan leerlingen uit waarom ze geen persoonlijke gegevens mogen invoeren — het gaat om hun eigen bescherming',
+      'Zie Kennisnet (kennisnet.nl) voor actuele richtlijnen over AVG en AI in het onderwijs',
+    ]
+  },
+  {
+    id:'M07',icon:'⚖️',color:'#EC4899',bg:'rgba(236,72,153,.1)',
+    num:'Module 07',title:'Kansen & Risico\'s',subtitle:'Kansengelijkheid en AI op MKR',
+    time:'6 min',level:'gevorderd',roles:['all','docent','mentor','tl','dir'],
+    desc:'AI biedt kansen voor leerlingen met achterstanden, maar vergroot ook risico\'s. Hoe ga je daar bewust mee om?',
+    keypoints:[
+      {icon:'🌱',text:'Kansen: AI kan ondersteuning bieden bij taalachterstanden, meertaligheid, uitleg op maat en hulp buiten schooluren — dit zijn voordelen voor kwetsbare leerlingen.'},
+      {icon:'📉',text:'Risico ongelijkheid: leerlingen met betere devices, sneller internet en betaalde AI-abonnementen thuis hebben een grotere voorsprong.'},
+      {icon:'🏫',text:'MKR-aanpak: AI-werk altijd uitvoeren op schoolcomputers (gelijkwaardige toegang) en vermijd huiswerkopdrachten die AI-gebruik thuis veronderstellen.'},
+      {icon:'🧠',text:'Langetermijnrisico: leerlingen die te afhankelijk worden van AI ontwikkelen onvoldoende eigen redeneer- en schrijfvaardigheden — juist schadelijk voor wie al achterstaat.'},
+    ],
+    tips:[
+      'Geef AI-opdrachten altijd ook de ruimte om klasikaal te doen, niet alleen als huiswerk',
+      'Bespreek in de les openlijk: "AI kan helpen, maar er zijn ook risico\'s — welke ken jij?"',
+      'Mentor: wees bewust van wie thuis geen goede digitale toegang heeft',
+      'Bekijk het als kansen-vraagstuk: hoe zorgen we dat AI geen nieuwe kloof creëert?',
+    ]
+  },
+  {
+    id:'M08',icon:'📄',color:'#0D9488',bg:'rgba(13,148,136,.1)',
+    num:'Module 08',title:'Afspraken Schrijven',subtitle:'AI-paragraaf in jouw vakwerkplan',
+    time:'12 min',level:'gevorderd',roles:['all','docent','tl'],
+    desc:'Formuleer stapsgewijs de AI-afspraken voor jouw vak, gebruikmakend van het MKR-raamwerk.',
+    cta:{label:'📝 Open de vakwerkplan-generator',target:'generator'},
+    keypoints:[
+      {icon:'🏗️',text:'Framework (7 rubrieken): Visie op AI in het vak → Toegestaan gebruik → Beperkt gebruik → Verboden gebruik → Verantwoording → Privacy → Beoordeling.'},
+      {icon:'📌',text:'Aansluiting bij MKR-beleid: AI is een hulpmiddel, geen vervanger van leren. Leerlingen tonen altijd hun eigen bijdrage en verantwoorden hun AI-gebruik.'},
+      {icon:'📎',text:'Aansluiting bij examenreglement: generatieve AI is verboden tenzij de vakdocent per opdracht expliciet toestemming geeft met duidelijke voorwaarden.'},
+      {icon:'🔄',text:'Evalueer jaarlijks: AI-technologie verandert snel. Plan elk schooljaar een moment om je afspraken te herzien op basis van ervaringen in de klas.'},
+    ],
+    tips:[
+      'Gebruik de vakwerkplan-generator hieronder als startpunt — pas daarna aan op jouw specifieke situatie',
+      'Bespreek je eerste concept met een collega in jouw sectie voor feedback',
+      'Maak afspraken begrijpelijk voor leerlingen: test of een leerling begrijpt wat wel en niet mag',
+      'Teamleider: zorg dat alle vakken voor het einde van het schooljaar een AI-paragraaf hebben',
+    ]
+  },
+  {
+    id:'M09',icon:'📚',color:'#D97706',bg:'rgba(217,119,6,.1)',
+    num:'Module 09',title:'Vakgerichte Voorbeelden',subtitle:'AI-afspraken per vakgebied',
+    time:'7 min',level:'basis',roles:['all','docent'],
+    desc:'Bekijk hoe collega\'s in andere vakken hun AI-afspraken hebben geformuleerd. Gebruik als inspiratie.',
+    keypoints:[
+      {icon:'📖',text:'Nederlands: schrijfvaardigheid is centraal. AI verboden bij schrijfopdrachten die taalvaardigheid meten, beperkt bij oriëntatie en feedback, vrij bij begripsvorming.'},
+      {icon:'🔢',text:'Wiskunde: redeneerproces staat voorop. AI beperkt voor rekenhulp en uitleg (uitwerking in eigen woorden), verboden bij toetsen en bewijsopdrachten.'},
+      {icon:'🔬',text:'Biologie: onderzoek en begrip centraal. AI vrij voor oriëntatie en samenvatting (bronnen altijd verifiëren), beperkt bij analyse-opdrachten.'},
+      {icon:'🌍',text:'Geschiedenis/Maatschappijleer: analyse en oordeel zijn de kern. AI beperkt bij essays (eerste opzet), verboden bij bronanalyse-opdrachten.'},
+    ],
+    tips:[
+      'Engels: AI als taalpartner is nuttig voor conversatieoefening, maar verboden bij schrijftoetsen',
+      'Creatieve vakken: AI als inspiratietool is waardevol, maar het creatieve eindproduct is altijd eigen werk',
+      'Bewegingsonderwijs / Verzorging: AI bruikbaar voor theoriedelen, niet voor praktijkbeoordeling',
+      'Combineer: bespreek met je sectie welke afspraken logisch zijn voor jullie vakgebied',
+    ]
+  },
+  {
+    id:'M10',icon:'✅',color:'#059669',bg:'rgba(5,150,105,.1)',
+    num:'Module 10',title:'Borging & Checklist',subtitle:'Van module naar duurzaam schoolbeleid',
+    time:'8 min',level:'gevorderd',roles:['all','tl','dir','oop'],
+    desc:'Hoe borgt MKR als school verantwoord AI-gebruik in de kwaliteitscyclus?',
+    keypoints:[
+      {icon:'🔁',text:'Kwaliteitscyclus: Plan (afspraken maken) → Do (uitvoeren in de klas) → Check (evalueren na het schooljaar) → Act (bijstellen voor volgend jaar).'},
+      {icon:'👥',text:'Teamleider: bespreek AI-ervaringen in teamoverleggen, controleer of alle vakwerkplannen een AI-paragraaf hebben, monitor uitvoering via lesbezoeken.'},
+      {icon:'🏛️',text:'Directie: verankert AI-beleid in het schoolplan, stelt randvoorwaarden (tijd, scholing, middelen), bespreekt voortgang in kwaliteitsgesprekken.'},
+      {icon:'🔧',text:'ICT-coördinatie / OOP: beheert goedgekeurde tools, bewaakt AVG-conformiteit, beantwoordt vragen van docenten en leerlingen over technische aspecten.'},
+    ],
+    tips:[
+      'Plan jaarlijks een studiedag-moment voor het bespreken en bijwerken van AI-afspraken',
+      'Gebruik de checklist hieronder om te controleren of alles op orde is',
+      'Teamleider: neem AI-implementatie op in functioneringsgesprekken als professionaliseringsthema',
+      'Deel positieve ervaringen in teamoverleg — successen motiveren collega\'s die nog aarzelen',
+    ]
+  }
+];
+
+// ── ROL DATA ──────────────────────────────────────────────────────────────
+const ROL_CARDS = [
+  {
+    icon:'👨‍🏫', title:'Docent',
+    desc:'Docenten zijn het primaire aanspreekpunt voor AI-afspraken. Zij bepalen per opdracht of AI is toegestaan en voeren de afspraken uit in de lespraktijk.',
+    tasks:['AI-paragraaf schrijven in vakwerkplan','Per opdracht bepalen of AI mag (gebruik de beslisboom)','Leerlingen uitleggen wat de afspraken zijn','AI-gebruik controleren en bespreken bij vermoeden van misbruik','Jaarlijks evalueren of afspraken nog kloppen']
+  },
+  {
+    icon:'🧑‍🤝‍🧑', title:'Mentor',
+    desc:'Mentoren begeleiden leerlingen in hun digitale geletterdheid en AI-bewustzijn op persoonlijk niveau.',
+    tasks:['AI-gebruik bespreken in mentorlessen en individuele gesprekken','Bewustzijn creëren over privacy en eigen werk','Signaleren van leerlingen met achterstanden of overmatig AI-gebruik','Ondersteunen bij vragen over AI-beleid (doorverwijzen)','Rapporteren over digitale geletterdheid bij voortgangsgesprekken']
+  },
+  {
+    icon:'🔧', title:'OOP & ICT-coördinatie',
+    desc:'OOP en ICT-coördinatie zorgen voor de technische en organisatorische randvoorwaarden voor veilig AI-gebruik.',
+    tasks:['Beheer en verificatie van AVG-goedgekeurde tools','Ondersteuning bij technische vragen van docenten en leerlingen','Adviseren over privacy-aspecten bij nieuwe tools','Helpdesk-functie voor AI-gerelateerde problemen','Bijhouden van actuele richtlijnen (Kennisnet, OCW)']
+  },
+  {
+    icon:'📊', title:'Teamleider',
+    desc:'Teamleiders bewaken de uitvoering van AI-afspraken in hun team en integreren het thema in de kwaliteitszorg.',
+    tasks:['Controleren of alle vakken een AI-paragraaf hebben','Ervaringen bespreken in teamoverleggen','Ondersteunen van docenten die hulp nodig hebben','Zorgdragen voor coherent beleid binnen het team','AI-thema opnemen in functioneringsgesprekken']
+  },
+  {
+    icon:'🏛️', title:'Directie',
+    desc:'De directie stelt de kaders, faciliteert scholing en integreert AI-beleid in het schoolplan en de kwaliteitscyclus.',
+    tasks:['Visie op AI opnemen in het schoolplan','Tijd en middelen beschikbaar stellen voor scholing (studiedagen)','Voortgang bewaken in kwaliteitsgesprekken','Samenwerking met ouders en externe partijen faciliteren','Jaarlijkse beleidsevaluatie op schoolniveau']
+  }
+];
+
+// ── SCENARIOS (casussen) ──────────────────────────────────────────────────
+const SCENARIOS = [
+  {
+    icon:'📖', tag:'Detectie & gesprek',
+    situation:'Een leerling levert een verslag in dat opvallend vlot en foutloos is — heel anders dan zijn gebruikelijke werk. Je vermoedt AI-gebruik, maar hebt geen bewijs. Wat doe je?',
+    choices:[
+      {label:'Direct een onvoldoende geven wegens fraude', type:'slecht', text:'Een vermoeden is geen bewijs. AI-detectietools zijn onbetrouwbaar en geven vaak false positives, ook bij eigen werk. Je riskeert een onterechte beschuldiging. Begin altijd met een gesprek.'},
+      {label:'De leerling vragen het werk mondeling toe te lichten', type:'goed', text:'Sterk. Vraag de leerling een passage uit te leggen of te vertellen hoe hij tot bepaalde keuzes kwam. Wie het zelf schreef kan dit; wie AI gebruikte meestal niet. Je handelt op basis van gesprek en bewijs, niet op een vermoeden.'},
+      {label:'Niets doen, want je hebt geen bewijs', type:'matig', text:'Begrijpelijk, maar een gemiste kans. Ook zonder hard bewijs is een gesprek waardevol: het maakt je verwachtingen duidelijk en werkt preventief voor de volgende opdracht.'}
+    ]
+  },
+  {
+    icon:'🤝', tag:'Mentorgesprek',
+    situation:'Een leerling vertelt je in een mentorgesprek eerlijk dat hij zijn werkstuk voor een ander vak volledig door ChatGPT heeft laten schrijven. Hoe reageer je?',
+    choices:[
+      {label:'Meteen een fraudemelding doen bij de vakdocent', type:'matig', text:'Soms nodig, maar je zet de openheid van de leerling op het spel. Begin met begrijpen wáárom: tijdgebrek, onzekerheid, niet weten dat het niet mocht? Een mentorgesprek is bij uitstek de plek om te leren — schakel daarna samen de vakdocent in.'},
+      {label:'Samen onderzoeken waarom hij dit deed en wat hij leerde', type:'goed', text:'Sterk. Je gebruikt het moment om bewustzijn te kweken: wat heeft hij nu écht geleerd? Wat was het leerdoel? Bespreek hoe AI wél verantwoord kan helpen, en maak samen een plan voor het vervolg.'},
+      {label:'Zeggen dat het niet erg is, iedereen doet het', type:'slecht', text:'Niet doen. Hiermee normaliseer je het omzeilen van het leerproces. De leerling mist de kans te begrijpen waarom eigen werk belangrijk is voor zijn eigen ontwikkeling.'}
+    ]
+  },
+  {
+    icon:'🎯', tag:'Mag AI hier?',
+    situation:'Je geeft een opdracht waarbij leerlingen een nieuwsbericht moeten samenvatten. Het leerdoel is "hoofd- en bijzaken onderscheiden". Een leerling vraagt of hij AI mag gebruiken. Wat is de beste afweging?',
+    choices:[
+      {label:'Verbieden — AI gebruiken is altijd vals spelen', type:'slecht', text:'Te kort door de bocht. Een verbodscultuur miskent de kansen van AI. De kernvraag is niet "mag AI", maar "tast AI het leerdoel aan?". Denk per opdracht na.'},
+      {label:'Toestaan zonder voorwaarden — het scheelt tijd', type:'matig', text:'Riskant. Als AI de samenvatting maakt, oefent de leerling juist niet het onderscheiden van hoofd- en bijzaken — precies het leerdoel. Zonder voorwaarden ondergraaf je de opdracht.'},
+      {label:'Beperkt: eerst zelf samenvatten, daarna AI als controle', type:'goed', text:'Sterk. De leerling oefent eerst zelf de vaardigheid (het leerdoel) en gebruikt AI daarna om te vergelijken en te reflecteren. Zo blijft het leerdoel intact én leert de leerling AI kritisch inzetten.'}
+    ]
+  }
+];
+
+let scIdx = 0;
+function renderScenario() {
+  const s = SCENARIOS[scIdx];
+  const el = document.getElementById('scenarioCard');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="sc-top">
+      <div class="sc-icon">${s.icon}</div>
+      <div>
+        <div class="sc-counter">Casus ${scIdx+1} van ${SCENARIOS.length} · ${s.tag}</div>
+        <div class="sc-situation">${s.situation}</div>
+      </div>
+    </div>
+    <div class="sc-choices">
+      ${s.choices.map((c,i)=>`<button class="sc-choice" onclick="answerScenario(${i})">${c.label}</button>`).join('')}
+    </div>
+    <div class="sc-feedback" id="scFeedback"></div>`;
+}
+function answerScenario(i) {
+  const s = SCENARIOS[scIdx], c = s.choices[i];
+  const btns = document.querySelectorAll('.sc-choice');
+  btns.forEach((b,bi)=>{ b.disabled = true; if(bi===i) b.classList.add('chosen'); });
+  const labels = {goed:'✓ Sterke aanpak', matig:'~ Kan beter', slecht:'✕ Liever niet'};
+  const fb = document.getElementById('scFeedback');
+  fb.className = 'sc-feedback show ' + c.type;
+  fb.innerHTML = `<div class="sc-fb-label">${labels[c.type]}</div><div class="sc-fb-text">${c.text}</div>
+    <button class="sc-next" onclick="nextScenario()">${scIdx<SCENARIOS.length-1?'Volgende casus →':'Opnieuw vanaf casus 1 ↺'}</button>`;
+}
+function nextScenario() { scIdx = (scIdx+1) % SCENARIOS.length; renderScenario(); }
+
+// ── PROGRESS ──────────────────────────────────────────────────────────────
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem('mkr-ai-leren-progress') || '{}'); } catch(e) {}
+function saveProgress() {
+  try { localStorage.setItem('mkr-ai-leren-progress', JSON.stringify(progress)); } catch(e) {}
+}
+function getDoneCount() { return MODULES.filter(m => progress[m.id]).length; }
+
+function updateProgressUI() {
+  const done = getDoneCount();
+  const total = MODULES.length;
+  const pct = Math.round(done / total * 100);
+  const fill = document.getElementById('sbProgressFill');
+  if (fill) fill.style.width = pct + '%';
+  const hero = document.getElementById('heroDone');
+  if (hero) hero.textContent = done;
+  const lbl = document.getElementById('progressLabel');
+  if (lbl) lbl.textContent = done > 0 ? `${done}/${total} modules afgerond` : '';
+  renderSbModProgress();
+}
+
+function renderSbModProgress() {
+  const el = document.getElementById('sbModProgress');
+  if (!el) return;
+  el.innerHTML = MODULES.map(m => `
+    <div class="sb-mod-item" onclick="openModule('${m.id}')">
+      <div class="sb-mod-dot ${progress[m.id] ? 'done' : ''}"></div>
+      <div class="sb-mod-label">${m.title}</div>
+    </div>`).join('');
+}
+
+// ── RENDER MODULES ────────────────────────────────────────────────────────
+let activeRole = 'all';
+function renderModules() {
+  const grid = document.getElementById('moduleGrid');
+  if (!grid) return;
+  grid.innerHTML = MODULES.map((m, i) => {
+    const visible = activeRole === 'all' || m.roles.includes(activeRole);
+    return `<div class="mod-card ${progress[m.id]?'done':''}" onclick="openModule('${m.id}')"
+      style="animation-delay:${i*.03}s;${!visible?'display:none':''}">
+      <div class="mod-num">${m.num}</div>
+      <div class="mod-icon-wrap" style="background:${m.bg}">${m.icon}</div>
+      <div class="mod-title">${m.title}</div>
+      <div class="mod-subtitle">${m.subtitle}</div>
+      <div class="mod-meta">
+        <span class="mod-tag">⏱ ${m.time}</span>
+        <span class="mod-tag level-${m.level}">${m.level==='basis'?'Basis':'Gevorderd'}</span>
+      </div>
+      <button class="mod-cta">Bekijken →</button>
+    </div>`;
+  }).join('');
+}
+
+// ── OPEN MODULE ───────────────────────────────────────────────────────────
+let currentModId = null;
+function openModule(id) {
+  const m = MODULES.find(x => x.id === id);
+  if (!m) return;
+  currentModId = id;
+  const idx = MODULES.indexOf(m);
+  const prev = MODULES[idx - 1];
+  const next = MODULES[idx + 1];
+  const isDone = progress[id];
+
+  document.getElementById('modPanel').innerHTML = `
+    <div class="mod-panel-top">
+      <button class="mod-panel-close" onclick="closeModule()">✕</button>
+      <div class="mod-panel-badge">${m.icon} ${m.num}</div>
+      <div class="mod-panel-title">${m.title}</div>
+      <div class="mod-panel-subtitle">${m.desc}</div>
+    </div>
+    <div class="mod-panel-body">
+      <div class="mod-section">
+        <div class="mod-section-title">Kernpunten</div>
+        ${m.keypoints.map(k=>`<div class="mod-kp"><div class="mod-kp-icon">${k.icon}</div><div class="mod-kp-text">${k.text}</div></div>`).join('')}
+      </div>
+      <div class="mod-section">
+        <div class="mod-section-title">Praktische tips</div>
+        <ul class="mod-tip-list">${m.tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>
+      ${m.cta?`<button class="mod-cta-link" onclick="gotoTool('${m.cta.target}')">${m.cta.label} →</button>`:''}
+      <button class="mod-done-btn ${isDone?'done':''}" id="modDoneBtn" onclick="toggleDone('${id}')">
+        ${isDone ? '✓ Afgerond — klik om ongedaan te maken' : '✓ Module afronden'}
+      </button>
+      <div class="mod-nav-btns">
+        ${prev?`<button class="mod-nav-btn" onclick="openModule('${prev.id}')">← ${prev.title}</button>`:'<div></div>'}
+        ${next?`<button class="mod-nav-btn" style="text-align:right" onclick="openModule('${next.id}')">${next.title} →</button>`:'<div></div>'}
+      </div>
+    </div>`;
+
+  document.getElementById('modOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModule() {
+  document.getElementById('modOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModId = null;
+}
+function toggleDone(id) {
+  progress[id] = !progress[id];
+  saveProgress();
+  updateProgressUI();
+  renderModules();
+  // update button in panel
+  const btn = document.getElementById('modDoneBtn');
+  if (btn) {
+    btn.classList.toggle('done', progress[id]);
+    btn.textContent = progress[id] ? '✓ Afgerond — klik om ongedaan te maken' : '✓ Module afronden';
+  }
+}
+
+// ── ROLE TABS ─────────────────────────────────────────────────────────────
+document.getElementById('roleTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.role-tab');
+  if (!tab) return;
+  activeRole = tab.dataset.role;
+  document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  renderModules();
+});
+
+// ── RENDER ROL CARDS ──────────────────────────────────────────────────────
+function renderRolCards() {
+  const grid = document.getElementById('rolGrid');
+  if (!grid) return;
+  grid.innerHTML = ROL_CARDS.map(r => `
+    <div class="rol-card">
+      <div class="rol-card-icon">${r.icon}</div>
+      <div class="rol-card-title">${r.title}</div>
+      <div class="rol-card-desc">${r.desc}</div>
+      <ul class="rol-card-tasks">${r.tasks.map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+// ── DECISION TREE ─────────────────────────────────────────────────────────
+const DT_STEPS = [
+  {
+    id:'leerdoel', label:'Stap 1 van 3',
+    vraag:'Wat is het primaire leerdoel van de opdracht?',
+    opties:[
+      {val:'schrijven',icon:'✍️',label:'Schrijfvaardigheid of taalvaardigheid'},
+      {val:'rekenen',icon:'🔢',label:'Wiskundig redeneren of rekenen'},
+      {val:'onderzoeken',icon:'🔍',label:'Onderzoeken of informatie verwerken'},
+      {val:'creatief',icon:'🎨',label:'Creatief ontwerpen of produceren'},
+      {val:'kennis',icon:'🧠',label:'Kennis reproduceren of toepassen'},
+    ]
+  },
+  {
+    id:'werkvorm', label:'Stap 2 van 3',
+    vraag:'Wat voor soort werkvorm is het?',
+    opties:[
+      {val:'toets',icon:'📝',label:'Toets, proefwerk of examen'},
+      {val:'werkstuk',icon:'📄',label:'Werkstuk, verslag of essay'},
+      {val:'presentatie',icon:'🎤',label:'Presentatie, video of product'},
+      {val:'oefening',icon:'📖',label:'Klasenopdracht, huiswerk of oefening'},
+    ]
+  },
+  {
+    id:'summatief', label:'Stap 3 van 3',
+    vraag:'Telt het resultaat voor een cijfer of beoordeling?',
+    opties:[
+      {val:'ja',icon:'✅',label:'Ja — het telt voor het cijfer (summatief)'},
+      {val:'nee',icon:'🔄',label:'Nee — niet voor een cijfer (formatief)'},
+    ]
+  }
+];
+
+let dtStep = 0;
+let dtAnswers = {};
+let dtSelected = null;
+
+function getDecision(a) {
+  if (a.werkvorm === 'toets') return {
+    badge:'verboden', icon:'🚫', title:'AI is verboden bij deze opdracht',
+    text:'Bij toetsen, proefwerken en examens is AI-gebruik altijd verboden op MKR, ongeacht het leerdoel. Het doel van een toets is vaststellen wat de leerling zelfstandig beheerst.',
+    voorwaarden:['Leerlingen werken zonder AI-hulp','Devices worden ingenomen of AI-apps zijn geblokkeerd','Bij vermoeden van fraude gelden de regels uit het examenreglement MKR'],
+    formulering:`Bij [naam opdracht/toets] is het gebruik van generatieve AI (zoals ChatGPT, Copilot of Claude) niet toegestaan. Leerlingen werken zelfstandig en zonder digitale hulpmiddelen anders dan [specifiek toegestane middelen]. Bij overtreding gelden de regels uit het examenreglement.`
+  };
+
+  if (a.summatief === 'ja') {
+    if (a.leerdoel === 'schrijven') return {
+      badge:'verboden', icon:'🚫', title:'AI is verboden bij deze opdracht',
+      text:'Schrijfvaardigheid is het leerdoel. AI-gebruik ondermijnt dit direct: de leerling oefent en toont niet zelf de gevraagde vaardigheid. Dit geldt ook bij summatieve beoordelingen van taalvaardigheid.',
+      voorwaarden:['Leerling schrijft de volledige tekst zelf','Geen AI-tools voor het schrijven of herschrijven van tekst','Spellingcontrole (bijv. de ingebouwde tool in Word) is wel toegestaan, tenzij anders aangegeven'],
+      formulering:`Bij [naam opdracht] is het gebruik van generatieve AI voor het schrijven of herschrijven van tekst niet toegestaan. Het leerdoel is dat je zelf schrijft. Spellingcontrole via [naam tool] is toegestaan. Lever je tekst in via [platform].`
+    };
+    if (a.leerdoel === 'rekenen') return {
+      badge:'verboden', icon:'🚫', title:'AI is verboden bij deze opdracht',
+      text:'Wiskundig redeneren is het leerdoel. Als AI de berekeningen doet, leert de leerling het proces niet. Bij summatieve opdrachten moet de leerling het redeneerproces zelf laten zien.',
+      voorwaarden:['Leerling werkt alle stappen zelf uit','Alleen toegestane hulpmiddelen zijn [rekenmachine/formuleblad etc.]','Uitwerkingen die AI-gegenereerde stappen tonen leiden tot een ongeldig resultaat'],
+      formulering:`Bij [naam opdracht] is het gebruik van AI voor het oplossen van rekenopgaven of wiskundige problemen niet toegestaan. Toon altijd alle tussenstappen in je uitwerking.`
+    };
+    if (a.leerdoel === 'kennis') return {
+      badge:'verboden', icon:'🚫', title:'AI is verboden bij deze opdracht',
+      text:'Het reproduceren of toepassen van kennis is het leerdoel. Als AI de antwoorden geeft, meet de toets niet meer wat de leerling zelf weet en kan.',
+      voorwaarden:['Leerling beantwoordt vragen uit eigen geheugen en begrip','Geen AI-tools, zoekmachines of andere hulpmiddelen, tenzij expliciet toegestaan'],
+      formulering:`Bij [naam opdracht] werk je zelfstandig. Het gebruik van AI of andere digitale hulpmiddelen is niet toegestaan, tenzij de docent dit expliciet aangeeft.`
+    };
+    if (a.leerdoel === 'onderzoeken') return {
+      badge:'beperkt', icon:'⚠️', title:'AI is beperkt toegestaan',
+      text:'Onderzoekend leren staat centraal. AI mag worden ingezet voor oriëntatie en achtergrondkennis, maar de analyse, conclusies en eigen tekst moet de leerling zelf schrijven. Bronnen altijd onafhankelijk controleren.',
+      voorwaarden:['AI alleen voor oriëntatie (achtergrondinfo, begrippenuitleg)','Alle bronnen via AI worden onafhankelijk geverifieerd','De analyse, interpretatie en conclusies zijn volledig eigen werk','Leerling vermeldt hoe AI is gebruikt in een verantwoording'],
+      formulering:`Bij [naam opdracht] mag je AI gebruiken voor oriëntatie (bijv. achtergrond opzoeken of begrippen uitleggen). Bronnen controleer je altijd in [schoolmethode/bekende bronnen]. De analyse en conclusies schrijf je zelf. Vermeld in je verslag hoe je AI hebt gebruikt.`
+    };
+    return {
+      badge:'beperkt', icon:'⚠️', title:'AI is beperkt toegestaan',
+      text:'Creatief denken staat centraal. AI mag worden ingezet als inspiratietool, maar het creatieve eindproduct is eigen werk. De leerling moet zijn eigen bijdrage aantoonbaar kunnen laten zien.',
+      voorwaarden:['AI alleen voor het genereren van eerste ideeën of concepten','Het uiteindelijke product is volledig eigen uitwerking','Leerling documenteert hoe AI is ingezet (bijv. welke ideeën wel/niet zijn overgenomen)'],
+      formulering:`Bij [naam opdracht] mag je AI gebruiken om ideeën te verkennen of inspiratie op te doen. Het uiteindelijke product is volledig jouw eigen werk. Voeg bij je inlevering een korte reflectie toe: welke AI-ideeën heb je gebruikt, wat heb je zelf bedacht?`
+    };
+  }
+
+  // Formatief
+  if (a.leerdoel === 'schrijven') return {
+    badge:'beperkt', icon:'⚠️', title:'AI is beperkt toegestaan',
+    text:'Bij formatieve schrijfopdrachten kan AI als feedbacktool worden ingezet. De leerling schrijft zelf een eerste versie en gebruikt AI om die te verbeteren. Het schrijven zelf blijft eigen werk.',
+    voorwaarden:['Leerling schrijft altijd eerst een eigen versie','AI mag worden gebruikt voor feedback op formuleringen, niet voor het schrijven','Leerling vermeldt welke AI-suggesties zijn overgenomen en waarom'],
+    formulering:`Bij [naam opdracht] schrijf je eerst zelf een complete versie. Daarna mag je AI gebruiken om feedback te krijgen op je tekst (bijv. formulering of structuur). Noteer welke suggesties je hebt overgenomen. De eindtekst is jouw eigen werk.`
+  };
+
+  return {
+    badge:'vrij', icon:'✅', title:'AI is vrij toegestaan (met verantwoording)',
+    text:'Bij deze formatieve opdracht kan AI worden ingezet als ondersteuning. Het leerdoel is niet in gevaar, zolang de leerling zijn eigen leerproces en AI-gebruik transparant maakt.',
+    voorwaarden:['Leerling vermeldt welke AI-tool is gebruikt en waarvoor','Eigen bijdrage is altijd aantoonbaar (bijv. eigen redenering, verwerking, reflectie)','Geen persoonsgegevens invoeren in de AI-tool'],
+    formulering:`Bij [naam opdracht] mag je AI gebruiken als hulpmiddel. Vermeld altijd welke tool je hebt gebruikt en hoe. Jouw eigen bijdrage (redenering, verwerking, reflectie) moet altijd duidelijk zichtbaar zijn in het eindproduct.`
+  };
+}
+
+function renderDt() {
+  const el = document.getElementById('dtContent');
+  if (dtStep < DT_STEPS.length) {
+    const s = DT_STEPS[dtStep];
+    el.innerHTML = `
+      <div class="dt-header">
+        <div class="dt-steps-bar">
+          ${DT_STEPS.map((_,i)=>`<div class="dt-step-ind ${i<dtStep?'done':i===dtStep?'active':''}"></div>`).join('')}
+        </div>
+        <div class="dt-step-label">${s.label}</div>
+        <div class="dt-question">${s.vraag}</div>
+      </div>
+      <div class="dt-body">
+        <div class="dt-options">
+          ${s.opties.map(o=>`
+            <div class="dt-opt ${dtAnswers[s.id]===o.val?'selected':''}" onclick="selectDtOpt('${s.id}','${o.val}',this)">
+              <div class="dt-opt-icon">${o.icon}</div>
+              <div class="dt-opt-label">${o.label}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="dt-footer">
+        ${dtStep>0?`<button class="dt-btn dt-btn-back" onclick="dtBack()">← Terug</button>`:`<div></div>`}
+        <button class="dt-btn dt-btn-next" onclick="dtNext()" ${dtAnswers[s.id]?'':'disabled'}>
+          ${dtStep<DT_STEPS.length-1?'Volgende vraag →':'Bekijk advies →'}
+        </button>
+      </div>`;
+  } else {
+    const d = getDecision(dtAnswers);
+    el.innerHTML = `<div class="dt-result">
+      <div class="dt-result-badge ${d.badge}">${d.icon} ${d.badge.charAt(0).toUpperCase()+d.badge.slice(1)} AI-gebruik</div>
+      <div class="dt-result-title">${d.title}</div>
+      <div class="dt-result-text">${d.text}</div>
+      <div class="dt-result-voorwaarden">
+        <div class="dt-result-vw-title">Voorwaarden & afspraken</div>
+        <ul class="dt-result-vw-list">${d.voorwaarden.map(v=>`<li>${v}</li>`).join('')}</ul>
+      </div>
+      <div class="dt-formulering">
+        <div class="dt-form-lbl">Voorbeeldformulering voor studiewijzer</div>
+        <div class="dt-form-text" id="dtFormText">${d.formulering}</div>
+      </div>
+      <div class="dt-result-btns">
+        <button class="dt-copy-btn" onclick="copyDtResult()">📋 Formulering kopiëren</button>
+        <button class="dt-reset-btn" onclick="dtReset()">↺ Opnieuw starten</button>
+      </div>
+    </div>`;
+  }
+}
+
+function selectDtOpt(stepId, val, el) {
+  dtAnswers[stepId] = val;
+  document.querySelectorAll('.dt-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const nextBtn = document.querySelector('.dt-btn-next');
+  if (nextBtn) nextBtn.removeAttribute('disabled');
+}
+function dtNext() {
+  const s = DT_STEPS[dtStep];
+  if (!dtAnswers[s.id]) return;
+  dtStep++;
+  renderDt();
+}
+function dtBack() { if (dtStep > 0) { dtStep--; renderDt(); } }
+function dtReset() { dtStep = 0; dtAnswers = {}; renderDt(); }
+function copyDtResult() {
+  const el = document.getElementById('dtFormText');
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => showToast('Formulering gekopieerd!'));
+}
+
+// ── VAKWERKPLAN GENERATOR ─────────────────────────────────────────────────
+function getCheckedVals(containerId, customId) {
+  const vals = [];
+  document.querySelectorAll(`#${containerId} input[type=checkbox]:checked`).forEach(cb => vals.push(cb.value));
+  const custom = document.getElementById(customId).value.trim();
+  if (custom) vals.push(custom);
+  return vals;
+}
+
+function generateVakwerkplan() {
+  const vak = document.getElementById('genVak').value.trim() || '[vak]';
+  const niveau = document.getElementById('genNiveau').value || '[niveau]';
+  const verantw = document.getElementById('genVerantw').value;
+  const toegestaan = getCheckedVals('genToegestaan', 'genToegestaanCustom');
+  const beperkt = getCheckedVals('genBeperkt', 'genBeperktCustom');
+  const verboden = getCheckedVals('genVerboden', 'genVerbodenCustom');
+
+  const now = new Date().toLocaleDateString('nl-NL',{year:'numeric',month:'long',day:'numeric'});
+
+  let tekst = `AI-paragraaf Vakwerkplan — ${vak} (${niveau})\nGegenereerd via MKR AI Leren | ${now}\n`;
+  tekst += '='.repeat(60) + '\n\n';
+
+  tekst += `VISIE OP AI IN HET VAK\n`;
+  tekst += `Bij ${vak} is het eigen leer- en denkproces van de leerling altijd leidend. Generatieve AI wordt gezien als een hulpmiddel dat het leerproces kan ondersteunen, niet vervangen. Docenten bepalen per opdracht of en hoe AI mag worden ingezet, in lijn met het MKR-beleid digitale geletterdheid 2026–2029.\n\n`;
+
+  if (toegestaan.length > 0) {
+    tekst += `TOEGESTAAN GEBRUIK VAN AI\nLeerlingen mogen AI inzetten voor:\n`;
+    toegestaan.forEach(t => tekst += `  • ${t}\n`);
+    tekst += '\n';
+  }
+
+  if (beperkt.length > 0) {
+    tekst += `BEPERKT TOEGESTAAN GEBRUIK (met voorwaarden)\n`;
+    beperkt.forEach(b => tekst += `  • ${b}\n`);
+    tekst += '\n';
+  }
+
+  if (verboden.length > 0) {
+    tekst += `NIET TOEGESTAAN GEBRUIK VAN AI\nHet gebruik van AI is verboden bij:\n`;
+    verboden.forEach(v => tekst += `  • ${v}\n`);
+    tekst += '\n';
+  }
+
+  if (verantw) {
+    tekst += `VERANTWOORDING\n${verantw}\n\n`;
+  }
+
+  tekst += `PRIVACY EN AUTEURSRECHT\nLeerlingen voeren geen persoonsgegevens, namen of privacygevoelige informatie in bij AI-tools. Leerlingen behouden auteursrecht over eigen werk en maken hun eigen bijdrage altijd aantoonbaar. Bij twijfel: geen AI gebruiken voor die taak.\n\n`;
+
+  tekst += `BEOORDELING\nBij opdrachten waarbij AI is toegestaan, beoordeelt de docent zowel het eindproduct als het leerproces. Leerlingen leveren bij benodigdheid tussenproducten, aantekeningen of een reflectie in om hun eigen bijdrage aan te tonen. AI-output zonder eigen uitwerking is onvoldoende.\n\n`;
+
+  tekst += `GELDIGHEID\nDeze afspraken gelden voor het schooljaar 2026–2027 en worden jaarlijks herzien.\n`;
+
+  const out = document.getElementById('genOutput');
+  out.textContent = tekst;
+  out.classList.add('has-content');
+  document.getElementById('genCopyBtn').disabled = false;
+  document.getElementById('genDlBtn').disabled = false;
+}
+
+function copyGenOutput() {
+  const text = document.getElementById('genOutput').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('AI-paragraaf gekopieerd!'));
+}
+
+function downloadGenOutput() {
+  const text = document.getElementById('genOutput').textContent;
+  const vak = document.getElementById('genVak').value.trim() || 'vakwerkplan';
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `AI-paragraaf-${vak.replace(/\s+/g,'-').toLowerCase()}.txt`;
+  a.click(); URL.revokeObjectURL(url);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = '✓ ' + msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── DARK MODE ─────────────────────────────────────────────────────────────
+const THEME_MODES=['auto','dark','light'];
+const THEME_LABELS={auto:'Auto',dark:'Donker',light:'Licht'};
+const THEME_ICONS={auto:'🌓',dark:'☀️',light:'🌙'};
+let themeMode='auto';
+try{themeMode=localStorage.getItem('mkr-theme')||'auto';}catch(e){}
+function applyTheme(){
+  const eff=themeMode==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):themeMode;
+  document.documentElement.setAttribute('data-theme',eff);
+  ['darkIcon','tbDarkIcon'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=THEME_ICONS[themeMode];});
+  ['darkLbl','tbDarkLbl'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=THEME_LABELS[themeMode];});
+}
+function toggleDark(){
+  themeMode=THEME_MODES[(THEME_MODES.indexOf(themeMode)+1)%3];
+  try{localStorage.setItem('mkr-theme',themeMode);}catch(e){}
+  applyTheme();
+}
+if(window.matchMedia)window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(themeMode==='auto')applyTheme();});
+
+// ── SCROLL ────────────────────────────────────────────────────────────────
+const topbar = document.getElementById('topbar');
+const scrollBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  if(topbar) topbar.classList.toggle('scrolled', y > 10);
+  if(scrollBtn) scrollBtn.classList.toggle('vis', y > 400);
+},{passive:true});
+
+// ── CROSS-LINK FROM MODULE TO TOOL ────────────────────────────────────────
+function gotoTool(targetId) {
+  closeModule();
+  setTimeout(() => {
+    const t = document.getElementById(targetId);
+    if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 140);
+}
+
+// ── KEYBOARD ──────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModule();
+  if (currentModId && !/^(input|textarea|select)$/i.test(e.target.tagName)) {
+    const i = MODULES.findIndex(m => m.id === currentModId);
+    if (e.key === 'ArrowLeft' && MODULES[i-1]) openModule(MODULES[i-1].id);
+    if (e.key === 'ArrowRight' && MODULES[i+1]) openModule(MODULES[i+1].id);
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+applyTheme();
+renderModules();
+renderScenario();
+renderRolCards();
+renderDt();
+updateProgressUI();
+</script>
+</body>
+</html>

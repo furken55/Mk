@@ -303,7 +303,7 @@ body::before{
 .sb-super-btn.active .sb-super-btn-text{color:var(--accent-2)}
 
 .sb-tools-btn{
-  margin:0 22px 16px;
+  margin:0 22px 8px;
   padding:11px 14px;
   background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.02));
   border:1px solid rgba(59,130,246,.2);
@@ -315,6 +315,19 @@ body::before{
 .sb-tools-btn:hover{border-color:rgba(59,130,246,.4);background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.04));box-shadow:0 4px 16px rgba(59,130,246,.12)}
 .sb-tools-icon{font-size:14px}
 .sb-tools-text{font-size:12.5px;color:rgba(96,165,250,.85);font-weight:600;letter-spacing:-0.005em}
+.sb-leren-btn{
+  margin:0 22px 16px;
+  padding:11px 14px;
+  background:linear-gradient(135deg,rgba(13,148,136,.1),rgba(13,148,136,.03));
+  border:1px solid rgba(13,148,136,.25);
+  border-radius:10px;
+  cursor:pointer;
+  transition:.2s ease;
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.sb-leren-btn:hover{border-color:rgba(13,148,136,.5);background:linear-gradient(135deg,rgba(13,148,136,.16),rgba(13,148,136,.06));box-shadow:0 4px 16px rgba(13,148,136,.14)}
+.sb-leren-text{font-size:12.5px;color:rgba(45,212,191,.9);font-weight:600;letter-spacing:-0.005em}
 
 /* Toggle */
 .tgl{position:relative;width:38px;height:22px;flex-shrink:0;cursor:pointer}
@@ -2130,6 +2143,10 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
     <div class="sb-tools-icon">🤖</div>
     <div class="sb-tools-text">Welk AI-tool kies ik?</div>
   </div>
+  <a href="ai-leren.html" class="sb-leren-btn">
+    <div class="sb-tools-icon">🎓</div>
+    <div class="sb-leren-text">AI Leren & Beleid</div>
+  </a>
   </div>
   <div class="sb-footer">
     <div class="sb-footer-hint"><kbd>⌘</kbd><kbd>K</kbd> zoeken</div>
