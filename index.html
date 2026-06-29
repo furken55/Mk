@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;🏫&lt;/text&gt;&lt;/svg&gt;"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&amp;family=Inter:wght@400;450;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type='text/javascript' src='https://api.netlify.com/AJAN4GvJem5-HGDfF-vPHXfuPLX4_HnfNJGgjoANms3_hL5gB94LqrJ9hAEwvsyBDBalJIT78ceF9EU7VXYbgwWrItKE_hmO5LuyVmr9FHVU6LgglkFcGEV4Y2rPZ3U2Femn5zE1WLAWcBKL4UzV-hP1OtE-o5aMHIYZ1keRg_ufudFp38Uenhumttc4dBlKS7EPJhAHh2jgMofvjta5E8R4cIeHsI55k9WdmgSITYmX91DhKolikLAHebQ5gVRIg8-MEExex9xNNUf_4P0AQRrBDT-ik-im2S2s-ObasH466jBAO1nLnmuPdDq-wezxmPCdqhF_MiD9BuDc61dor8Ti30NON0Coi20tVlxtnqoz8HLeQfS_S6r5uvpvnfhekPAoVBNjEVEBPVIsWxCSU1vNt-I8ExZg_gcNHFLtwhTIkWq7bdvnSjqvgA4Q1cxFIrYaYWX3ro7fJAiv4xQDD7lMNC1sueCLKKOrbgb1ZX9sEzBY7JrZUBodCuuaagOUYNgg1XPucbHMG2c43l35'></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 /* ============================================================
    LUXURY SAAS REDESIGN — preserves brand palette (navy/blue/gold)
@@ -3766,6 +3766,7 @@ Team: [beschrijf wie beschikbaar is]`}
 
 // ── STATE ────────────────────────────────────────────────────────────────
 let role='all',catFilter=null,sup=false,q='',ctxOn=false,ap=null,showFavs=false,sortMode='default',showNew=false,showWithNotes=false,showWithVariants=false,toolFilter=null;
+let varValues={}; // Bewaart ingevulde variabele-waarden zodat ze hertekeningen overleven
 let favs=new Set();
 try{const f=JSON.parse(localStorage.getItem('mkr-favs')||'[]');favs=new Set(f);}catch(e){}
 function saveFavs(){try{localStorage.setItem('mkr-favs',JSON.stringify([...favs]));}catch(e){}}
@@ -4315,6 +4316,7 @@ function openMd(id){
   addRecent(id);
   // Reset variant edit mode
   editingVariant=false;variantTab=hasVariant(id)?'variant':'original';
+  varValues={}; // Begin met lege invulvelden voor de nieuwe prompt
   document.body.style.overflow='hidden';
   document.getElementById('mdBd').style.display='flex';
   history.replaceState(null,null,'#'+id);
@@ -4460,8 +4462,22 @@ function extractVars(txt){
 function getVals(){
   const base=getActivePromptText();
   const vs=extractVars(base);const r={};
-  vs.forEach(v=>{const el=document.getElementById('vi_'+v.key);r[v.key]=el?el.value.trim():'';});
+  vs.forEach(v=>{
+    const el=document.getElementById('vi_'+v.key);
+    // Lees eerst het live veld; valt terug op de opgeslagen waarde als het veld (tijdelijk) weg is
+    if(el){r[v.key]=el.value.trim();}
+    else if(varValues[v.key]!==undefined){r[v.key]=varValues[v.key];}
+    else{r[v.key]='';}
+  });
   return r;
+}
+// Slaat de huidige veldwaarden op in varValues (aangeroepen bij elke invoer)
+function storeVals(){
+  const base=getActivePromptText();
+  extractVars(base).forEach(v=>{
+    const el=document.getElementById('vi_'+v.key);
+    if(el)varValues[v.key]=el.value;
+  });
 }
 function buildFull(){
   const v=getVals();let t=getActivePromptText();
@@ -4556,7 +4572,8 @@ function renderMd(){
     vars.forEach(v=>{
       const kl=v.key.toLowerCase();
       const isArea=v.key.length>20||['beschrijf','plak','situatie','aantekeningen','toets','werk','beleid','casus','notitie','les','data','taken','informatie','observat','bericht','zorg','klas','leerling'].some(kw=>kl.includes(kw));
-      panel+=`<div class="vf"><label>${v.key}</label>${isArea?`<textarea id="vi_${v.key}" placeholder="${v.key}" oninput="updPrev()" rows="3"></textarea>`:`<input type="text" id="vi_${v.key}" placeholder="${v.key}" oninput="updPrev()"/>`}</div>`;
+      const saved=(varValues[v.key]!==undefined?varValues[v.key]:'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      panel+=`<div class="vf"><label>${v.key}</label>${isArea?`<textarea id="vi_${v.key}" placeholder="${v.key}" oninput="storeVals();updPrev()" rows="3">${saved}</textarea>`:`<input type="text" id="vi_${v.key}" placeholder="${v.key}" value="${saved}" oninput="storeVals();updPrev()"/>`}</div>`;
     });
     panel+='</div>';
   }
@@ -4627,6 +4644,7 @@ function showToast(msg){
 }
 function doCopy(){
   if(!ap)return;
+  storeVals(); // Leg de huidige veldwaarden vast vóór het bouwen
   const t=ctxOn?MKR+'\n\n'+buildFull():buildFull();
   const pid=ap.id;
   navigator.clipboard.writeText(t).then(()=>{
@@ -4769,6 +4787,7 @@ function copyQrLink(){
 // ═══ TRY IN AI TOOL ═════════════════════════════════════════════════════
 function tryInTool(tool){
   if(!ap)return;
+  storeVals(); // Leg de huidige veldwaarden vast vóór het bouwen
   const txt=ctxOn?MKR+'\n\n'+buildFull():buildFull();
   const urls={
     copilot:'https://copilot.microsoft.com/',
