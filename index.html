@@ -1233,6 +1233,11 @@ body::before{
 .tc-body{
   padding:28px 32px;
   overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.tc-cards{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
   gap:16px;
@@ -1286,7 +1291,6 @@ body::before{
 }
 .tc-tasks{font-size:12px;color:var(--t1);line-height:1.55;letter-spacing:-0.005em}
 .tc-note{
-  grid-column:1/-1;
   background:linear-gradient(135deg,rgba(201,162,90,.08),rgba(201,162,90,.02));
   border:1px solid rgba(201,162,90,.22);
   border-radius:12px;
@@ -1295,6 +1299,65 @@ body::before{
   letter-spacing:-0.005em;
 }
 .tc-note strong{color:var(--t1);font-weight:600}
+
+/* Tool model label (under price) */
+.tc-model{
+  font-size:11px;font-weight:500;
+  color:var(--t3);
+  margin-bottom:11px;
+  letter-spacing:-0.005em;
+  font-family:var(--font-mono);
+}
+/* Tool tip (in bottom section) */
+.tc-tip{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed var(--bdr-2);
+  font-size:11px;color:var(--t2);
+  line-height:1.5;letter-spacing:-0.005em;
+}
+/* Task picker (keuzehulp) */
+.tc-picker{
+  background:var(--surf-2);
+  border:1px solid var(--bdr);
+  border-radius:14px;
+  padding:18px 20px;
+}
+.tc-picker-hdr{margin-bottom:14px}
+.tc-picker-title{
+  font-family:var(--font-serif);
+  font-size:17px;font-weight:400;
+  color:var(--t1);
+  font-style:italic;
+  letter-spacing:-0.015em;
+}
+.tc-picker-sub{
+  font-size:12px;color:var(--t3);
+  margin-top:3px;letter-spacing:-0.005em;
+}
+.tc-picker-grid{display:flex;flex-direction:column;gap:2px}
+.tc-pick-row{
+  display:grid;
+  grid-template-columns:minmax(150px,1.3fr) auto minmax(130px,1fr) minmax(160px,1.6fr);
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  border-radius:9px;
+  transition:.15s ease;
+}
+.tc-pick-row:hover{background:var(--surf)}
+.tc-pick-task{font-size:12.5px;color:var(--t1);font-weight:500;letter-spacing:-0.005em}
+.tc-pick-arrow{color:var(--t4);font-size:13px}
+.tc-pick-tool{
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:6px;
+  letter-spacing:-0.005em;white-space:nowrap;
+}
+.tc-pick-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tc-pick-why{font-size:11.5px;color:var(--t2);line-height:1.45;letter-spacing:-0.005em}
+[data-theme="dark"] .tc-picker{background:var(--surf-2);border-color:var(--bdr)}
+[data-theme="dark"] .tc-pick-row:hover{background:var(--surf-3)}
+[data-theme="dark"] .tc-model{color:var(--t3)}
 
 /* ========== DARK MODE OVERRIDES ========== */
 [data-theme="dark"] .card{background:var(--surf);border-color:var(--bdr)}
@@ -1743,12 +1806,12 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   background:rgba(201,162,90,.06);
   border:1px solid transparent;
   cursor:pointer;transition:.15s;
-  font-size:12.5px;color:var(--ink);
+  font-size:12.5px;color:rgba(255,255,255,.7);
   text-align:left;width:100%;font-family:inherit;
 }
-.sb-col-item:hover{background:rgba(201,162,90,.14);border-color:rgba(201,162,90,.3)}
-.sb-col-item.active{background:rgba(201,162,90,.18);border-color:rgba(201,162,90,.45);color:var(--accent-deep);font-weight:600}
-[data-theme="dark"] .sb-col-item{background:rgba(201,162,90,.08);color:var(--ink)}
+.sb-col-item:hover{background:rgba(201,162,90,.14);border-color:rgba(201,162,90,.3);color:#F5EFE2}
+.sb-col-item.active{background:rgba(201,162,90,.18);border-color:rgba(201,162,90,.45);color:var(--accent-2);font-weight:600}
+[data-theme="dark"] .sb-col-item{background:rgba(201,162,90,.08);color:rgba(255,255,255,.7)}
 .sb-col-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .sb-col-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb-col-count{font-size:10px;opacity:.7;font-weight:700;font-family:var(--font-mono)}
@@ -1763,26 +1826,188 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 }
 .sb-col-add:hover{background:rgba(201,162,90,.1);border-color:var(--accent)}
 
-/* Collection picker modal */
-.col-picker-list{display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto;margin:12px 0}
-.col-picker-item{
-  display:flex;align-items:center;gap:10px;
-  padding:10px 12px;border-radius:10px;
-  background:var(--ivory);
-  border:1.5px solid rgba(10,25,48,.08);
-  cursor:pointer;transition:.15s;text-align:left;width:100%;
-  font-family:inherit;font-size:13px;color:var(--ink);
+/* ========== COLLECTION PICKER (redesigned) ========== */
+.cp-bd{
+  position:fixed;inset:0;
+  background:rgba(10,25,48,.68);
+  backdrop-filter:blur(12px) saturate(180%);
+  -webkit-backdrop-filter:blur(12px) saturate(180%);
+  z-index:320;
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+  animation:bdIn .2s ease;
 }
-[data-theme="dark"] .col-picker-item{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
-.col-picker-item:hover{border-color:var(--accent);background:rgba(201,162,90,.06)}
-.col-picker-item.in{background:rgba(201,162,90,.14);border-color:var(--accent)}
-.col-picker-check{width:20px;height:20px;border-radius:4px;border:1.5px solid rgba(10,25,48,.2);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  background:var(--paper);font-size:12px;color:transparent}
-.col-picker-item.in .col-picker-check{background:var(--accent);border-color:var(--accent);color:var(--navy)}
-.col-picker-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.col-picker-name{flex:1;font-weight:600}
-.col-picker-cnt{font-size:10.5px;opacity:.6;font-weight:700;font-family:var(--font-mono)}
+.cp-card{
+  background:var(--surf);
+  border-radius:var(--rxl);
+  width:100%;max-width:440px;
+  max-height:88vh;
+  overflow-y:auto;
+  box-shadow:var(--shx);
+  border:1px solid var(--bdr);
+  position:relative;
+  animation:mdUp .28s cubic-bezier(.4,0,.2,1);
+}
+.cp-close{
+  position:absolute;top:16px;right:16px;
+  background:var(--surf-3);
+  border:1px solid var(--bdr);
+  border-radius:9px;
+  width:30px;height:30px;
+  cursor:pointer;color:var(--t3);
+  font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  transition:.15s;z-index:2;
+}
+.cp-close:hover{background:var(--bdr);color:var(--t1)}
+.cp-head{
+  display:flex;align-items:center;gap:14px;
+  padding:24px 24px 20px;
+  border-bottom:1px solid var(--bdr);
+}
+.cp-head-icon{
+  width:46px;height:46px;flex-shrink:0;
+  border-radius:13px;
+  background:linear-gradient(135deg,#D4B366 0%,#B8955A 60%,#8F6F2E 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+  box-shadow:0 4px 14px rgba(201,162,90,.32),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.cp-title{
+  font-family:var(--font-serif);
+  font-size:19px;font-weight:400;
+  color:var(--t1);
+  font-style:italic;
+  letter-spacing:-0.02em;
+  line-height:1.2;
+}
+.cp-sub{
+  font-size:12.5px;color:var(--t3);
+  margin-top:3px;
+  letter-spacing:-0.005em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px;
+}
+.cp-list{
+  display:flex;flex-direction:column;gap:7px;
+  padding:18px 24px;
+  max-height:300px;overflow-y:auto;
+}
+.cp-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 13px;border-radius:12px;
+  background:var(--surf-2);
+  border:1.5px solid var(--bdr);
+  cursor:pointer;transition:.16s cubic-bezier(.4,0,.2,1);
+  text-align:left;width:100%;
+  font-family:inherit;
+}
+.cp-item:hover{border-color:var(--bdr-strong);background:var(--surf-3);transform:translateX(2px)}
+.cp-item.in{background:rgba(201,162,90,.1);border-color:rgba(201,162,90,.45)}
+.cp-item-folder{
+  width:34px;height:34px;flex-shrink:0;
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;
+  transition:.16s;
+  position:relative;
+}
+.cp-item-name{
+  flex:1;font-size:13.5px;font-weight:600;
+  color:var(--t1);letter-spacing:-0.01em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.cp-item-cnt{
+  font-size:10.5px;font-weight:700;
+  color:var(--t3);
+  font-family:var(--font-mono);
+  background:var(--surf);
+  border:1px solid var(--bdr);
+  padding:2px 8px;border-radius:20px;
+  min-width:26px;text-align:center;
+}
+.cp-item-check{
+  width:22px;height:22px;flex-shrink:0;
+  border-radius:7px;
+  border:1.5px solid var(--bdr-2);
+  background:var(--surf);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:transparent;
+  transition:.16s;
+}
+.cp-item.in .cp-item-check{
+  background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  border-color:var(--accent);
+  color:#fff;
+}
+.cp-item.in .cp-item-cnt{background:rgba(201,162,90,.16);border-color:rgba(201,162,90,.3);color:var(--accent-deep)}
+[data-theme="dark"] .cp-item.in .cp-item-cnt{color:var(--accent-2)}
+.cp-empty{
+  text-align:center;padding:28px 16px;
+}
+.cp-empty-icon{font-size:34px;margin-bottom:10px;opacity:.5}
+.cp-empty-title{font-size:13.5px;font-weight:600;color:var(--t2);margin-bottom:4px;letter-spacing:-0.01em}
+.cp-empty-text{font-size:12px;color:var(--t3);line-height:1.5}
+/* Create section */
+.cp-create{
+  padding:18px 24px 24px;
+  border-top:1px solid var(--bdr);
+  background:var(--surf-2);
+  border-radius:0 0 var(--rxl) var(--rxl);
+}
+.cp-create-label{
+  font-size:10.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--t3);margin-bottom:10px;
+}
+.cp-input{
+  width:100%;
+  padding:11px 14px;
+  border-radius:11px;
+  border:1.5px solid var(--bdr-2);
+  background:var(--surf);
+  color:var(--t1);
+  font-family:inherit;font-size:13.5px;
+  transition:.15s;
+  letter-spacing:-0.005em;
+}
+.cp-input::placeholder{color:var(--t4)}
+.cp-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(201,162,90,.12)}
+.cp-color-row{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin:12px 0 14px;
+}
+.cp-color{
+  width:26px;height:26px;border-radius:8px;
+  cursor:pointer;position:relative;
+  transition:.15s cubic-bezier(.4,0,.2,1);
+  border:2px solid transparent;
+}
+.cp-color:hover{transform:scale(1.12)}
+.cp-color.sel{transform:scale(1.05)}
+.cp-color.sel::after{
+  content:'✓';position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:13px;font-weight:700;
+  text-shadow:0 1px 2px rgba(0,0,0,.3);
+}
+.cp-color.sel{box-shadow:0 0 0 2px var(--surf),0 0 0 4px currentColor}
+.cp-create-btn{
+  width:100%;
+  padding:12px;
+  border-radius:11px;
+  border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  color:#fff;
+  font-family:inherit;font-size:13.5px;font-weight:600;
+  cursor:pointer;transition:.18s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  letter-spacing:-0.005em;
+  box-shadow:0 4px 14px rgba(201,162,90,.25);
+}
+.cp-create-btn:hover:not(:disabled){box-shadow:0 6px 20px rgba(201,162,90,.35);transform:translateY(-1px)}
+.cp-create-btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.cp-create-btn-icon{font-size:17px;font-weight:400;line-height:1}
+[data-theme="dark"] .cp-create-btn{color:var(--navy)}
 
 /* Result feedback toast */
 .result-fb{
@@ -1940,7 +2165,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   .md-body{flex-direction:column;overflow-y:auto}
   .md-panel{width:100%;border-left:none;border-top:1px solid var(--bdr)}
   .md-preview{min-height:auto;max-height:none;flex:none}
-  .tc-body{grid-template-columns:repeat(2,1fr)}
+  .tc-cards{grid-template-columns:repeat(2,1fr)}
   .content{padding:22px 20px 40px}
 }
 @media(max-width:640px){
@@ -2047,8 +2272,11 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   .mf-item{padding:13px 16px;font-size:14.5px;border-radius:10px;min-height:48px}
   .mf-dot{width:10px;height:10px}
 
-  .tc-body{grid-template-columns:1fr}
+  .tc-cards{grid-template-columns:1fr}
   .tc-modal{max-height:100vh;border-radius:0}
+  .tc-pick-row{grid-template-columns:1fr;gap:3px;padding:11px 12px;border:1px solid var(--bdr);margin-bottom:6px}
+  .tc-pick-arrow{display:none}
+  .tc-pick-tool{margin-top:2px}
 
   .scroll-top{bottom:18px;right:14px;width:42px;height:42px;font-size:15px}
   .toast{bottom:18px;font-size:12.5px;padding:10px 16px}
@@ -2360,17 +2588,24 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 </div>
 
 <!-- COLLECTION PICKER MODAL -->
-<div class="qr-bd" id="colPickerBd" onclick="if(event.target===this)closeColPicker()">
-  <div class="qr-card" style="max-width:420px">
-    <div class="qr-title">Toevoegen aan collectie</div>
-    <div class="qr-sub" id="colPickerSub">Kies een of meer collecties voor deze prompt</div>
-    <div class="col-picker-list" id="colPickerList"></div>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <input type="text" id="colNewInput" placeholder="Nieuwe collectie maken..." style="flex:1;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(10,25,48,.1);background:var(--paper);color:var(--ink);font-family:inherit;font-size:13px" onkeydown="if(event.key==='Enter')createColFromInput()">
-      <button class="qr-btn qr-btn-copy" style="padding:10px 16px" onclick="createColFromInput()">+ Maken</button>
+<div class="cp-bd" id="colPickerBd" onclick="if(event.target===this)closeColPicker()">
+  <div class="cp-card">
+    <button class="cp-close" onclick="closeColPicker()" title="Sluiten">✕</button>
+    <div class="cp-head">
+      <div class="cp-head-icon">📁</div>
+      <div class="cp-head-text">
+        <div class="cp-title">Toevoegen aan collectie</div>
+        <div class="cp-sub" id="colPickerSub">Bewaar deze prompt in een map</div>
+      </div>
     </div>
-    <div class="qr-actions" style="margin-top:14px">
-      <button class="qr-btn qr-btn-close" onclick="closeColPicker()" style="width:100%">Klaar</button>
+    <div class="cp-list" id="colPickerList"></div>
+    <div class="cp-create">
+      <div class="cp-create-label">Nieuwe collectie maken</div>
+      <input type="text" id="colNewInput" class="cp-input" placeholder="Bijv. Toetsen H5, Mentorles 2B..." maxlength="40" oninput="updateCpCreateBtn()" onkeydown="if(event.key==='Enter')createColFromInput()">
+      <div class="cp-color-row" id="cpColorRow"></div>
+      <button class="cp-create-btn" id="cpCreateBtn" onclick="createColFromInput()" disabled>
+        <span class="cp-create-btn-icon">+</span> Collectie aanmaken
+      </button>
     </div>
   </div>
 </div>
@@ -2415,24 +2650,44 @@ const CATS={
 
 const TOOL_INFO={
   gratis:{label:'Gratis / Copilot',cls:'tb-gratis',color:'#166534',bg:'#DCFCE7',icon:'🟢',
-    why:'Werkt met elke gratis AI-tool of de Copilot-schoollicentie (M365).'},
+    why:'Werkt prima met Microsoft Copilot (gratis via je schoolaccount) of een andere gratis AI-tool.'},
   betaald:{label:'Betaald aanbevolen',cls:'tb-betaald',color:'#92400E',bg:'#FEF3C7',icon:'🟡',
-    why:'Betere resultaten met ChatGPT Plus, Claude Pro of Copilot Pro. Gratis versies geven te oppervlakkige output bij deze taak.'},
+    why:'Betere resultaten met Claude Pro of ChatGPT Plus (± €19–23/maand). Gratis versies geven bij deze taak vaak te oppervlakkige output.'},
   pro:{label:'Pro vereist',cls:'tb-pro',color:'#991B1B',bg:'#FEE2E2',icon:'🔴',
-    why:'Complexe redeneer- of onderzoekstaak. Vereist betaald abonnement: Claude Pro (Extended Thinking), ChatGPT o1/o3, of Deep Research.'}
+    why:'Complexe redeneer- of onderzoekstaak. Vereist een betaald abonnement: Claude Pro (Extended Thinking) of ChatGPT Plus (Deep Research).'}
 };
 const RL={docent:'Docent',mentor:'Mentor',tl:'Teamleider',dir:'Directie',oop:'OOP'};
 
 const TOOLS_DATA=[
-  {name:'Microsoft Copilot',logo:'🏢',logoBg:'#0078D4',price:'Gratis via school',priceC:'#DCFCE7',priceTxt:'#166534',
-   features:['Direct in Outlook, Teams & Word','Nederlandstalige documenten','Veilig binnen M365-beleid','Geen extra kosten'],
-   bestFor:'E-mails, notulen, brieven',tasks:'Dagelijkse schrijftaken, oudercommunicatie, lesplanning'},
-  {name:'Claude Pro',logo:'🧠',logoBg:'#D4A800',price:'€18/maand',priceC:'#FEF3C7',priceTxt:'#92400E',
-   features:['Extended Thinking — diepe redenering','Projects — vaste schoolcontext','200K token context','Beste schrijfkwaliteit NL'],
-   bestFor:'Complexe redeneer- & schrijftaken',tasks:'Handelingsplannen, groepsanalyse, kwaliteitszorg'},
-  {name:'ChatGPT Plus',logo:'💬',logoBg:'#10A37F',price:'€20/maand',priceC:'#FEF3C7',priceTxt:'#92400E',
-   features:['o1/o3 — uitgebreid redeneren','Deep Research — zoeken + synthese','Bestandsupload en -analyse'],
-   bestFor:'Onderzoek & data-analyse',tasks:'Opbrengstanalyse, auditvoorbereiding, beleidssynthese'}
+  {name:'Microsoft Copilot',logo:'🏢',logoBg:'#0078D4',price:'Gratis via school (M365)',priceC:'#DCFCE7',priceTxt:'#166534',
+   model:'GPT-5 · veilig binnen schoolomgeving',
+   features:['Gratis bij je schoolaccount (A1/A3/A5)','Direct in Word, Outlook, Teams & PowerPoint','Data blijft binnen de schoolomgeving','Prompts worden niet gebruikt voor AI-training','Copilot Notebooks, Teach & Groups inbegrepen'],
+   bestFor:'Dagelijkse schooltaken',tasks:'E-mails, brieven, notulen, lesplanning, oudercommunicatie. Begin hier, het is gratis en veilig.',
+   tip:'Log in met je @melanchthon-account, dan blijft alles binnen de beveiligde schoolomgeving.'},
+  {name:'Claude Pro',logo:'🧠',logoBg:'#D4A800',price:'± €19/maand',priceC:'#FEF3C7',priceTxt:'#92400E',
+   model:'Claude Opus 4.8 · sterkste schrijver',
+   features:['Beste schrijfkwaliteit in het Nederlands','Projects — vaste schoolcontext bewaren','Werkt nauwkeurig met lange documenten','Extended Thinking voor complexe taken','Sterk in nuance en genuanceerde feedback'],
+   bestFor:'Schrijven & nadenken',tasks:'Handelingsplannen, groepsanalyses, kwaliteitszorg, beleidsstukken, genuanceerde feedback en lange documenten.',
+   tip:'Met Projects kun je de schoolcontext één keer instellen, daarna kent Claude je situatie.'},
+  {name:'ChatGPT Plus',logo:'💬',logoBg:'#10A37F',price:'± €23/maand',priceC:'#FEF3C7',priceTxt:'#92400E',
+   model:'GPT-5.5 · breedste functies',
+   features:['Deep Research — zoeken & samenvatten','Bestanden uploaden en analyseren','Sterke beeldgeneratie (afbeeldingen maken)','Custom GPTs voor terugkerende taken','Breedste set aan functies'],
+   bestFor:'Onderzoek & data',tasks:'Opbrengstanalyse, auditvoorbereiding, beleidssynthese, internetonderzoek en het maken van afbeeldingen.',
+   tip:'Deep Research is beperkt tot 10 keer per maand op Plus, gebruik het bewust voor de grotere klussen.'}
+];
+
+// Keuzehulp: welke tool voor welke taak
+const TOOL_PICKER=[
+  {task:'E-mail aan ouders of collega',tool:'Microsoft Copilot',why:'Gratis, veilig, en je werkt direct in Outlook.',color:'#0078D4'},
+  {task:'Notulen of verslag maken',tool:'Microsoft Copilot',why:'Vat een Teams-vergadering direct samen.',color:'#0078D4'},
+  {task:'Toets met antwoordmodel',tool:'Claude Pro',why:'Volgt instructies nauwkeurig, sterk in het opbouwen van vragen op niveau.',color:'#D4A800'},
+  {task:'Handelingsplan of groepsanalyse',tool:'Claude Pro',why:'Genuanceerd redeneren en sterke Nederlandse schrijfkwaliteit.',color:'#D4A800'},
+  {task:'Lange tekst of beleidsstuk schrijven',tool:'Claude Pro',why:'Werkt betrouwbaar met veel tekst tegelijk.',color:'#D4A800'},
+  {task:'Feedback op leerlingwerk',tool:'Claude Pro',why:'Geeft genuanceerde, opbouwende feedback.',color:'#D4A800'},
+  {task:'Opbrengst- of cijferanalyse',tool:'ChatGPT Plus',why:'Upload een bestand en laat het analyseren.',color:'#10A37F'},
+  {task:'Internetonderzoek (Deep Research)',tool:'ChatGPT Plus',why:'Zoekt en vat meerdere bronnen samen.',color:'#10A37F'},
+  {task:'Afbeelding of illustratie maken',tool:'ChatGPT Plus',why:'Sterke beeldgeneratie ingebouwd.',color:'#10A37F'},
+  {task:'Lesidee of werkvorm bedenken',tool:'Microsoft Copilot',why:'Gratis en snel genoeg voor een eerste opzet.',color:'#0078D4'}
 ];
 const P=[
 // ══ STARTPROMPTS (universal) ═══════════════════════════════════════════════
@@ -5104,11 +5359,14 @@ function getCols(){
 function saveCols(c){
   try{localStorage.setItem('mkr-collections',JSON.stringify(c));}catch(e){}
 }
-function createCol(name){
+function createCol(name,preferredColor){
   const c=getCols();
-  const id='col_'+Date.now().toString(36);
-  const used=Object.values(c).map(x=>x.color);
-  const color=COL_COLORS.find(x=>!used.includes(x))||COL_COLORS[Object.keys(c).length%COL_COLORS.length];
+  const id='col_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7);
+  let color=preferredColor;
+  if(!color){
+    const used=Object.values(c).map(x=>x.color);
+    color=COL_COLORS.find(x=>!used.includes(x))||COL_COLORS[Object.keys(c).length%COL_COLORS.length];
+  }
   c[id]={name:name.trim(),ids:[],color,created:Date.now()};
   saveCols(c);
   renderSbCols();
@@ -5163,24 +5421,37 @@ function renderSbCols(){
 function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 function openCreateColPrompt(){
-  const name=prompt('Naam voor de nieuwe collectie:\n\nBv. "Voor mentorles", "Toetsen H5", "Oudercommunicatie"');
-  if(name&&name.trim()){
-    createCol(name);
-    showToast('✓ Collectie "'+name.trim()+'" aangemaakt');
-  }
+  // Open de mooie collectie-modal zonder een specifieke prompt (puur aanmaken)
+  colPickerCurrentPid=null;
+  document.getElementById('colPickerBd').style.display='flex';
+  document.body.style.overflow='hidden';
+  document.getElementById('colPickerSub').textContent='Maak een nieuwe map om prompts te ordenen';
+  const used=Object.values(getCols()).map(x=>x.color);
+  cpSelectedColor=COL_COLORS.find(c=>!used.includes(c))||COL_COLORS[0];
+  renderColPickerList();
+  renderCpColors();
+  document.getElementById('colNewInput').value='';
+  updateCpCreateBtn();
+  setTimeout(()=>document.getElementById('colNewInput').focus(),120);
 }
 
 // Collection picker (voor toevoegen van een prompt)
 let colPickerCurrentPid=null;
+let cpSelectedColor=COL_COLORS[0]; // gekozen kleur voor nieuwe collectie
 function openColPicker(pid){
   colPickerCurrentPid=pid;
   document.getElementById('colPickerBd').style.display='flex';
   document.body.style.overflow='hidden';
   const p=P.find(x=>x.id===pid);
-  document.getElementById('colPickerSub').textContent=p?`Voor "${p.title}"`:'';
+  document.getElementById('colPickerSub').textContent=p?`Voor "${p.title}"`:'Bewaar deze prompt in een map';
+  // Kies automatisch de eerste nog-ongebruikte kleur als startkeuze
+  const used=Object.values(getCols()).map(x=>x.color);
+  cpSelectedColor=COL_COLORS.find(c=>!used.includes(c))||COL_COLORS[0];
   renderColPickerList();
+  renderCpColors();
   document.getElementById('colNewInput').value='';
-  setTimeout(()=>document.getElementById('colNewInput').focus(),100);
+  updateCpCreateBtn();
+  setTimeout(()=>document.getElementById('colNewInput').focus(),120);
 }
 function closeColPicker(){
   document.getElementById('colPickerBd').style.display='none';
@@ -5189,21 +5460,41 @@ function closeColPicker(){
   // Re-render the current modal so the collection chips update
   if(ap)renderMd();
 }
+function renderCpColors(){
+  const row=document.getElementById('cpColorRow');
+  if(!row)return;
+  row.innerHTML=COL_COLORS.map(c=>
+    `<div class="cp-color ${c===cpSelectedColor?'sel':''}" style="background:${c};color:${c}" onclick="selectCpColor('${c}')" title="Kies deze kleur"></div>`
+  ).join('');
+}
+function selectCpColor(c){
+  cpSelectedColor=c;
+  renderCpColors();
+}
+function updateCpCreateBtn(){
+  const input=document.getElementById('colNewInput');
+  const btn=document.getElementById('cpCreateBtn');
+  if(input&&btn)btn.disabled=!input.value.trim();
+}
 function renderColPickerList(){
   const list=document.getElementById('colPickerList');
   const c=getCols();
   const entries=Object.entries(c).sort((a,b)=>a[1].created-b[1].created);
   if(!entries.length){
-    list.innerHTML='<div style="font-size:12px;opacity:.7;padding:16px;text-align:center;font-style:italic">Nog geen collecties. Maak er hieronder één aan.</div>';
+    list.innerHTML=`<div class="cp-empty">
+      <div class="cp-empty-icon">🗂️</div>
+      <div class="cp-empty-title">Nog geen collecties</div>
+      <div class="cp-empty-text">Maak hieronder je eerste map aan om<br>prompts te ordenen.</div>
+    </div>`;
     return;
   }
   list.innerHTML=entries.map(([id,col])=>{
     const inCol=col.ids.includes(colPickerCurrentPid);
-    return `<button class="col-picker-item ${inCol?'in':''}" onclick="toggleColForPrompt('${id}')">
-      <div class="col-picker-check">${inCol?'✓':''}</div>
-      <div class="col-picker-dot" style="background:${col.color}"></div>
-      <div class="col-picker-name">${escapeHtml(col.name)}</div>
-      <div class="col-picker-cnt">${col.ids.length}</div>
+    return `<button class="cp-item ${inCol?'in':''}" onclick="toggleColForPrompt('${id}')">
+      <div class="cp-item-folder" style="background:${col.color}1F;color:${col.color}">${inCol?'📂':'📁'}</div>
+      <div class="cp-item-name">${escapeHtml(col.name)}</div>
+      <div class="cp-item-cnt">${col.ids.length}</div>
+      <div class="cp-item-check">✓</div>
     </button>`;
   }).join('');
 }
@@ -5222,10 +5513,15 @@ function createColFromInput(){
   const input=document.getElementById('colNewInput');
   const name=input.value.trim();
   if(!name)return;
-  const id=createCol(name);
+  const id=createCol(name,cpSelectedColor);
   if(colPickerCurrentPid)addPromptToCol(colPickerCurrentPid,id);
   input.value='';
+  updateCpCreateBtn();
+  // Volgende ongebruikte kleur klaarzetten voor een eventuele tweede collectie
+  const used=Object.values(getCols()).map(x=>x.color);
+  cpSelectedColor=COL_COLORS.find(col=>!used.includes(col))||COL_COLORS[0];
   renderColPickerList();
+  renderCpColors();
   showToast('✓ "'+name+'" aangemaakt');
 }
 
@@ -5375,22 +5671,45 @@ function printCollection(){
 function openTools(){
   document.getElementById('tcBd').style.display='flex';
   document.body.style.overflow='hidden';
-  document.getElementById('tcBody').innerHTML=TOOLS_DATA.map(t=>`
+  const cards=`<div class="tc-cards">`+TOOLS_DATA.map(t=>`
     <div class="tool-card">
       <div class="tc-top">
         <div class="tc-logo" style="background:${t.logoBg}">${t.logo}</div>
         <div class="tc-name">${t.name}</div>
         <div class="tc-price" style="background:${t.priceC};color:${t.priceTxt}">${t.price}</div>
+        ${t.model?`<div class="tc-model">${t.model}</div>`:''}
         <ul class="tc-features">${t.features.map(f=>`<li>${f}</li>`).join('')}</ul>
       </div>
       <div class="tc-bottom">
         <div class="tc-best-for">Beste voor</div>
         <div class="tc-tasks"><strong>${t.bestFor}</strong><br>${t.tasks}</div>
+        ${t.tip?`<div class="tc-tip">💡 ${t.tip}</div>`:''}
       </div>
-    </div>`).join('')+`
-    <div class="tc-note">
-      <strong>Aanbeveling:</strong> Begin met <strong>Microsoft Copilot</strong> — beschikbaar via de M365-licentie, werkt in Outlook en Teams. Voor complexere taken loont <strong>Claude Pro</strong> of <strong>ChatGPT Plus</strong>. Per prompt staat aangegeven welk niveau je nodig hebt.
+    </div>`).join('')+`</div>`;
+
+  const picker=`
+    <div class="tc-picker">
+      <div class="tc-picker-hdr">
+        <div class="tc-picker-title">Welke tool voor welke taak?</div>
+        <div class="tc-picker-sub">Een snelle keuzehulp op basis van wat je wilt doen.</div>
+      </div>
+      <div class="tc-picker-grid">
+        ${TOOL_PICKER.map(p=>`
+          <div class="tc-pick-row">
+            <div class="tc-pick-task">${p.task}</div>
+            <div class="tc-pick-arrow">→</div>
+            <div class="tc-pick-tool" style="color:${p.color}"><span class="tc-pick-dot" style="background:${p.color}"></span>${p.tool}</div>
+            <div class="tc-pick-why">${p.why}</div>
+          </div>`).join('')}
+      </div>
     </div>`;
+
+  const note=`
+    <div class="tc-note">
+      <strong>Advies voor MKR:</strong> begin altijd met <strong>Microsoft Copilot</strong>. Het is gratis via je schoolaccount, werkt in Word, Outlook en Teams, en je gegevens blijven binnen de beveiligde schoolomgeving. Voor schrijf- en denkwerk op een hoger niveau loont <strong>Claude Pro</strong>. Voor onderzoek, data-analyse en afbeeldingen is <strong>ChatGPT Plus</strong> sterk. Per prompt zie je met een gekleurd bolletje welk niveau je minimaal nodig hebt. Prijzen zijn richtbedragen per maand (incl. btw, kan variëren).
+    </div>`;
+
+  document.getElementById('tcBody').innerHTML=cards+picker+note;
 }
 function closeTc(){document.getElementById('tcBd').style.display='none';document.body.style.overflow='';}
 
