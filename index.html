@@ -4366,6 +4366,7 @@ function updateNavBtns(){
 // ── MOBILE FILTER ────────────────────────────────────────────────────────
 function toggleMobFilter(){
   const dd=document.getElementById('mobFilterDD');
+  if(!dd)return; // Element bestaat niet meer (mobiele navigatie loopt nu via mobCats-pillen)
   const bd=document.getElementById('mobFilterBd');
   const isOpen=dd.classList.toggle('open');
   if(bd)bd.classList.toggle('open',isOpen);
@@ -4381,11 +4382,12 @@ function toggleMobFilter(){
   }
 }
 function closeMobFilter(){
-  document.getElementById('mobFilterDD').classList.remove('open');
+  const dd=document.getElementById('mobFilterDD');
+  if(dd)dd.classList.remove('open');
   const bd=document.getElementById('mobFilterBd');
   if(bd)bd.classList.remove('open');
 }
-document.addEventListener('click',e=>{if(!e.target.closest('#mobFilterBtn')&&!e.target.closest('#mobFilterDD'))closeMobFilter();});
+document.addEventListener('click',e=>{if(!e.target.closest('#mobFilterBtn')&&!e.target.closest('#mobFilterDD')){const dd=document.getElementById('mobFilterDD');if(dd&&dd.classList.contains('open'))closeMobFilter();}});
 
 // ── VARIANT EDITOR STATE ─────────────────────────────────────────────────
 let editingVariant=false;
