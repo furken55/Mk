@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>AI Promptbibliotheek — Melanchthon Kralingen</title>
-<meta name="description" content="69 kant-en-klare AI-prompts voor docenten, mentoren, teamleiders, directie en OOP van Melanchthon Kralingen. Kopieer, plak in Copilot en bespaar tijd."/>
+<meta name="description" content="81 kant-en-klare AI-prompts voor docenten, mentoren, teamleiders, directie en OOP van Melanchthon Kralingen. Kopieer, plak in Copilot en bespaar tijd."/>
 <meta property="og:title" content="AI Promptbibliotheek — Melanchthon Kralingen"/>
-<meta property="og:description" content="69 kant-en-klare AI-prompts voor Melanchthon Kralingen. Van lesontwerp en toetsing tot oudercommunicatie, registratie en auditvoorbereiding."/>
+<meta property="og:description" content="81 kant-en-klare AI-prompts voor Melanchthon Kralingen. Van lesontwerp en toetsing tot oudercommunicatie, registratie en auditvoorbereiding."/>
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;🏫&lt;/text&gt;&lt;/svg&gt;"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&amp;family=Inter:wght@400;450;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -172,6 +172,22 @@ html{scroll-behavior:smooth}
 .cl-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--bdr);font-size:11.5px;color:var(--t3);line-height:1.55}
 .cl-foot .sb-changelog-link{color:var(--blue);border-bottom-color:rgba(59,130,246,.4)}
 .cl-foot .sb-changelog-link:hover{color:var(--navy-soft);border-bottom-color:var(--navy-soft)}
+/* nieuwe prompts binnen het update center */
+.cl-np-section{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--bdr)}
+.cl-np-badge{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#F5EFE2;font-size:10px;font-weight:800;padding:1px 8px;border-radius:10px;margin-left:7px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.cl-np-list{display:flex;flex-direction:column;gap:7px;margin:2px 0 0 2px}
+.cl-np-item{display:flex;align-items:center;gap:11px;padding:9px 11px;border:1px solid var(--bdr);border-radius:11px;background:var(--surf-2);cursor:pointer;transition:.14s;text-align:left;width:100%;font-family:inherit}
+.cl-np-item:hover{border-color:var(--accent);background:var(--surf-3);transform:translateX(2px)}
+.cl-np-item:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cl-np-icon{width:28px;height:28px;border-radius:8px;background:var(--surf);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cl-np-body{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.cl-np-title{font-size:13px;font-weight:600;color:var(--t1);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-np-meta{font-size:11px;color:var(--t3);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-np-go{color:var(--accent);font-size:14px;flex-shrink:0;font-weight:700}
+.cl-np-morecount{font-size:11.5px;color:var(--t3);margin:9px 0 0 6px}
+.cl-np-all{margin:13px 0 0 2px;background:var(--surf-3);border:1px solid var(--bdr-2);color:var(--t1);font-size:12px;font-weight:600;padding:8px 13px;border-radius:9px;cursor:pointer;transition:.14s;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+.cl-np-all:hover{background:var(--accent);color:#F5EFE2;border-color:var(--accent)}
+.cl-subhead{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 14px}
 body{
   font-family:var(--font-sans);
   background:var(--bg);
@@ -249,6 +265,14 @@ body::before{
   background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 60%);
   pointer-events:none;
 }
+/* Echt schoollogo op een licht vlak, zodat elke logokleur zichtbaar blijft op de donkere zijbalk */
+.sb-logo-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0;
+  margin-bottom:13px;
+  max-width:100%;
+}
+.sb-logo-img{display:block;height:28px;width:auto;max-width:188px;object-fit:contain}
 .sb-name{
   font-family:var(--font-serif);
   font-size:19px;
@@ -2247,6 +2271,8 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   .sidebar::-webkit-scrollbar{display:none}
   .sb-brand{flex-shrink:0;display:flex;flex-direction:row;align-items:center;gap:8px;padding:0 12px 0 0;border-right:1px solid var(--sb-border);border-bottom:none}
   .sb-logo{width:32px;height:32px;font-size:15px;margin-bottom:0;border-radius:9px;flex-shrink:0}
+  .sb-logo-wrap{margin-bottom:0;padding:0}
+  .sb-logo-img{height:20px;max-width:150px}
   .sb-name{font-size:13px;line-height:1.1;max-width:96px}
   .sb-sub,.sb-stats{display:none}
   .sb-scroll{display:contents}
@@ -2407,8 +2433,13 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 <body>
 <aside class="sidebar">
   <div class="sb-brand">
-    <div class="sb-logo">🏫</div>
-    <div class="sb-name">Melanchthon Kralingen</div>
+    <div class="sb-logo-wrap">
+      <img class="sb-logo-img" src="https://melanchthon.nl/assets/images/logos/Logo-Kralingen.svg" alt="Melanchthon Kralingen" onerror="this.closest('.sb-logo-wrap').style.display='none';var f=document.getElementById('sbBrandFallback');if(f)f.style.display='block';">
+    </div>
+    <div id="sbBrandFallback" style="display:none">
+      <div class="sb-logo">🏫</div>
+      <div class="sb-name">Melanchthon Kralingen</div>
+    </div>
     <div class="sb-sub">AI Promptbibliotheek 2025–2026 · <span class="sb-changelog-link" onclick="openChangelog()" role="button" tabindex="0" aria-label="Wat is nieuw: bekijk de changelog">wat is nieuw</span></div>
     <div class="sb-stats">
       <div class="sb-stat"><span id="totalPrmpt">0</span> prompts</div>
@@ -2539,8 +2570,8 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
     <div class="new-banner cl-banner" id="changelogBanner" onclick="openChangelog()">
       <div class="nb-icon" aria-hidden="true">📣</div>
       <div class="nb-text">
-        <div class="nb-title">De bibliotheek is bijgewerkt</div>
-        <div class="nb-desc">Nieuw: slimmer zoeken, Mijn gegevens, back-up en betere toegankelijkheid. Bekijk wat er nieuw is.</div>
+        <div class="nb-title">Nieuw in de bibliotheek</div>
+        <div class="nb-desc">Nieuwe prompts en verbeteringen op één plek. Bekijk het volledige overzicht.</div>
       </div>
       <button class="nb-btn" onclick="event.stopPropagation();openChangelog()">
         <span>Wat is nieuw</span>
@@ -2554,7 +2585,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
         <div class="nb-title" id="nbTitle">Nieuwe prompts beschikbaar</div>
         <div class="nb-desc" id="nbDesc">Vijf nieuwe prompts toegevoegd. Bekijk ze nu.</div>
       </div>
-      <button class="nb-btn" onclick="showNewPrompts()">
+      <button class="nb-btn" onclick="openUpdateCenter()">
         <span>Bekijk</span>
         <span>→</span>
       </button>
@@ -3159,6 +3190,218 @@ Onderwerp: [onderwerp]
 Klas en niveau: [leerjaar en niveau]
 Lesdoel: [lesdoel]`},
 
+// ── Vakspecifiek (docent): extra lesprompts per vakgebied ──
+{id:'L11',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Nederlands: tekstbegrip versterken',desc:'Maak een leesles rond een tekst: voorspellen, sleutelwoorden, vragen op drie niveaus en een begripscheck.',
+ prompt:`Je bent docent Nederlands op een vmbo/mavo+ school. Maak een leesles rond de onderstaande tekst.
+
+Lever precies dit:
+① VOOR HET LEZEN: 2 voorspelvragen die nieuwsgierig maken en voorkennis activeren.
+② SLEUTELWOORDEN: 5 lastige woorden uit de tekst, met per woord een uitleg in maximaal 8 woorden.
+③ LEESSTRATEGIE: 1 concrete strategie (bijvoorbeeld elke alinea samenvatten in 1 zin) met een voorbeeld op de tekst.
+④ VRAGEN OP 3 NIVEAUS:
+   ★ vinden: het antwoord staat letterlijk in de tekst
+   ★★ verbinden: informatie uit de tekst combineren
+   ★★★ betekenen: eigen mening met een argument uit de tekst
+   Geef per niveau 2 vragen met het goede antwoord.
+⑤ BEGRIPSCHECK: 1 slotvraag die elke leerling kort beantwoordt.
+
+Taalsteun: geef bij de open vragen 1 zinsstarter.
+Basisvaardigheid: dit is taal (lezen). Noem 1 moment waarop leerlingen dit ook buiten school gebruiken.
+
+---
+Tekst of onderwerp: [tekst of onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L12',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Engels: spreekdurf vergroten',desc:'Ontwerp een laagdrempelige spreekactiviteit met zinsstarters, tweetallen en een korte reflectie.',
+ prompt:`Je bent docent Engels op een vmbo/mavo+ school. Ontwerp een korte spreekactiviteit van 15 minuten waarin elke leerling durft te praten.
+
+Lever dit:
+① OPWARMER (3 min): een makkelijke vraag waar iedereen antwoord op heeft, in tweetallen.
+② KERNACTIVITEIT: een spreekopdracht in tweetallen of kleine groepjes over [onderwerp]. Beschrijf precies wat leerlingen doen.
+③ TAALSTEUN: geef 6 zinsstarters en 8 nuttige woorden (Engels met korte Nederlandse vertaling).
+④ DIFFERENTIATIE:
+   ★ basis: de leerling gebruikt de zinsstarters
+   ★★★ verdieping: de leerling stelt zelf een vervolgvraag
+⑤ VEILIG SPREKEN: 1 klasafspraak zodat leerlingen fouten durven maken (past bij positief gedrag).
+⑥ REFLECTIE: 1 vraag, namelijk wat ging goed en wat wil je volgende keer proberen.
+
+Houd de instructiezinnen kort (maximaal 12 woorden). Basisvaardigheid: taal (spreken).
+
+---
+Onderwerp: [onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L13',cat:'les',sup:false,roles:['docent'],ts:'ca. 12 min',tool:'betaald',added:'2026-07-02',
+ title:'Biologie/NASK: practicum veilig voorbereiden',desc:'Bereid een practicum voor met veiligheidsregels, stappenplan, waarneming en een onderzoeksvraag.',
+ prompt:`Je bent docent biologie of NASK op een vmbo/mavo+ school. Bereid het onderstaande practicum veilig en gestructureerd voor.
+
+Lever dit:
+① ONDERZOEKSVRAAG: 1 heldere vraag die past bij het practicum, in leerlingtaal.
+② VEILIGHEID EERST: de belangrijkste veiligheidsregels (maximaal 5), kort en concreet. Benoem kort wat niet mag en vertaal dit daarna naar de gewenste gedragsverwachting.
+③ BENODIGDHEDEN: een korte lijst.
+④ STAPPENPLAN: genummerde stappen, één handeling per stap, maximaal 12 woorden per stap.
+⑤ WAARNEMEN EN NOTEREN: hoe leggen leerlingen hun waarneming vast (tabel of tekening)?
+⑥ TAALSTEUN: leg 4 vakwoorden uit in maximaal 8 woorden per woord.
+⑦ CONTROLE VAN BEGRIP: 2 vragen die je stelt voordat leerlingen beginnen, zodat je weet of de instructie duidelijk is.
+⑧ DIFFERENTIATIE: 1 extra uitdaging (★★★) voor leerlingen die snel klaar zijn.
+
+Basisvaardigheden: benoem waar rekenen (meten, aflezen) en digitalisering (bijvoorbeeld resultaten invoeren) een rol spelen.
+
+---
+Practicum of onderwerp: [practicum of onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L14',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Mens & maatschappij: bron kritisch lezen',desc:'Maak een opdracht waarin leerlingen een bron analyseren, een standpunt vormen en de link met burgerschap leggen.',
+ prompt:`Je bent docent mens & maatschappij, geschiedenis of aardrijkskunde op een vmbo/mavo+ school. Maak een opdracht rond de onderstaande bron of het onderwerp.
+
+Lever dit:
+① BRON BEKIJKEN: 3 vragen die leerlingen helpen de bron te begrijpen (wie, wat, wanneer of waar).
+② KRITISCH KIJKEN: 2 vragen, namelijk wie heeft dit gemaakt en waarom, en is het feit of mening.
+③ STANDPUNT VORMEN: een stelling bij het onderwerp. Leerlingen kiezen een kant en geven 2 argumenten, waarvan 1 uit de bron.
+④ TAALSTEUN: 5 begrippen met korte uitleg en 2 zinsstarters voor het argumenteren (bijvoorbeeld: Ik vind ... omdat ...).
+⑤ BURGERSCHAP: koppel het onderwerp aan het dagelijks leven of de samenleving met 1 concrete vraag.
+⑥ DIFFERENTIATIE:
+   ★ basis: de leerling kiest uit 3 gegeven argumenten
+   ★★★ verdieping: de leerling bedenkt een tegenargument
+⑦ BEGRIPSCHECK: 1 korte vraag om af te sluiten.
+
+Basisvaardigheden: taal (lezen en argumenteren) en burgerschap.
+
+---
+Bron of onderwerp: [bron of onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L15',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Economie: geldrekenen concreet maken',desc:'Maak reken- en budgetopdrachten in herkenbare situaties, met een stappenplan en een begripscheck.',
+ prompt:`Je bent docent economie op een vmbo/mavo+ school. Maak reken- en budgetopdrachten rond [onderwerp] in situaties die leerlingen herkennen, zoals een bijbaan, telefoonabonnement, boodschappen of sparen.
+
+Lever dit:
+① BEGRIP IN GEWONE TAAL: leg het kernbegrip uit in maximaal 2 zinnen, met een voorbeeld uit het echte leven.
+② STAPPENPLAN REKENEN: hoe pak je zo'n som aan? Genummerde stappen, met 1 uitgewerkt voorbeeld (som, berekening en antwoord met euroteken).
+③ OPDRACHTEN OP 3 NIVEAUS:
+   ★ basis: 1 stap, kleine bedragen
+   ★★ midden: 2 stappen
+   ★★★ verdieping: de leerling legt uit of een keuze slim is en waarom
+   Geef per niveau 2 sommen met antwoord.
+④ TAALSTEUN: 4 begrippen (bijvoorbeeld inkomsten, uitgaven, budget, korting) kort uitgelegd.
+⑤ CONTROLE VAN BEGRIP: 1 slotsom die iedereen maakt.
+
+Reken netjes met euro's en procenten. Basisvaardigheden: rekenen en digitalisering (bijvoorbeeld rekenmachine of rekenblad).
+
+---
+Onderwerp: [onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L16',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Praktijkvak: veilige instructiekaart maken',desc:'Maak een korte instructiekaart voor een praktijkopdracht: veiligheid, stappen en een reflectie.',
+ prompt:`Je bent docent van een praktijk- of profielvak op een vmbo/mavo+ school (bijvoorbeeld techniek, zorg & welzijn, economie & ondernemen, horeca of groen). Maak een instructiekaart voor de onderstaande praktijkopdracht.
+
+Lever dit op één overzichtelijke kaart:
+① DOEL: wat maakt of kan de leerling na afloop? In 1 zin, in leerlingtaal.
+② VEILIG WERKEN: de belangrijkste regels (maximaal 5). Benoem de beschermingsmiddelen, zeg kort wat niet mag en vertaal dit daarna naar de gewenste gedragsverwachting.
+③ BENODIGDHEDEN: een korte lijst van materiaal en gereedschap.
+④ STAPPENPLAN: genummerde stappen, één handeling per stap, maximaal 12 woorden. Zet een let-op-teken bij stappen met een risico.
+⑤ NETJES OPRUIMEN: 2 afspraken (past bij rust, regelmaat en reinheid).
+⑥ CONTROLE: 2 vragen die je stelt voordat leerlingen beginnen.
+⑦ REFLECTIE ACHTERAF: 2 vragen, namelijk wat ging goed en wat doe je volgende keer anders.
+
+Houd de taal kort en concreet. Basisvaardigheden: benoem waar taal (instructie lezen) en rekenen (meten, afmeten) meespelen.
+
+---
+Praktijkopdracht: [praktijkopdracht]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L17',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'LO: beweegles veilig opbouwen',desc:'Structureer een beweeg- of spelactiviteit met veiligheid, samenwerking, differentiatie en reflectie.',
+ prompt:`Je bent docent lichamelijke opvoeding op een vmbo/mavo+ school. Bouw een beweeg- of spelactiviteit op rond [activiteit of onderdeel].
+
+Lever dit:
+① DOEL: wat oefenen leerlingen (techniek, samenwerken of conditie)? In 1 zin.
+② WARMING-UP (5 min): kort en activerend, iedereen doet mee.
+③ KERN: de opbouw in 2 tot 3 stappen van makkelijk naar moeilijker. Beschrijf de organisatie (groepjes, ruimte, materiaal).
+④ VEILIGHEID: de belangrijkste regels (maximaal 4). Zeg kort wat niet mag en vertaal dit naar de gewenste gedragsverwachting. Benoem ook hoe je samen blessures voorkomt.
+⑤ SAMENWERKEN: 1 afspraak waarmee leerlingen elkaar helpen of aanmoedigen (past bij positief gedrag).
+⑥ DIFFERENTIATIE:
+   ★ basis: een makkelijkere variant of grotere doelen
+   ★★★ verdieping: een extra uitdaging of een coachrol
+⑦ COOLING-DOWN EN REFLECTIE: kort afsluiten en 1 vraag, namelijk wat lukte en wat wil je verbeteren.
+
+Houd de instructie kort, want leerlingen moeten snel kunnen starten. Basisvaardigheden: samenwerken en burgerschap (eerlijk spelen, rekening houden met elkaar).
+
+---
+Activiteit of onderdeel: [activiteit of onderdeel]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L18',cat:'les',sup:false,roles:['docent'],ts:'ca. 15 min',tool:'betaald',added:'2026-07-02',
+ title:'Vakoverstijgend: project met twee vakken',desc:'Ontwerp een project waarin twee vakken samenwerken, met een eindproduct, planning en beoordeling.',
+ prompt:`Je bent docent op een vmbo/mavo+ school. Ontwerp een kort vakoverstijgend project waarin de twee onderstaande vakken samenwerken rond een herkenbaar thema.
+
+Lever dit:
+① THEMA EN VRAAG: een aansprekende hoofdvraag die beide vakken nodig heeft.
+② WAT DOET ELK VAK: beschrijf per vak welke kennis of vaardigheid leerlingen inzetten. Maak de koppeling concreet.
+③ EINDPRODUCT: wat leveren leerlingen op (bijvoorbeeld een poster, filmpje, ontwerp of presentatie)? In leerlingtaal.
+④ PLANNING: een stappenplan over 3 tot 4 lessen, met per les een concreet doel.
+⑤ SAMENWERKEN: de rollen in het groepje en 1 afspraak voor een fijne samenwerking (positief gedrag).
+⑥ TAALSTEUN: 5 begrippen en 2 zinsstarters voor de presentatie.
+⑦ BEOORDELING: 4 heldere succescriteria in leerlingtaal (bijvoorbeeld: Het is gelukt als ...).
+⑧ DIFFERENTIATIE: hoe kunnen sterkere en zwakkere leerlingen allebei bijdragen?
+
+Basisvaardigheden: benoem waar taal, rekenen, burgerschap en digitalisering terugkomen.
+
+---
+Vak 1: [vak 1]
+Vak 2: [vak 2]
+Thema of aanleiding: [thema of aanleiding]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L19',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Nederlands: schrijfopdracht opbouwen',desc:'Bouw een schrijfopdracht op met structuur, signaalwoorden, zinsstarters, succescriteria en een revisiecheck.',
+ prompt:`Je bent docent Nederlands op een vmbo/mavo+ school. Bouw een schrijfopdracht op rond [schrijfopdracht of onderwerp], zodat leerlingen stap voor stap een goede tekst maken.
+
+Lever dit:
+① SCHRIJFDOEL: wat leren leerlingen schrijven, in leerlingtaal (bijvoorbeeld: Jij schrijft een tekst waarin je je mening geeft met 2 argumenten).
+② VOORBEELDSTRUCTUUR: een heldere opbouw in alinea's (inleiding, kern, slot), met per alinea in 1 zin wat erin komt.
+③ STAPPENPLAN VOOR LEERLINGEN: genummerde stappen van idee naar tekst, één handeling per stap.
+④ SIGNAALWOORDEN EN ZINSSTARTERS: geef 6 signaalwoorden (bijvoorbeeld ten eerste, daardoor, ten slotte) en 5 zinsstarters die passen bij de opdracht.
+⑤ SUCCESCRITERIA: 4 tot 5 criteria in leerlingtaal (bijvoorbeeld: Het is gelukt als elke alinea één onderwerp heeft).
+⑥ DIFFERENTIATIE:
+   ★ basis: de leerling gebruikt de voorbeeldstructuur en de zinsstarters
+   ★★★ verdieping: de leerling varieert in zinsbouw en voegt een tegenargument toe
+⑦ REVISIECHECK: een korte checklist van 3 vragen waarmee de leerling de eigen tekst nakijkt en 1 ding verbetert.
+
+Houd de instructiezinnen kort. Basisvaardigheid: taal (schrijven).
+
+---
+Schrijfopdracht of onderwerp: [schrijfopdracht of onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'L20',cat:'les',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'MVT: woordenschat en grammatica oefenen',desc:'Bruikbaar voor Engels, Frans, Duits of Spaans: woorden, grammatica, oefening op drie niveaus en een foutvriendelijke afspraak.',
+ prompt:`Je bent docent van een moderne vreemde taal op een vmbo/mavo+ school (Engels, Frans, Duits of Spaans). Maak een oefenles rond [onderwerp of thema] voor het vak [taal].
+
+Lever dit:
+① ACTIVERENDE START (3 min): een makkelijke opdracht waarbij elke leerling meteen 1 woord of zin in de doeltaal gebruikt.
+② WOORDENSCHAT: 8 woorden (doeltaal met korte Nederlandse vertaling), elk met een voorbeeldzin in de doeltaal.
+③ GRAMMATICA: leg 1 grammaticaregel uit in eenvoudige taal, met 2 voorbeelden. Houd de uitleg kort en concreet.
+④ OEFENING OP 3 NIVEAUS:
+   ★ basis: invullen of koppelen
+   ★★ midden: korte zinnen maken met de woorden
+   ★★★ verdieping: zelf 2 tot 3 zinnen schrijven of zeggen
+   Geef per niveau een korte opdracht met een voorbeeld.
+⑤ SPREEK- OF SCHRIJFOPDRACHT: een korte opdracht waarin leerlingen de woorden en de regel samen gebruiken.
+⑥ CONTROLE VAN BEGRIP: 1 slotopdracht die elke leerling maakt.
+⑦ TAALSTEUN EN AFSPRAAK: geef 4 zinsstarters en 1 foutvriendelijke klasafspraak, zodat leerlingen durven spreken en fouten mogen maken (past bij positief gedrag).
+
+Houd de instructiezinnen kort (maximaal 12 woorden). Basisvaardigheid: taal (woordenschat, spreken en schrijven).
+
+---
+Taal: [taal]
+Onderwerp of thema: [onderwerp of thema]
+Klas en niveau: [leerjaar en niveau]`},
+
 // ══ TOETSING & BEOORDELING ═══════════════════════════════════════════════
 {id:'T01',cat:'toets',sup:false,roles:['docent'],ts:'ca. 20 min',tool:'betaald',
  title:'Toets maken met RTTI',desc:'Maak een volledige toets met vragen, punten, RTTI-verdeling en antwoordmodel.',
@@ -3333,6 +3576,45 @@ Toon: leerlingvriendelijk, niet streng. Dit is een check, geen toets.
 ---
 Lesdoel: [lesdoel]
 Onderwerp: [onderwerp]
+Klas en niveau: [leerjaar en niveau]`},
+
+// ── Vakspecifiek (docent): extra toets- en feedbackprompts ──
+{id:'T09',cat:'toets',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'betaald',added:'2026-07-02',
+ title:'Wiskunde: denkfouten opsporen',desc:'Analyseer leerlingwerk, benoem de denkfout achter de fout en geef gerichte feedback met een herstelstap.',
+ prompt:`Je bent docent wiskunde of rekenen op een vmbo/mavo+ school. Analyseer het onderstaande leerlingwerk bij [onderwerp].
+
+Doe dit per fout:
+① WAT GING FOUT: benoem kort de fout, feitelijk en zonder oordeel.
+② DE DENKFOUT ERACHTER: welke misconceptie of gewoonte veroorzaakt dit waarschijnlijk (bijvoorbeeld verkeerde volgorde van bewerkingen, komma verkeerd geplaatst, of een regel te ver doorgetrokken)? Formuleer de denkfout voorzichtig: dit is een waarschijnlijke denkfout, geen diagnose. Geef een vervolgvraag waarmee de docent kan controleren of dit klopt.
+③ FEEDBACK AAN DE LEERLING: 1 tot 2 zinnen in leerlingtaal die de leerling verder helpen, opbouwend en concreet. Geef niet zomaar het antwoord.
+④ HERSTELSTAP: 1 mini-oefening of vraag waarmee de leerling het zelf goed kan doen.
+
+Sluit af met:
+KLASSIKAAL PATROON: als meerdere leerlingen dezelfde fout maken, geef 1 korte uitleg of tekening die je klassikaal kunt gebruiken.
+
+Reken de opgave zelf correct na. Basisvaardigheid: rekenen.
+
+---
+Onderwerp: [onderwerp]
+Leerlingwerk (opgave met het antwoord van de leerling): [leerlingwerk]
+Klas en niveau: [leerjaar en niveau]`},
+
+{id:'T10',cat:'toets',sup:false,roles:['docent'],ts:'ca. 10 min',tool:'gratis',added:'2026-07-02',
+ title:'Kunst/CKV: opdracht met succescriteria',desc:'Ontwerp een creatieve opdracht met heldere succescriteria in leerlingtaal en reflectievragen.',
+ prompt:`Je bent docent kunst, CKV of beeldende vorming op een vmbo/mavo+ school. Ontwerp een creatieve opdracht rond [thema of techniek] met een eerlijke, heldere beoordeling.
+
+Lever dit:
+① DE OPDRACHT: wat maken leerlingen? Kort en inspirerend, in leerlingtaal. Geef 2 voorbeelden ter inspiratie zonder het voor te kauwen.
+② KADERS: tijd, materiaal en 1 eis waar iedereen aan moet voldoen.
+③ SUCCESCRITERIA: 4 tot 5 criteria in leerlingtaal (bijvoorbeeld: Het is gelukt als ...). Maak ze zichtbaar en concreet, zodat een leerling zelf kan checken.
+④ RUIMTE VOOR EIGEN KEUZE: benoem waar leerlingen hun eigen smaak of idee kwijt kunnen (past bij hoge verwachtingen en motivatie).
+⑤ REFLECTIEVRAGEN: 3 vragen voor achteraf, over het proces, over een keuze die de leerling maakte, en over een volgende stap.
+⑥ TAALSTEUN: 4 vakwoorden kort uitgelegd en 2 zinsstarters voor het praten over eigen werk.
+
+Houd de toon positief en serieus en neem het werk van leerlingen serieus. Basisvaardigheid: taal (praten en schrijven over werk).
+
+---
+Thema of techniek: [thema of techniek]
 Klas en niveau: [leerjaar en niveau]`},
 
 // ══ LEERLINGZORG ══════════════════════════════════════════════════════════
@@ -4707,12 +4989,14 @@ function checkUpdates(){
     pill.style.display='flex';
     cnt.textContent=newPrompts.length;
 
-    // Show prominent banner unless user dismissed it recently
+    // Toon de banner alleen als die niet recent is weggeklikt, geen filter actief is,
+    // en de update-centerbanner niet al loopt (zo blijft het één samenhangend geheel).
     let dismissedUntil=null;
     try{dismissedUntil=localStorage.getItem('mkr-banner-dismissed-until');}catch(e){}
     const stillDismissed=dismissedUntil&&new Date(dismissedUntil)>new Date();
+    const changelogActive=(typeof shouldShowChangelogBanner==='function')&&shouldShowChangelogBanner();
 
-    if(!stillDismissed&&!showNew){
+    if(!stillDismissed&&!showNew&&!changelogActive){
       const count=newPrompts.length;
       document.getElementById('nbTitle').textContent=count===1?'1 nieuwe prompt beschikbaar':`${count} nieuwe prompts beschikbaar`;
       const titles=newPrompts.slice(0,3).map(p=>p.title).join(', ');
@@ -6075,15 +6359,59 @@ const CHANGELOG=[
 ];
 function renderChangelogBody(){
   const vEl=document.getElementById('clVersion');
-  if(vEl)vEl.textContent='Versie '+CHANGELOG_VERSION+' · '+CHANGELOG_DATE_LABEL;
+  if(vEl)vEl.textContent='Nieuwe prompts en verbeteringen · '+CHANGELOG_DATE_LABEL;
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  // Sectie 1: nieuwe prompts (dynamisch, klikbaar)
+  const np=getNewPrompts().filter(p=>!p.sup);
+  let npSection='';
+  if(np.length){
+    const shown=np.slice(0,8);
+    const rows=shown.map(p=>{
+      const c=CATS[p.cat]||{name:'Prompt',icon:'✦'};
+      return `<button class="cl-np-item" onclick="openPromptFromChangelog('${p.id}')" aria-label="Open prompt: ${esc(p.title)}">`
+        +`<span class="cl-np-icon" aria-hidden="true">${c.icon}</span>`
+        +`<span class="cl-np-body"><span class="cl-np-title">${esc(p.title)}</span><span class="cl-np-meta">${esc(c.name)} · ${esc(p.ts)}</span></span>`
+        +`<span class="cl-np-go" aria-hidden="true">→</span></button>`;
+    }).join('');
+    const more=np.length>shown.length?`<div class="cl-np-morecount">en ${np.length-shown.length} meer in de lijst</div>`:'';
+    npSection=`<div class="cl-np-section">`
+      +`<div class="cl-group-title"><span class="cl-group-icon" aria-hidden="true">✨</span>Nieuwe prompts<span class="cl-np-badge">${np.length}</span></div>`
+      +`<div class="cl-np-list">${rows}</div>${more}`
+      +`<button class="cl-np-all" onclick="showAllNewFromChangelog()">Bekijk alle nieuwe prompts in de lijst <span aria-hidden="true">→</span></button>`
+      +`</div>`;
+  }
+
+  // Sectie 2: verbeteringen in de app
   const groups=CHANGELOG.map(g=>{
     const items=g.items.map(it=>`<li>${it}</li>`).join('');
     return `<div class="cl-group"><div class="cl-group-title"><span class="cl-group-icon" aria-hidden="true">${g.icon}</span>${g.group}</div><ul class="cl-list">${items}</ul></div>`;
   }).join('');
+  const improveHead=np.length?`<div class="cl-subhead">Verbeteringen in de app</div>`:'';
+
   const body=document.getElementById('clBody');
-  if(body)body.innerHTML=`<div class="cl-intro">Dit is er verbeterd in de bibliotheek. Je kunt deze lijst altijd teruglezen via <span class="sb-changelog-link" onclick="openChangelog()" role="button" tabindex="0">wat is nieuw</span> onder de titel in de zijbalk.</div>${groups}<div class="cl-foot">Deze melding verdwijnt automatisch na een week; de changelog zelf blijft altijd bereikbaar.</div>`;
+  if(body)body.innerHTML=`<div class="cl-intro">Alles wat nieuw is op één plek: nieuwe prompts om meteen te gebruiken en verbeteringen in de bibliotheek. Je kunt dit altijd teruglezen via <span class="sb-changelog-link" onclick="openChangelog()" role="button" tabindex="0">wat is nieuw</span> onder de titel in de zijbalk.</div>${npSection}${improveHead}${groups}<div class="cl-foot">De melding bovenaan verdwijnt automatisch na een week. Dit overzicht blijft altijd bereikbaar.</div>`;
 }
 function markChangelogSeen(){try{localStorage.setItem('mkr-changelog-dismissed',CHANGELOG_VERSION);}catch(e){}}
+function openPromptFromChangelog(id){
+  closeChangelog();
+  if(typeof openMd==='function')openMd(id);
+}
+function showAllNewFromChangelog(){
+  closeChangelog();
+  showNew=true;showFavs=false;catFilter=null;sup=false;role='all';
+  document.querySelectorAll('.sb-role').forEach(el=>el.classList.toggle('active',el.dataset.role==='all'));
+  document.querySelectorAll('.sb-cat-item').forEach(el=>el.classList.remove('active'));
+  const sb=document.getElementById('superBtn');if(sb)sb.classList.remove('active');
+  const wp=document.getElementById('whatsnewPill');if(wp)wp.classList.add('active');
+  if(typeof render==='function')render();
+  if(typeof scrollToContent==='function')scrollToContent();
+}
+function openUpdateCenter(){
+  // vanuit de nieuwe-prompts-banner: verberg de banner en open het gedeelde overzicht
+  dismissBanner();
+  openChangelog();
+}
 function openChangelog(){
   renderChangelogBody();
   document.getElementById('changelogBd').style.display='flex';
