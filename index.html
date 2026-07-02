@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>AI Promptbibliotheek — Melanchthon Kralingen</title>
-<meta name="description" content="64 kant-en-klare AI-prompts voor docenten, mentoren, teamleiders, directie en OOP van Melanchthon Kralingen. Kopieer, plak in Copilot en bespaar tijd."/>
+<meta name="description" content="69 kant-en-klare AI-prompts voor docenten, mentoren, teamleiders, directie en OOP van Melanchthon Kralingen. Kopieer, plak in Copilot en bespaar tijd."/>
 <meta property="og:title" content="AI Promptbibliotheek — Melanchthon Kralingen"/>
-<meta property="og:description" content="64 kant-en-klare AI-prompts voor Melanchthon Kralingen. Van lesontwerp en toetsing tot oudercommunicatie, registratie en auditvoorbereiding."/>
+<meta property="og:description" content="69 kant-en-klare AI-prompts voor Melanchthon Kralingen. Van lesontwerp en toetsing tot oudercommunicatie, registratie en auditvoorbereiding."/>
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 100 100&#39;&gt;&lt;text y=&#39;.9em&#39; font-size=&#39;90&#39;&gt;🏫&lt;/text&gt;&lt;/svg&gt;"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&amp;family=Inter:wght@400;450;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -46,9 +46,9 @@
 
   /* Text */
   --t1:#0A1930;            /* deep navy ink */
-  --t2:#475569;
-  --t3:#8A98AD;
-  --t4:#B4BECB;
+  --t2:#3F4C5E;
+  --t3:#5C6A7D;
+  --t4:#7C899A;
 
   /* Borders */
   --bdr:rgba(10,25,48,.08);
@@ -91,8 +91,8 @@
   --bdr-strong:rgba(255,255,255,.16);
   --t1:#F1EBDC;
   --t2:#A4B0C3;
-  --t3:#6F7D94;
-  --t4:#505C72;
+  --t3:#8593A8;
+  --t4:#6A7688;
   --sh:0 2px 8px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
   --shh:0 14px 40px rgba(0,0,0,.5), 0 4px 12px rgba(0,0,0,.3);
   --shx:0 32px 80px rgba(0,0,0,.6);
@@ -100,6 +100,38 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 html{scroll-behavior:smooth}
+
+/* ===== TOEGANKELIJKHEID: zichtbare focus voor toetsenbordgebruik ===== */
+.card:focus-visible,.super-card:focus-visible,.recent-chip:focus-visible,.history-item:focus-visible,
+.sb-role:focus-visible,.sb-cat-item:focus-visible,.sb-col-item:focus-visible,.sb-col-add:focus-visible,
+.sort-select:focus-visible,.mob-cat-pill:focus-visible,.fp-opt:focus-visible,.fp-toggle-row:focus-visible,
+.filter-toggle-btn:focus-visible,.sb-fav-btn:focus-visible,.sb-history-btn:focus-visible,.sb-tools-btn:focus-visible,
+.sb-super-btn:focus-visible,.sb-leren-btn:focus-visible,.whatsnew-pill:focus-visible,.dark-toggle:focus-visible,
+.try-btn:focus-visible,.fav-btn:focus-visible,.md-close:focus-visible,.md-share:focus-visible,.md-nav:focus-visible,
+.rating-btn:focus-visible,.btn-copy:focus-visible,.rfb-btn:focus-visible,.rfb-close:focus-visible,.cp-item:focus-visible,
+.qr-btn:focus-visible,.history-item-remove:focus-visible,.history-clear:focus-visible,.history-close:focus-visible,
+.fp-close:focus-visible,.qr-close:focus-visible,.tc-hdr-close:focus-visible,.onboard-close:focus-visible,
+.nb-btn:focus-visible,.nb-close:focus-visible,.pod-btn:focus-visible,.pod-close:focus-visible,.upd-btn:focus-visible,
+.upd-close:focus-visible,.cp-close:focus-visible,.cp-create-btn:focus-visible,.cp-color:focus-visible,
+.scroll-top:focus-visible,.empty-sug:focus-visible,.bk-btn:focus-visible{
+  outline:2.5px solid var(--blue);
+  outline-offset:2px;
+  border-radius:8px;
+}
+[data-theme="dark"] .card:focus-visible,[data-theme="dark"] .super-card:focus-visible,[data-theme="dark"] .sb-role:focus-visible,[data-theme="dark"] .sb-cat-item:focus-visible{outline-color:var(--accent-2)}
+/* Klikbare kaart/rij die als knop dient: pointer + geen tekstselectie bij dubbelklik */
+.card[role="button"],.super-card[role="button"],.recent-chip[role="button"],.sb-role[role="button"],.sb-cat-item[role="button"],.history-item[role="button"]{cursor:pointer}
+
+/* Respecteer systeeminstelling 'beweging beperken' */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  .sb-super-btn:hover::before{transition:none!important;transform:none!important}
+}
 body{
   font-family:var(--font-sans);
   background:var(--bg);
@@ -797,8 +829,8 @@ body::before{
   background:var(--surf-3);
   border:1px solid var(--bdr);
   border-radius:10px;
-  width:34px;height:34px;
-  cursor:pointer;font-size:14px;color:var(--t2);
+  width:40px;height:40px;
+  cursor:pointer;font-size:15px;color:var(--t2);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;transition:.15s ease;
 }
@@ -2170,21 +2202,23 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 }
 @media(max-width:640px){
   body{flex-direction:column}
-  .sidebar{width:100%;min-height:auto;height:auto;position:relative;flex-direction:row;overflow-x:auto;flex-wrap:nowrap;padding:10px 14px;gap:8px;border-bottom:1px solid var(--sb-border);border-right:none}
+  .sidebar{width:100%;min-height:auto;height:auto;position:sticky;top:0;z-index:50;flex-direction:row;align-items:center;overflow-x:auto;flex-wrap:nowrap;padding:9px 12px;gap:10px;border-bottom:1px solid var(--sb-border);border-right:none}
   .sidebar::before{display:none}
-  .sb-brand{flex-shrink:0;padding:0 10px 0 0;border-right:1px solid var(--sb-border);border-bottom:none}
-  .sb-logo{width:30px;height:30px;font-size:14px;margin-bottom:0;border-radius:8px}
-  .sb-name{font-size:12.5px}
+  .sidebar::-webkit-scrollbar{display:none}
+  .sb-brand{flex-shrink:0;display:flex;flex-direction:row;align-items:center;gap:8px;padding:0 12px 0 0;border-right:1px solid var(--sb-border);border-bottom:none}
+  .sb-logo{width:32px;height:32px;font-size:15px;margin-bottom:0;border-radius:9px;flex-shrink:0}
+  .sb-name{font-size:13px;line-height:1.1;max-width:96px}
   .sb-sub,.sb-stats{display:none}
   .sb-scroll{display:contents}
-  .sb-sec,.sb-cats,.sb-super-btn,.sb-tools-btn,.sb-footer,.sb-fav-btn{display:none}
-  .sb-sec.mob-roles{display:flex;flex-direction:row;align-items:center;padding:0;gap:0;flex-shrink:0}
+  .sb-sec,.sb-cats,.sb-super-btn,.sb-tools-btn,.sb-footer,.sb-fav-btn,.sb-col-list,.sb-col-add,.sb-history-btn,.sb-leren-btn{display:none!important}
+  .sb-sec.mob-roles{display:flex!important;flex-direction:row;align-items:center;padding:0;gap:0;flex-shrink:0;flex:1;overflow-x:auto}
+  .sb-sec.mob-roles::-webkit-scrollbar{display:none}
   .sb-sec.mob-roles .sb-sec-lbl{display:none}
-  .sb-sec.mob-roles #roleFilters{display:flex!important;flex-direction:row;gap:4px;align-items:center}
-  .sb-role{padding:6px 12px;white-space:nowrap;border-radius:22px;font-size:12px}
+  .sb-sec.mob-roles #roleFilters{display:flex!important;flex-direction:row;gap:5px;align-items:center;padding-right:4px}
+  .sb-role{padding:7px 14px;white-space:nowrap;border-radius:22px;font-size:12.5px;flex-shrink:0;min-height:34px}
   .sb-role::before{display:none}
   .sb-role-dot{display:none}
-  .sb-role-name{font-size:11.5px}
+  .sb-role-name{font-size:12px}
   .sb-role-count{display:none}
   .main{min-height:0}
 
@@ -2198,7 +2232,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
   .topbar{padding:10px 14px;flex-wrap:wrap;gap:8px}
   .srch-wrap{flex:1 1 100%;max-width:100%;order:1}
-  .srch{font-size:15px;padding:12px 16px 12px 40px;border-radius:12px;-webkit-appearance:none}
+  .srch{font-size:16px;padding:12px 16px 12px 40px;border-radius:12px;-webkit-appearance:none}
   .srch::placeholder{font-size:13.5px}
   .srch-hint{display:none!important}
   .mob-filter-btn{display:none!important}
@@ -2211,9 +2245,10 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
   .mob-cats{display:flex;overflow-x:auto;gap:6px;padding:10px 14px;-webkit-overflow-scrolling:touch;flex-shrink:0;background:var(--sb);border-bottom:1px solid var(--sb-border)}
   .mob-cats::-webkit-scrollbar{display:none}
-  .mob-cat-pill{display:flex;align-items:center;gap:5px;padding:6px 13px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:.15s;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.55);font-family:inherit;letter-spacing:-0.005em}
+  .mob-cat-pill{display:flex;align-items:center;gap:5px;padding:9px 15px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:.15s;font-size:12px;font-weight:500;color:rgba(255,255,255,.62);font-family:inherit;letter-spacing:-0.005em;min-height:38px}
   .mob-cat-pill.active{background:linear-gradient(135deg,rgba(201,162,90,.18),rgba(201,162,90,.06));border-color:rgba(201,162,90,.4);color:var(--accent-2)}
   .mob-cat-pill .mc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .mob-cat-pill.mob-cat-action{background:rgba(201,162,90,.12);border-color:rgba(201,162,90,.35);color:var(--accent-2);font-weight:600}
 
   .card-grid{grid-template-columns:1fr;gap:12px}
   .card{padding:18px 18px 14px}
@@ -2234,19 +2269,31 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   .nb-title{font-size:15px}
   .nb-desc{font-size:11.5px;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
   .nb-btn{padding:8px 14px;font-size:12.5px}
-  .nb-close{width:26px;height:26px}
+  .nb-close{width:32px;height:32px}
 
   .bd{padding:0;align-items:flex-end}
   .md-wrap{max-width:100%!important;align-items:stretch!important}
   .md{max-height:100vh;max-height:100dvh;height:100vh;height:100dvh;border-radius:0}
   .md-handle{margin:8px auto 0}
-  .md-hdr{padding:14px 18px 12px;gap:12px}
-  .md-letter{width:42px;height:42px;font-size:20px}
-  .md-title{font-size:20px}
-  .md-cat{font-size:9.5px}
-  .md-share{padding:4px 11px;font-size:11px}
-  .md-close{width:36px;height:36px}
+  /* Modal header: restructured for mobile so title is readable and buttons wrap neatly */
+  .md-hdr{padding:14px 16px 12px;gap:12px;flex-wrap:wrap;position:relative}
+  .md-letter{width:40px;height:40px;font-size:19px;border-radius:11px}
+  .md-titles{flex:1 1 auto;min-width:0;order:1}
+  .md-cat-row{gap:6px;margin-bottom:7px}
+  .md-title{font-size:19px;line-height:1.25;word-break:normal;overflow-wrap:break-word}
+  .md-cat{font-size:9.5px;letter-spacing:0.1em}
+  /* Close button pinned top-right, doesn't push the title */
+  .md-close{width:40px;height:40px;order:2;position:absolute;top:14px;right:14px}
+  /* Action buttons drop to their own full-width row below the title */
+  .md-share{
+    padding:9px 12px;font-size:12px;order:3;
+    flex:1 1 0;min-width:0;justify-content:center;
+    margin-top:2px;
+  }
+  .md-hdr::after{content:'';order:2;flex-basis:100%;height:0}
   .md-nav{display:none}
+  /* Hide low-priority badges in the crowded mobile header */
+  .global-count-badge,.copy-stats{display:none!important}
 
   .md-body{flex-direction:column;overflow-y:auto;overflow-x:hidden}
   .md-preview{min-height:auto;max-height:none;flex:none;padding:16px 18px;gap:12px}
@@ -2332,12 +2379,12 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="sb-sec mob-roles">
     <div class="sb-sec-lbl">Rol</div>
     <div id="roleFilters">
-      <div class="sb-role active" data-role="all"><div class="sb-role-dot" style="background:#94A3B8"></div><div class="sb-role-name">Alle rollen</div><div class="sb-role-count" id="cnt-all">0</div></div>
-      <div class="sb-role" data-role="docent"><div class="sb-role-dot" style="background:#0369A1"></div><div class="sb-role-name">Docent</div><div class="sb-role-count" id="cnt-docent"></div></div>
-      <div class="sb-role" data-role="mentor"><div class="sb-role-dot" style="background:#7C3AED"></div><div class="sb-role-name">Mentor</div><div class="sb-role-count" id="cnt-mentor"></div></div>
-      <div class="sb-role" data-role="tl"><div class="sb-role-dot" style="background:#059669"></div><div class="sb-role-name">Teamleider</div><div class="sb-role-count" id="cnt-tl"></div></div>
-      <div class="sb-role" data-role="dir"><div class="sb-role-dot" style="background:#D97706"></div><div class="sb-role-name">Directie</div><div class="sb-role-count" id="cnt-dir"></div></div>
-      <div class="sb-role" data-role="oop"><div class="sb-role-dot" style="background:#475569"></div><div class="sb-role-name">OOP</div><div class="sb-role-count" id="cnt-oop"></div></div>
+      <div class="sb-role active" tabindex="0" role="button" data-role="all"><div class="sb-role-dot" style="background:#94A3B8"></div><div class="sb-role-name">Alle rollen</div><div class="sb-role-count" id="cnt-all">0</div></div>
+      <div class="sb-role" tabindex="0" role="button" data-role="docent"><div class="sb-role-dot" style="background:#0369A1"></div><div class="sb-role-name">Docent</div><div class="sb-role-count" id="cnt-docent"></div></div>
+      <div class="sb-role" tabindex="0" role="button" data-role="mentor"><div class="sb-role-dot" style="background:#7C3AED"></div><div class="sb-role-name">Mentor</div><div class="sb-role-count" id="cnt-mentor"></div></div>
+      <div class="sb-role" tabindex="0" role="button" data-role="tl"><div class="sb-role-dot" style="background:#059669"></div><div class="sb-role-name">Teamleider</div><div class="sb-role-count" id="cnt-tl"></div></div>
+      <div class="sb-role" tabindex="0" role="button" data-role="dir"><div class="sb-role-dot" style="background:#D97706"></div><div class="sb-role-name">Directie</div><div class="sb-role-count" id="cnt-dir"></div></div>
+      <div class="sb-role" tabindex="0" role="button" data-role="oop"><div class="sb-role-dot" style="background:#475569"></div><div class="sb-role-name">OOP</div><div class="sb-role-count" id="cnt-oop"></div></div>
     </div>
   </div>
   <div class="sb-sec"><div class="sb-sec-lbl">Thema</div></div>
@@ -2379,11 +2426,14 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="sb-footer">
     <div class="sb-footer-hint"><kbd>⌘</kbd><kbd>K</kbd> zoeken</div>
     <div style="display:flex;align-items:center;gap:6px">
-      <div class="dark-toggle" onclick="showOnboard()" title="Toon introductie" style="padding:4px 6px">
-        <div style="font-size:12px">ℹ️</div>
+      <div class="dark-toggle" onclick="openBackup()" role="button" tabindex="0" title="Back-up: exporteer of importeer je gegevens" aria-label="Back-up van je gegevens" style="padding:4px 6px">
+        <div style="font-size:12px" aria-hidden="true">💾</div>
       </div>
-      <div class="dark-toggle" onclick="toggleDark()" title="Wissel thema: Auto → Donker → Licht">
-        <div class="dark-toggle-icon" id="darkIcon">🌓</div>
+      <div class="dark-toggle" onclick="showOnboard()" role="button" tabindex="0" title="Toon introductie" aria-label="Toon introductie" style="padding:4px 6px">
+        <div style="font-size:12px" aria-hidden="true">ℹ️</div>
+      </div>
+      <div class="dark-toggle" onclick="toggleDark()" role="button" tabindex="0" title="Wissel thema: Auto, Donker, Licht" aria-label="Wissel thema tussen automatisch, donker en licht">
+        <div class="dark-toggle-icon" id="darkIcon" aria-hidden="true">🌓</div>
         <div class="dark-toggle-lbl" id="darkLbl">Auto</div>
       </div>
     </div>
@@ -2489,7 +2539,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="md-wrap" style="position:relative;width:100%;max-width:960px;display:flex;align-items:flex-end;justify-content:center;min-height:0;flex:1">
     <button class="md-nav prev" id="mdPrev2" onclick="navMd(-1)" title="Vorige prompt">‹</button>
     <button class="md-nav next" id="mdNext" onclick="navMd(1)" title="Volgende prompt">›</button>
-    <div class="md">
+    <div class="md" role="dialog" aria-modal="true" aria-label="Promptdetails">
     <div class="md-handle"></div>
     <div class="md-hdr" id="mdHdr"></div>
     <div class="md-body">
@@ -2505,7 +2555,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 </div>
 
 <div class="tc-bd" id="tcBd" style="display:none">
-  <div class="tc-modal">
+  <div class="tc-modal" role="dialog" aria-modal="true" aria-label="Welk AI-tool gebruik ik">
     <div class="tc-hdr">
       <div><h2>Welk AI-tool gebruik ik?</h2><p>Een eerlijk overzicht voor MKR-collega's</p></div>
       <button class="tc-hdr-close" onclick="closeTc()">✕</button>
@@ -2514,11 +2564,11 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   </div>
 </div>
 
-<div class="toast" id="toast"><svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span id="toastMsg">Gekopieerd!</span></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span id="toastMsg">Gekopieerd!</span></div>
 
 <!-- ADVANCED FILTER PANEL -->
 <div class="fp-bd" id="fpBd" onclick="if(event.target===this)closeFilterPanel()"></div>
-<div class="fp-panel" id="fpPanel">
+<div class="fp-panel" id="fpPanel" role="dialog" aria-modal="true" aria-label="Filters">
   <div class="fp-hdr">
     <div class="fp-hdr-titles">
       <h2>Filters</h2>
@@ -2535,7 +2585,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
 <!-- QR CODE MODAL -->
 <div class="qr-bd" id="qrBd" onclick="if(event.target===this)closeQr()">
-  <div class="qr-card">
+  <div class="qr-card" role="dialog" aria-modal="true" aria-label="Prompt delen">
     <div class="qr-title">Deel deze prompt</div>
     <div class="qr-sub" id="qrPromptTitle">Scan met je telefoon</div>
     <div class="qr-img-wrap" id="qrImg"></div>
@@ -2549,7 +2599,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
 <!-- HISTORY MODAL -->
 <div class="history-bd" id="historyBd" onclick="if(event.target===this)closeHistory()">
-  <div class="history-modal">
+  <div class="history-modal" role="dialog" aria-modal="true" aria-label="Mijn kopieen">
     <div class="history-hdr">
       <div class="history-hdr-titles">
         <h2>Mijn kopieën</h2>
@@ -2577,7 +2627,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   </button>
 </div>
 <div class="mob-filter-bd" id="mobFilterBd" onclick="closeMobFilter()"></div>
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:&#39;smooth&#39;})">↑</button>
+<button class="scroll-top" id="scrollTop" aria-label="Naar boven scrollen" onclick="window.scrollTo({top:0,behavior:&#39;smooth&#39;})">↑</button>
 
 <!-- RESULT FEEDBACK TOAST (na kopiëren: "Heeft het geholpen?") -->
 <div class="result-fb" id="resultFb">
@@ -2589,7 +2639,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
 <!-- COLLECTION PICKER MODAL -->
 <div class="cp-bd" id="colPickerBd" onclick="if(event.target===this)closeColPicker()">
-  <div class="cp-card">
+  <div class="cp-card" role="dialog" aria-modal="true" aria-label="Toevoegen aan collectie">
     <button class="cp-close" onclick="closeColPicker()" title="Sluiten">✕</button>
     <div class="cp-head">
       <div class="cp-head-icon">📁</div>
@@ -2612,7 +2662,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
 
 <!-- COLLECTION VIEW MODAL -->
 <div class="history-bd" id="colViewBd" onclick="if(event.target===this)closeColView()">
-  <div class="history-modal" style="max-width:880px">
+  <div class="history-modal" role="dialog" aria-modal="true" aria-label="Collectie" style="max-width:880px">
     <div class="history-hdr">
       <div class="history-hdr-titles">
         <h2 id="colViewTitle">Collectie</h2>
@@ -2628,6 +2678,23 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
     <div class="history-body" id="colViewBody"></div>
   </div>
 </div>
+
+<!-- BACKUP / EXPORT-IMPORT MODAL -->
+<div class="qr-bd" id="backupBd" onclick="if(event.target===this)closeBackup()">
+  <div class="qr-card" role="dialog" aria-modal="true" aria-label="Back-up van je gegevens" style="max-width:460px">
+    <div class="qr-title">Back-up van je gegevens</div>
+    <div class="qr-sub">Favorieten, notities, eigen versies en collecties</div>
+    <div class="qr-desc" style="margin-top:14px">Al je persoonlijke gegevens staan alleen op dit apparaat, in deze browser. Maak een back-up om ze veilig te stellen of over te zetten naar een andere computer, laptop of telefoon.</div>
+    <div id="backupStats" style="font-size:12px;color:var(--t2);background:var(--surf-2);border:1px solid var(--bdr);border-radius:10px;padding:10px 12px;margin-top:14px"></div>
+    <div class="qr-actions" style="flex-direction:column;gap:10px;margin-top:16px">
+      <button class="qr-btn bk-btn" onclick="exportData()" style="background:var(--navy);color:#F5EFE2;width:100%">Exporteren (download bestand)</button>
+      <button class="qr-btn bk-btn" onclick="document.getElementById('importFile').click()" style="width:100%">Importeren (herstellen)</button>
+      <button class="qr-btn qr-btn-close bk-btn" onclick="closeBackup()" style="width:100%">Sluiten</button>
+    </div>
+    <div class="qr-desc" style="margin-top:12px;font-size:11px;opacity:.8">Let op: importeren overschrijft je huidige gegevens op dit apparaat met de inhoud van het back-upbestand.</div>
+  </div>
+</div>
+<input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importData(this.files&&this.files[0]);this.value=''">
 
 <!-- PRINT VIEW (alleen zichtbaar bij @media print) -->
 <div class="print-view" id="printView"></div>
@@ -4021,6 +4088,7 @@ Team: [beschrijf wie beschikbaar is]`}
 
 // ── STATE ────────────────────────────────────────────────────────────────
 let role='all',catFilter=null,sup=false,q='',ctxOn=false,ap=null,showFavs=false,sortMode='default',showNew=false,showWithNotes=false,showWithVariants=false,toolFilter=null;
+let cardsAnimated=false,_animCards=false,_searchTimer=null,_lastFocusedBeforeModal=null; // entree-animatie alleen bij eerste weergave + debounce + focusherstel
 let varValues={}; // Bewaart ingevulde variabele-waarden zodat ze hertekeningen overleven
 let favs=new Set();
 try{const f=JSON.parse(localStorage.getItem('mkr-favs')||'[]');favs=new Set(f);}catch(e){}
@@ -4053,8 +4121,8 @@ function renderRecent(){
   sec.style.display='';
   document.getElementById('recentGrid').innerHTML=items.map(p=>{
     const c=CATS[p.cat]||{color:'#94A3B8',icon:'📄',name:'Startprompt'};
-    return`<div class="recent-chip" onclick="openMd('${p.id}')">
-      <div class="recent-chip-icon" style="background:linear-gradient(135deg,${c.color},${c.color}CC);color:#FFF">${c.icon}</div>
+    return`<div class="recent-chip" tabindex="0" role="button" aria-label="Recent: ${p.title.replace(/"/g,'&quot;')}" onclick="openMd('${p.id}')">
+      <div class="recent-chip-icon" style="background:linear-gradient(135deg,${c.color},${c.color}CC);color:#FFF" aria-hidden="true">${c.icon}</div>
       <div class="recent-chip-text"><div class="recent-chip-title">${p.title}</div><div class="recent-chip-cat">${c.name}</div></div>
     </div>`;
   }).join('');
@@ -4193,27 +4261,19 @@ function init(){
   updateHistoryBtn();
   updateFilterBadge();
   renderSbCols();
+  // Toegankelijkheid: geef pictogramknoppen die alleen een title hebben een leesbaar label
+  try{
+    document.querySelectorAll('button[title],[role="button"][title]').forEach(b=>{
+      if(b.getAttribute('aria-label'))return;
+      const txt=(b.textContent||'').replace(/\s+/g,'').trim();
+      if(txt.length<=2){b.setAttribute('aria-label',b.getAttribute('title'));}
+    });
+  }catch(e){}
   render();
   checkUpdates();
   // Prompt van de dag — toon na korte vertraging zodat banner na content laadt
   setTimeout(renderPod,400);
-  // ESC key closes open panels
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){
-      const qr=document.getElementById('qrBd');
-      if(qr&&qr.style.display==='flex'){closeQr();return;}
-      const cp=document.getElementById('colPickerBd');
-      if(cp&&cp.style.display==='flex'){closeColPicker();return;}
-      const cv=document.getElementById('colViewBd');
-      if(cv&&cv.style.display==='flex'){closeColView();return;}
-      const fp=document.getElementById('fpPanel');
-      if(fp&&fp.classList.contains('show')){closeFilterPanel();return;}
-      const hb=document.getElementById('historyBd');
-      if(hb&&hb.classList.contains('show')){closeHistory();return;}
-      const fb=document.getElementById('resultFb');
-      if(fb&&fb.classList.contains('show')){dismissResultFb();return;}
-    }
-  });
+  // Escape-afhandeling voor alle geopende lagen loopt via closeTopOverlay() in de globale keydown-handler.
   // URL hash deep-link
   if(location.hash){const id=location.hash.slice(1);const p=P.find(x=>x.id===id);if(p)setTimeout(()=>openMd(id),200);}
 }
@@ -4223,8 +4283,8 @@ function buildCats(){
   P.filter(p=>!p.sup).forEach(p=>{cats[p.cat]=(cats[p.cat]||0)+1;});
   const el=document.getElementById('catFilters');
   el.innerHTML=Object.entries(CATS).filter(([k])=>cats[k]).map(([k,v])=>
-    `<div class="sb-cat-item" data-cat="${k}" onclick="setCat('${k}')">
-      <div class="sb-cat-dot" style="background:${v.color}"></div>
+    `<div class="sb-cat-item" tabindex="0" role="button" data-cat="${k}" aria-label="Thema ${v.name}" onclick="setCat('${k}')">
+      <div class="sb-cat-dot" style="background:${v.color}" aria-hidden="true"></div>
       <div class="sb-cat-name" title="${v.name}">${v.name}</div>
       <div class="sb-cat-count">${cats[k]||0}</div>
     </div>`
@@ -4239,6 +4299,50 @@ function updateCounts(){
   document.getElementById('cnt-all').textContent=P.length;
 }
 
+// ── ZOEKEN: synoniemen (docenttaal) + diacriet-ongevoelig ────────────────
+// Groepen: elk woord in een groep vindt ook de andere woorden (tweerichtings).
+const SEARCH_SYN_GROUPS=[
+  ['cijfer','cijfers','beoordeling','becijferen','punten','nakijken','correctie','feedback','terugkoppeling'],
+  ['toets','so','proefwerk','examen','tentamen','overhoring','repetitie','toetsing'],
+  ['les','lesplan','lesopzet','lesvoorbereiding','lesidee','lesontwerp','instructie','werkvorm','activerend'],
+  ['ouder','ouders','verzorger','oudergesprek','thuis','thuisfront'],
+  ['leerling','leerlingen','student','kind'],
+  ['differentiatie','differentieren','niveau','basis','kader','tl','dakpan','verdieping','verrijking'],
+  ['gedrag','orde','klasmanagement','storend','pesten','pbs','ordeverstoring','rust'],
+  ['planning','rooster','jaarplanning','periodeplanning','plannen'],
+  ['mail','email','e-mail','bericht','brief','mailtje','somtoday'],
+  ['rapport','rapportage','verslag','rapporten','notulen','begeleidingsverslag'],
+  ['zorg','ondersteuning','begeleiding','handelingsplan','zorgstructuur'],
+  ['mentor','mentoraat','mentorles','coach','mentortaak'],
+  ['audit','lesbezoek','kwaliteitszorg','inspectie','observatie'],
+  ['registratie','vastleggen','incident','notitie'],
+  ['burgerschap','maatschappij','samenleving','democratie'],
+  ['werkdruk','taakverdeling','overbelasting','werklast']
+];
+const SEARCH_SYN={};
+SEARCH_SYN_GROUPS.forEach(g=>g.forEach(term=>{SEARCH_SYN[term]=(SEARCH_SYN[term]||[]).concat(g.filter(x=>x!==term));}));
+function foldStr(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+function expandTerm(w){
+  const set=new Set([w]);
+  if(SEARCH_SYN[w])SEARCH_SYN[w].forEach(x=>set.add(foldStr(x)));
+  return [...set];
+}
+function promptHaystack(p){
+  if(!p._h)p._h=foldStr(p.title+' '+p.desc+' '+p.cat+' '+(CATS[p.cat]?CATS[p.cat].name:'')+' '+p.roles.join(' ')+' '+p.prompt);
+  return p._h;
+}
+// Dichtstbijzijnde prompts bij een mislukte zoekopdracht (voor 'bedoelde je?')
+function nearestPrompts(query,n){
+  const words=query.split(/\s+/).map(foldStr).filter(w=>w.length>1);
+  if(!words.length)return[];
+  const scored=P.filter(p=>!p.sup).map(p=>{
+    const h=promptHaystack(p);let score=0;
+    words.forEach(w=>{if(expandTerm(w).some(t=>h.includes(t)))score++;});
+    return{p,score};
+  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+  return scored.slice(0,n).map(x=>x.p);
+}
+
 // ── FILTER ───────────────────────────────────────────────────────────────
 function getF(wantSup){
   let results=P.filter(p=>{
@@ -4251,8 +4355,10 @@ function getF(wantSup){
     if(!wantSup&&catFilter&&p.cat!==catFilter)return false;
     if(role!=='all'&&!p.roles.includes(role))return false;
     if(q){
-      const h=(p.title+p.desc+p.cat+(CATS[p.cat]?CATS[p.cat].name:'')+p.roles.join(' ')+p.prompt).toLowerCase();
-      if(!q.split(/\s+/).every(w=>h.includes(w)))return false;
+      const h=promptHaystack(p);
+      const words=q.split(/\s+/).filter(Boolean);
+      const ok=words.every(w=>{const fw=foldStr(w);return expandTerm(fw).some(t=>h.includes(t));});
+      if(!ok)return false;
     }
     return true;
   });
@@ -4265,9 +4371,9 @@ function getF(wantSup){
       if(sortMode==='tool-gratis')return(toolOrder[a.tool]||0)-(toolOrder[b.tool]||0);
       if(sortMode==='tool-pro')return(toolOrder[b.tool]||0)-(toolOrder[a.tool]||0);
       if(sortMode==='popular'){
-        // Global copy count (from cache, if available)
-        const ga=globalCache[a.id]&&typeof globalCache[a.id].value==='number'?globalCache[a.id].value:0;
-        const gb=globalCache[b.id]&&typeof globalCache[b.id].value==='number'?globalCache[b.id].value:0;
+        // Global copy count (from cache, if available) — cache stores {v,t}
+        const ga=globalCache[a.id]&&typeof globalCache[a.id].v==='number'?globalCache[a.id].v:0;
+        const gb=globalCache[b.id]&&typeof globalCache[b.id].v==='number'?globalCache[b.id].v:0;
         return gb-ga;
       }
       if(sortMode==='rated'){
@@ -4302,12 +4408,16 @@ function buildMobCats(){
   const cats={};
   P.filter(p=>!p.sup).forEach(p=>{cats[p.cat]=(cats[p.cat]||0)+1;});
   const newCount=getNewPrompts().length;
+  const colCount=Object.keys(getCols()).length;
   let html='';
   if(newCount)html+=`<button class="mob-cat-pill ${showNew?'active':''}" onclick="toggleNew()" style="background:linear-gradient(135deg,rgba(253,181,21,.2),rgba(253,181,21,.1));border-color:rgba(253,181,21,.4);color:#FBB040">✨ Nieuw ${newCount}</button>`;
   html+=`<button class="mob-cat-pill ${showFavs?'active':''}" onclick="toggleFavs()">❤️ ${favs.size}</button>`;
   Object.entries(CATS).filter(([k])=>cats[k]).forEach(([k,v])=>{
     html+=`<button class="mob-cat-pill ${catFilter===k?'active':''}" onclick="setCat('${k}')"><span class="mc-dot" style="background:${v.color}"></span>${v.name.split(' ')[0]}</button>`;
   });
+  // Toegang tot tools-overzicht en collecties, anders onbereikbaar op mobiel
+  html+=`<button class="mob-cat-pill mob-cat-action" onclick="openTools()">🛠️ AI-tools</button>`;
+  html+=`<button class="mob-cat-pill mob-cat-action" onclick="openCreateColPrompt()">📁 Collecties${colCount?' '+colCount:''}</button>`;
   el.innerHTML=html;
 }
 
@@ -4348,15 +4458,18 @@ function render(){
   document.getElementById('regHdrSub').textContent=ri.length+' prompts'+(q||role!=='all'?getCatSummary(ri):'');
 
   if(!ri.length){
-    const suggestions=q?P.filter(p=>!p.sup).slice(0,3).map(p=>`<span class="empty-sug" onclick="document.getElementById('searchInput').value='';onSearch();openMd('${p.id}')">${p.title}</span>`).join(''):'';
-    cg.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><h3>Geen prompts gevonden</h3><p>Probeer een andere zoekterm, rol of thema.</p>${q?`<div class="empty-try"><span style="font-size:11px;color:var(--t3)">Misschien bedoel je:</span> ${suggestions}</div>`:''}</div>`;
+    const near=q?nearestPrompts(q,3):[];
+    const suggestions=near.map(p=>`<span class="empty-sug" tabindex="0" role="button" onclick="clearSearch();openMd('${p.id}')">${p.title}</span>`).join('');
+    cg.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><h3>Geen prompts gevonden</h3><p>Probeer een andere zoekterm, rol of thema.</p>${suggestions?`<div class="empty-try"><span style="font-size:11px;color:var(--t3)">Bedoelde je misschien:</span> ${suggestions}</div>`:''}</div>`;
     return;
   }
+  _animCards=!cardsAnimated;
   cg.innerHTML=ri.map((p,i)=>renderCard(p,i)).join('');
+  cardsAnimated=true;
 }
 
 function renderSup(p){
-  return`<div class="super-card" onclick="openMd('${p.id}')">
+  return`<div class="super-card" tabindex="0" role="button" aria-label="Startprompt: ${p.title.replace(/"/g,'&quot;')}" onclick="openMd('${p.id}')">
     <div class="sp-badge">✦ Startprompt</div>
     <h3>${p.title}</h3>
     <p>${p.desc}</p>
@@ -4369,7 +4482,8 @@ function renderSup(p){
 
 function renderCard(p,i){
   const c=CATS[p.cat]||{color:'#94A3B8',icon:'📄',name:p.cat};
-  const delay=Math.min(i*.028,.32);
+  const cls=_animCards?'card cin':'card';
+  const delayStyle=_animCards?`animation-delay:${Math.min(i*.028,.32)}s;`:'';
   const title=q?hlSearch(p.title):p.title;
   const desc=q?hlSearch(p.desc):p.desc;
   const isFav=favs.has(p.id);
@@ -4388,12 +4502,13 @@ function renderCard(p,i){
     metaIcons+='</div>';
   }
 
-  return`<div class="card cin" style="animation-delay:${delay}s;--card-color:${c.color}" onclick="openMd('${p.id}')">
+  const albl=p.title.replace(/"/g,'&quot;');
+  return`<div class="${cls}" tabindex="0" role="button" aria-label="Prompt: ${albl}" style="${delayStyle}--card-color:${c.color}" onclick="openMd('${p.id}')">
     <div class="card-side-bar" style="background:${c.color}"></div>
     ${newMark}
-    <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation();toggleFav('${p.id}')" title="${isFav?'Verwijder uit favorieten':'Voeg toe aan favorieten'}">${isFav?'❤️':'🤍'}</button>
+    <button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation();toggleFav('${p.id}')" aria-pressed="${isFav?'true':'false'}" aria-label="${isFav?'Verwijder uit favorieten':'Voeg toe aan favorieten'}" title="${isFav?'Verwijder uit favorieten':'Voeg toe aan favorieten'}"><span aria-hidden="true">${isFav?'❤️':'🤍'}</span></button>
     <div class="card-top">
-      <div class="c-letter" style="background:linear-gradient(135deg,${c.color},${c.color}CC)">${c.icon}</div>
+      <div class="c-letter" style="background:linear-gradient(135deg,${c.color},${c.color}CC)" aria-hidden="true">${c.icon}</div>
       <div class="c-meta">
         <div class="c-cat">${c.name}</div>
         <div class="c-roles">${rchips(p.roles)}</div>
@@ -4551,7 +4666,9 @@ function onSearch(){
   document.getElementById('superBtn').classList.remove('active');
   document.getElementById('srchClear').classList.toggle('vis',!!q);
   const wp=document.getElementById('whatsnewPill');if(wp)wp.classList.remove('active');
-  updateFavCount();render();
+  updateFavCount();
+  if(_searchTimer)clearTimeout(_searchTimer);
+  _searchTimer=setTimeout(render,140);
 }
 function clearSearch(){
   document.getElementById('searchInput').value='';q='';showFavs=false;
@@ -4567,6 +4684,8 @@ function getVisiblePrompts(){
   return[...getF(true),...getF(false)];
 }
 function openMd(id){
+  const wasOpen=document.getElementById('mdBd').style.display==='flex';
+  if(!wasOpen)_lastFocusedBeforeModal=document.activeElement;
   ap=P.find(p=>p.id===id);if(!ap)return;
   addRecent(id);
   // Reset variant edit mode
@@ -4576,6 +4695,7 @@ function openMd(id){
   document.getElementById('mdBd').style.display='flex';
   history.replaceState(null,null,'#'+id);
   renderMd();updateNavBtns();
+  if(!wasOpen){const cbtn=document.querySelector('#mdBd .md-close');if(cbtn)setTimeout(()=>{try{cbtn.focus();}catch(e){}},30);}
   // Fetch global count in background (non-blocking)
   fetchGlobalCount(id).then(v=>{
     if(v===null||!ap||ap.id!==id)return;
@@ -4596,6 +4716,8 @@ function closeMd(){
   document.getElementById('mdBd').style.display='none';
   document.body.style.overflow='';ap=null;
   history.replaceState(null,null,location.pathname+location.search);
+  const lf=_lastFocusedBeforeModal;_lastFocusedBeforeModal=null;
+  if(lf&&typeof lf.focus==='function'&&lf.isConnected){try{lf.focus();}catch(e){}}
 }
 function closeMdBd(e){
   // Only close when click target is still in DOM and is the backdrop or wrapper — not a detached element from innerHTML rebuild
@@ -4781,7 +4903,7 @@ function renderMd(){
     <button class="md-share" onclick="openColPicker('${p.id}')" title="Toevoegen aan een collectie">📁 Collectie</button>
     <button class="md-share" onclick="printPrompt('${p.id}')" title="Print deze prompt (of sla op als PDF)">🖨️ Print</button>
     <button class="md-share" onclick="sharePrompt()" title="Deel via QR-code of link">🔗 Deel</button>
-    <button class="md-close" onclick="closeMd()">✕</button>`;
+    <button class="md-close" onclick="closeMd()" title="Sluiten">✕</button>`;
 
   // PREVIEW panel
   let prev=`<div class="prompt-edit-toggle">
@@ -4972,8 +5094,8 @@ function openHistory(){
         if(!p)return;
         const c=CATS[p.cat]||{color:'#94A3B8',icon:'📄',name:'Startprompt'};
         const cc=getCopyCount(p.id);
-        html+=`<div class="history-item" onclick="closeHistory();openMd('${p.id}')">
-          <div class="hi-icon" style="background:linear-gradient(135deg,${c.color},${c.color}CC)">${c.icon}</div>
+        html+=`<div class="history-item" tabindex="0" role="button" aria-label="Open prompt: ${p.title.replace(/"/g,'&quot;')}" onclick="closeHistory();openMd('${p.id}')">
+          <div class="hi-icon" style="background:linear-gradient(135deg,${c.color},${c.color}CC)" aria-hidden="true">${c.icon}</div>
           <div class="hi-content">
             <div class="hi-title">${p.title}</div>
             <div class="hi-meta">${c.name} · ${formatHistoryTime(it.t)}</div>
@@ -5175,7 +5297,7 @@ function toggleWithVariants(){
   render();
 }
 function resetAllFilters(){
-  role='all';catFilter=null;showFavs=false;showNew=false;showWithNotes=false;showWithVariants=false;toolFilter=null;q='';
+  role='all';catFilter=null;showFavs=false;showNew=false;showWithNotes=false;showWithVariants=false;toolFilter=null;q='';sup=false;
   document.getElementById('searchInput').value='';
   document.getElementById('srchClear').classList.remove('vis');
   document.querySelectorAll('.sb-role').forEach(el=>el.classList.toggle('active',el.dataset.role==='all'));
@@ -5543,7 +5665,7 @@ function openColView(id){
       if(!p)return'';
       const cat=CATS[p.cat];
       const t=TOOL_INFO[p.tool];
-      return `<div class="history-item" onclick="closeColView();openMd('${p.id}')">
+      return `<div class="history-item" tabindex="0" role="button" aria-label="Open prompt: ${escapeHtml(p.title)}" onclick="closeColView();openMd('${p.id}')">
         <div class="history-item-main">
           <div class="history-item-title">${escapeHtml(p.title)}</div>
           <div class="history-item-meta">
@@ -5551,7 +5673,7 @@ function openColView(id){
             ${t?`<span style="opacity:.6">·</span><span style="opacity:.75">${t.icon} ${t.label}</span>`:''}
           </div>
         </div>
-        <button class="history-item-remove" onclick="event.stopPropagation();removeFromColView('${p.id}')" title="Uit collectie halen">✕</button>
+        <button class="history-item-remove" onclick="event.stopPropagation();removeFromColView('${p.id}')" aria-label="Uit collectie halen" title="Uit collectie halen">✕</button>
       </div>`;
     }).join('');
   }
@@ -5598,6 +5720,10 @@ function deleteCurrentCol(){
 function printPrompt(pid){
   const p=P.find(x=>x.id===pid);
   if(!p)return;
+  // Print de ingevulde/eigen versie als deze prompt open staat; anders het sjabloon
+  let promptText=p.prompt;
+  if(ap&&ap.id===pid){storeVals();promptText=buildFull();}
+  const noteText=getNote(pid);
   const cat=CATS[p.cat];
   const t=TOOL_INFO[p.tool];
   const roles=p.roles.map(r=>RL[r]).join(' · ');
@@ -5620,10 +5746,11 @@ function printPrompt(pid){
       </div>
     </div>
     <div style="font-size:13px;color:#333;margin-bottom:16px;font-style:italic">${escapeHtml(p.desc||'')}</div>
-    <div style="background:#F5F2EC;border:1px solid #D9D4C7;border-radius:6px;padding:18px;font-family:Menlo,Consolas,monospace;font-size:11.5px;line-height:1.65;white-space:pre-wrap;color:#1A1A1A">${escapeHtml(p.prompt)}</div>
+    <div style="background:#F5F2EC;border:1px solid #D9D4C7;border-radius:6px;padding:18px;font-family:Menlo,Consolas,monospace;font-size:11.5px;line-height:1.65;white-space:pre-wrap;color:#1A1A1A">${escapeHtml(promptText)}</div>
+    ${noteText?`<div style="margin-top:16px;padding:14px;border-left:3px solid #0A2540;background:#F3F5F8;font-size:12px;color:#243447"><strong>📝 Mijn notitie:</strong> ${escapeHtml(noteText)}</div>`:''}
     ${p.whyTip?`<div style="margin-top:16px;padding:14px;border-left:3px solid #C9A25A;background:#FAF7EF;font-size:12px;color:#3D2F18"><strong style="color:#6B5636">💡 Tip:</strong> ${escapeHtml(p.whyTip)}</div>`:''}
     <div style="margin-top:28px;padding-top:12px;border-top:1px solid #DDD;font-size:10px;color:#888;text-align:center">
-      Gegenereerd via MKR Promptbibliotheek — ${date}
+      Gegenereerd via MKR Promptbibliotheek · ${date}
     </div>
   `;
   window.print();
@@ -5662,7 +5789,7 @@ function printCollection(){
       </div>
     `;
   });
-  html+=`<div style="margin-top:28px;padding-top:12px;border-top:1px solid #DDD;font-size:10px;color:#888;text-align:center">Gegenereerd via MKR Promptbibliotheek — ${date}</div>`;
+  html+=`<div style="margin-top:28px;padding-top:12px;border-top:1px solid #DDD;font-size:10px;color:#888;text-align:center">Gegenereerd via MKR Promptbibliotheek · ${date}</div>`;
   view.innerHTML=html;
   window.print();
 }
@@ -5713,16 +5840,106 @@ function openTools(){
 }
 function closeTc(){document.getElementById('tcBd').style.display='none';document.body.style.overflow='';}
 
+// ── BACK-UP: exporteren / importeren van persoonlijke data ───────────────
+const MKR_KEYS=['mkr-favs','mkr-recent','mkr-copy-counts','mkr-copy-history','mkr-notes','mkr-variants','mkr-collections','mkr-my-votes','mkr-theme'];
+function openBackup(){
+  const favN=favs.size;
+  const noteN=Object.keys(getNotes()).length;
+  const varN=Object.keys(getVariants()).length;
+  const colN=Object.keys(getCols()).length;
+  const el=document.getElementById('backupStats');
+  if(el)el.innerHTML=`Nu op dit apparaat: <strong>${favN}</strong> favoriet${favN!==1?'en':''}, <strong>${noteN}</strong> notitie${noteN!==1?'s':''}, <strong>${varN}</strong> eigen versie${varN!==1?'s':''}, <strong>${colN}</strong> collectie${colN!==1?'s':''}.`;
+  document.getElementById('backupBd').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeBackup(){
+  document.getElementById('backupBd').style.display='none';
+  if(!document.getElementById('mdBd').style.display||document.getElementById('mdBd').style.display==='none')document.body.style.overflow='';
+}
+function exportData(){
+  const data={};
+  MKR_KEYS.forEach(k=>{try{const v=localStorage.getItem(k);if(v!==null)data[k]=v;}catch(e){}});
+  const payload={app:'mkr-promptbibliotheek',version:1,exportedAt:new Date().toISOString(),data};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date();
+  const stamp=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  a.href=url;a.download='mkr-promptbibliotheek-backup-'+stamp+'.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  showToast('✓ Back-up gedownload');
+}
+function importData(file){
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let parsed;
+    try{parsed=JSON.parse(reader.result);}catch(e){showToast('Ongeldig back-upbestand');return;}
+    const data=parsed&&parsed.data?parsed.data:parsed;
+    if(!data||typeof data!=='object'){showToast('Ongeldig back-upbestand');return;}
+    const keys=Object.keys(data).filter(k=>MKR_KEYS.includes(k));
+    if(!keys.length){showToast('Geen herkenbare gegevens in dit bestand');return;}
+    if(!confirm('Dit vervangt je huidige favorieten, notities, eigen versies en collecties op dit apparaat door de inhoud van het back-upbestand. Doorgaan?'))return;
+    let ok=true;
+    keys.forEach(k=>{try{localStorage.setItem(k,typeof data[k]==='string'?data[k]:JSON.stringify(data[k]));}catch(e){ok=false;}});
+    if(!ok){alert('Importeren gedeeltelijk mislukt: de opslag van deze browser is mogelijk vol of geblokkeerd.');}
+    location.reload();
+  };
+  reader.onerror=()=>showToast('Kon het bestand niet lezen');
+  reader.readAsText(file);
+}
+
+// ── Sluit de bovenste geopende laag (gebruikt door Escape) ───────────────
+function closeTopOverlay(){
+  const qr=document.getElementById('qrBd');
+  if(qr&&qr.classList.contains('show')){closeQr();return true;}
+  const bk=document.getElementById('backupBd');
+  if(bk&&bk.style.display==='flex'){closeBackup();return true;}
+  const cp=document.getElementById('colPickerBd');
+  if(cp&&cp.style.display==='flex'){closeColPicker();return true;}
+  const cv=document.getElementById('colViewBd');
+  if(cv&&cv.style.display==='flex'){closeColView();return true;}
+  const fp=document.getElementById('fpPanel');
+  if(fp&&fp.classList.contains('show')){closeFilterPanel();return true;}
+  const hb=document.getElementById('historyBd');
+  if(hb&&hb.classList.contains('show')){closeHistory();return true;}
+  const tc=document.getElementById('tcBd');
+  if(tc&&tc.style.display==='flex'){closeTc();return true;}
+  const fb=document.getElementById('resultFb');
+  if(fb&&fb.classList.contains('show')){dismissResultFb();return true;}
+  return false;
+}
+
 // ── EVENTS ───────────────────────────────────────────────────────────────
 document.getElementById('roleFilters').addEventListener('click',e=>{const el=e.target.closest('.sb-role');if(el)setRole(el.dataset.role);});
 document.getElementById('tcBd').addEventListener('click',e=>{if(e.target===document.getElementById('tcBd'))closeTc();});
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeMd();closeTc();}
+  if(e.key==='Escape'){if(closeTopOverlay())return;closeMd();}
+  // Enter/Spatie activeert klikbare kaart/rij-elementen (role=button, geen echte knop/veld)
+  if((e.key==='Enter'||e.key===' ')&&e.target&&typeof e.target.matches==='function'
+     &&!e.target.matches('input,textarea,select,button,a')
+     &&e.target.getAttribute&&e.target.getAttribute('role')==='button'&&e.target.tabIndex>=0){
+    e.preventDefault();e.target.click();return;
+  }
   if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();document.getElementById('searchInput').focus();}
   if(ap&&!e.target.matches('input,textarea')&&e.key==='ArrowLeft')navMd(-1);
   if(ap&&!e.target.matches('input,textarea')&&e.key==='ArrowRight')navMd(1);
   // 1-5 opens startprompts
   if(!ap&&!e.target.matches('input,textarea,select')&&e.key>='1'&&e.key<='5'){const sp=P.filter(p=>p.sup);if(sp[+e.key-1])openMd(sp[+e.key-1].id);}
+});
+// Focus vasthouden binnen de promptmodal (Tab loopt rond in het venster)
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const bd=document.getElementById('mdBd');
+  if(!bd||bd.style.display!=='flex')return;
+  const sel='a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  const list=[...bd.querySelectorAll(sel)].filter(el=>el.offsetWidth>0||el.offsetHeight>0||el===document.activeElement);
+  if(!list.length)return;
+  const first=list[0],last=list[list.length-1];
+  if(!bd.contains(document.activeElement)){e.preventDefault();first.focus();return;}
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
 });
 window.addEventListener('popstate',()=>{
   if(location.hash){const id=location.hash.slice(1);const p=P.find(x=>x.id===id);if(p)openMd(id);else closeMd();}
