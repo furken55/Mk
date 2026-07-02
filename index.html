@@ -132,6 +132,46 @@ html{scroll-behavior:smooth}
   }
   .sb-super-btn:hover::before{transition:none!important;transform:none!important}
 }
+
+/* ===== MIJN GEGEVENS (profiel) ===== */
+.vf-prefill{display:inline-block;margin-left:7px;font-size:8.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-deep);background:rgba(201,162,90,.14);border:1px solid rgba(201,162,90,.35);padding:1.5px 6px;border-radius:20px;vertical-align:middle;transform:translateY(-1px)}
+[data-theme="dark"] .vf-prefill{color:var(--accent-2);background:rgba(230,201,131,.12);border-color:rgba(230,201,131,.3)}
+.vf-hint{font-size:11.5px;color:var(--t3);margin:-4px 0 12px;line-height:1.55}
+.vf-hint a{color:var(--blue);cursor:pointer;text-decoration:underline;font-weight:600}
+.pf-field label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px}
+.pf-field input{width:100%;padding:9px 12px;border:1px solid var(--bdr-2);border-radius:9px;background:var(--surf);color:var(--t1);font-size:13.5px;font-family:inherit;transition:.15s}
+.pf-field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.pf-field input::placeholder{color:var(--t3);opacity:.7}
+
+/* ===== CHANGELOG (wat is nieuw) ===== */
+.cl-banner .nb-icon{background:linear-gradient(135deg,var(--navy),var(--navy-soft))!important;box-shadow:0 4px 14px rgba(10,25,48,.28)!important}
+.sb-changelog-link{color:var(--accent-2);cursor:pointer;text-decoration:none;border-bottom:1px dotted rgba(230,201,131,.55);font-weight:600;transition:.15s}
+.sb-changelog-link:hover{color:#F5EFE2;border-bottom-color:#F5EFE2}
+.cl-card{
+  background:var(--surf);border:1px solid var(--bdr-2);border-radius:18px;
+  max-width:560px;width:100%;max-height:82vh;display:flex;flex-direction:column;
+  box-shadow:0 24px 64px rgba(10,25,48,.28);overflow:hidden;text-align:left;
+  animation:mdUp .28s cubic-bezier(.4,0,.2,1);
+}
+.cl-head{padding:22px 24px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:flex-start;gap:14px;position:relative}
+.cl-head-icon{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--navy-2));display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.cl-head-title{font-family:var(--font-serif);font-style:italic;font-size:21px;color:var(--t1);line-height:1.15;letter-spacing:-0.02em}
+.cl-head-sub{font-size:11px;color:var(--t3);margin-top:4px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.cl-close{position:absolute;top:16px;right:16px;background:var(--surf-3);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:13px;color:var(--t3);display:flex;align-items:center;justify-content:center;transition:.15s}
+.cl-close:hover{background:var(--bdr-2);color:var(--t1)}
+.cl-body{padding:18px 24px 22px;overflow-y:auto}
+.cl-intro{font-size:13px;color:var(--t2);margin-bottom:18px;line-height:1.55}
+.cl-group{margin-bottom:18px}
+.cl-group:last-child{margin-bottom:0}
+.cl-group-title{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--t1);margin-bottom:9px;letter-spacing:-0.01em}
+.cl-group-icon{width:26px;height:26px;border-radius:8px;background:var(--surf-3);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.cl-list{list-style:none;padding:0;margin:0 0 0 4px;display:flex;flex-direction:column;gap:8px}
+.cl-list li{position:relative;padding-left:20px;font-size:12.5px;color:var(--t2);line-height:1.5}
+.cl-list li::before{content:'';position:absolute;left:7px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.cl-list li b{color:var(--t1);font-weight:600}
+.cl-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--bdr);font-size:11.5px;color:var(--t3);line-height:1.55}
+.cl-foot .sb-changelog-link{color:var(--blue);border-bottom-color:rgba(59,130,246,.4)}
+.cl-foot .sb-changelog-link:hover{color:var(--navy-soft);border-bottom-color:var(--navy-soft)}
 body{
   font-family:var(--font-sans);
   background:var(--bg);
@@ -2369,7 +2409,7 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="sb-brand">
     <div class="sb-logo">🏫</div>
     <div class="sb-name">Melanchthon Kralingen</div>
-    <div class="sb-sub">AI Promptbibliotheek 2025–2026</div>
+    <div class="sb-sub">AI Promptbibliotheek 2025–2026 · <span class="sb-changelog-link" onclick="openChangelog()" role="button" tabindex="0" aria-label="Wat is nieuw: bekijk de changelog">wat is nieuw</span></div>
     <div class="sb-stats">
       <div class="sb-stat"><span id="totalPrmpt">0</span> prompts</div>
       <div class="sb-stat"><span id="totalCats">0</span> thema's</div>
@@ -2426,6 +2466,9 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="sb-footer">
     <div class="sb-footer-hint"><kbd>⌘</kbd><kbd>K</kbd> zoeken</div>
     <div style="display:flex;align-items:center;gap:6px">
+      <div class="dark-toggle" onclick="openProfile()" role="button" tabindex="0" title="Mijn gegevens: vul vak, niveau en klas automatisch in" aria-label="Mijn gegevens" style="padding:4px 6px">
+        <div style="font-size:12px" aria-hidden="true">🪪</div>
+      </div>
       <div class="dark-toggle" onclick="openBackup()" role="button" tabindex="0" title="Back-up: exporteer of importeer je gegevens" aria-label="Back-up van je gegevens" style="padding:4px 6px">
         <div style="font-size:12px" aria-hidden="true">💾</div>
       </div>
@@ -2493,6 +2536,18 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   <div class="mob-cats" id="mobCats"></div>
 
   <div class="content">
+    <div class="new-banner cl-banner" id="changelogBanner" onclick="openChangelog()">
+      <div class="nb-icon" aria-hidden="true">📣</div>
+      <div class="nb-text">
+        <div class="nb-title">De bibliotheek is bijgewerkt</div>
+        <div class="nb-desc">Nieuw: slimmer zoeken, Mijn gegevens, back-up en betere toegankelijkheid. Bekijk wat er nieuw is.</div>
+      </div>
+      <button class="nb-btn" onclick="event.stopPropagation();openChangelog()">
+        <span>Wat is nieuw</span>
+        <span>→</span>
+      </button>
+      <button class="nb-close" onclick="event.stopPropagation();dismissChangelogBanner()" title="Verberg deze melding" aria-label="Verberg deze melding">✕</button>
+    </div>
     <div class="new-banner" id="newBanner">
       <div class="nb-icon">✨</div>
       <div class="nb-text">
@@ -2695,6 +2750,35 @@ mark.hl{background:rgba(201,162,90,.22);color:inherit;border-radius:3px;padding:
   </div>
 </div>
 <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importData(this.files&&this.files[0]);this.value=''">
+
+<!-- MIJN GEGEVENS (docentprofiel) MODAL -->
+<div class="qr-bd" id="profileBd" onclick="if(event.target===this)closeProfile()">
+  <div class="qr-card" role="dialog" aria-modal="true" aria-label="Mijn gegevens" style="max-width:480px">
+    <div class="qr-title">Mijn gegevens</div>
+    <div class="qr-sub">Vult terugkerende invulvelden automatisch in</div>
+    <div class="qr-desc" style="margin-top:12px">Wat je hier invult, wordt bij het openen van een prompt vast ingevuld in velden zoals vak, niveau of klas. Je kunt het per prompt altijd nog aanpassen. Alles blijft op dit apparaat.</div>
+    <div id="profileFields" style="margin-top:16px;display:flex;flex-direction:column;gap:12px"></div>
+    <div class="qr-actions" style="gap:10px;margin-top:18px">
+      <button class="qr-btn bk-btn" onclick="saveProfile()" style="background:var(--navy);color:#F5EFE2;flex:1">Opslaan</button>
+      <button class="qr-btn qr-btn-close bk-btn" onclick="closeProfile()">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHANGELOG (wat is nieuw) MODAL -->
+<div class="qr-bd" id="changelogBd" onclick="if(event.target===this)closeChangelog()">
+  <div class="cl-card" role="dialog" aria-modal="true" aria-label="Wat is nieuw">
+    <div class="cl-head">
+      <div class="cl-head-icon" aria-hidden="true">📣</div>
+      <div class="cl-head-txt">
+        <div class="cl-head-title">Wat is nieuw</div>
+        <div class="cl-head-sub" id="clVersion">Versie</div>
+      </div>
+      <button class="cl-close bk-btn" onclick="closeChangelog()" title="Sluiten" aria-label="Sluiten">✕</button>
+    </div>
+    <div class="cl-body" id="clBody"></div>
+  </div>
+</div>
 
 <!-- PRINT VIEW (alleen zichtbaar bij @media print) -->
 <div class="print-view" id="printView"></div>
@@ -4271,6 +4355,7 @@ function init(){
   }catch(e){}
   render();
   checkUpdates();
+  initChangelog(); // toon de changelog-melding als deze nog actief is
   // Prompt van de dag — toon na korte vertraging zodat banner na content laadt
   setTimeout(renderPod,400);
   // Escape-afhandeling voor alle geopende lagen loopt via closeTopOverlay() in de globale keydown-handler.
@@ -4341,6 +4426,36 @@ function nearestPrompts(query,n){
     return{p,score};
   }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
   return scored.slice(0,n).map(x=>x.p);
+}
+
+// ── MIJN GEGEVENS (docentprofiel): vult terugkerende invulvelden vast in ──
+// Elk profielveld koppelt aan een set placeholder-sleutels (hele sleutel, niet deel).
+const PROFILE_FIELDS=[
+  {id:'vak',    label:'Je vak',             ph:'bijv. biologie',              aliases:['vak','je vak','schoolvak','mijn vak','vakgebied']},
+  {id:'niveau', label:'Leerjaar en niveau', ph:'bijv. leerjaar 1, KGT-dakpan',aliases:['leerjaar en niveau','niveau en leerjaar','niveau','leerjaar','klas en niveau','leerjaar/niveau','niveau/leerjaar','jaarlaag en niveau','leerlaag']},
+  {id:'klas',   label:'Klas',               ph:'bijv. 1A',                    aliases:['klas','klasnaam','mijn klas','de klas','klas/groep','groep']},
+  {id:'methode',label:'Methode',            ph:'bijv. Nectar',                aliases:['methode','lesmethode','de methode','onze methode']},
+  {id:'naam',   label:'Je naam',            ph:'bijv. F. Soysal',             aliases:['je naam','naam','naam docent','docentnaam','jouw naam','mijn naam','naam mentor','naam van de docent','naam leraar']},
+  {id:'school', label:'School',             ph:'bijv. Melanchthon Kralingen', aliases:['school','schoolnaam','je school','onze school','naam school']}
+];
+const PROFILE_ALIAS_MAP={};
+PROFILE_FIELDS.forEach(f=>f.aliases.forEach(a=>{PROFILE_ALIAS_MAP[a]=f.id;}));
+function getProfile(){try{return JSON.parse(localStorage.getItem('mkr-profile')||'{}')||{};}catch(e){return{};}}
+function setProfile(obj){try{localStorage.setItem('mkr-profile',JSON.stringify(obj));}catch(e){}}
+function profileHasAny(){const p=getProfile();return PROFILE_FIELDS.some(f=>p[f.id]&&(''+p[f.id]).trim());}
+function profileValueForKey(key){
+  const fid=PROFILE_ALIAS_MAP[(key||'').trim().toLowerCase()];
+  if(!fid)return undefined;
+  const v=getProfile()[fid];
+  return (v&&(''+v).trim())?(''+v).trim():undefined;
+}
+// Vult varValues met profielwaarden voor nog-niet-aangeraakte velden (undefined)
+function seedProfileValues(){
+  if(!ap||!profileHasAny())return;
+  extractVars(getActivePromptText()).forEach(v=>{
+    const pv=profileValueForKey(v.key);
+    if(pv!==undefined&&varValues[v.key]===undefined)varValues[v.key]=pv;
+  });
 }
 
 // ── FILTER ───────────────────────────────────────────────────────────────
@@ -4691,6 +4806,7 @@ function openMd(id){
   // Reset variant edit mode
   editingVariant=false;variantTab=hasVariant(id)?'variant':'original';
   varValues={}; // Begin met lege invulvelden voor de nieuwe prompt
+  seedProfileValues(); // Vul terugkerende velden vast in vanuit Mijn gegevens
   document.body.style.overflow='hidden';
   document.getElementById('mdBd').style.display='flex';
   history.replaceState(null,null,'#'+id);
@@ -4783,6 +4899,7 @@ function toggleVariantEdit(){
 
 function setVariantTab(tab){
   variantTab=tab;
+  seedProfileValues(); // Vul evt. nieuwe velden in de andere versie ook vast in
   renderMd();
 }
 
@@ -4947,12 +5064,23 @@ function renderMd(){
     </div>
   </div>`;
   if(vars.length&&!editingVariant){
-    panel+=`<div><div class="pnl-lbl">Pas aan voor jouw situatie <span class="vf-counter" id="vfCounter">0 / ${vars.length}</span></div>`;
+    const anyProf=profileHasAny();
+    const filledFromProfile=anyProf&&vars.some(v=>{const pv=profileValueForKey(v.key);return pv!==undefined&&(varValues[v.key]!==undefined?varValues[v.key]:'')===pv;});
+    const initFilled=vars.reduce((n,v)=>n+((vals[v.key]&&(''+vals[v.key]).trim())?1:0),0);
+    panel+=`<div><div class="pnl-lbl">Pas aan voor jouw situatie <span class="vf-counter" id="vfCounter"${initFilled===vars.length?' style="color:#10B981"':''}>${initFilled} / ${vars.length}</span></div>`;
+    if(filledFromProfile){
+      panel+=`<div class="vf-hint">🪪 Sommige velden zijn vast ingevuld vanuit <a onclick="openProfile()">Mijn gegevens</a>. Je kunt ze hieronder aanpassen.</div>`;
+    }else if(!anyProf){
+      panel+=`<div class="vf-hint">🪪 Tip: vul <a onclick="openProfile()">Mijn gegevens</a> in, dan worden velden zoals vak, niveau en klas voortaan automatisch ingevuld.</div>`;
+    }
     vars.forEach(v=>{
       const kl=v.key.toLowerCase();
       const isArea=v.key.length>20||['beschrijf','plak','situatie','aantekeningen','toets','werk','beleid','casus','notitie','les','data','taken','informatie','observat','bericht','zorg','klas','leerling'].some(kw=>kl.includes(kw));
-      const saved=(varValues[v.key]!==undefined?varValues[v.key]:'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      panel+=`<div class="vf"><label>${v.key}</label>${isArea?`<textarea id="vi_${v.key}" placeholder="${v.key}" oninput="storeVals();updPrev()" rows="3">${saved}</textarea>`:`<input type="text" id="vi_${v.key}" placeholder="${v.key}" value="${saved}" oninput="storeVals();updPrev()"/>`}</div>`;
+      const cur=(varValues[v.key]!==undefined?varValues[v.key]:'');
+      const saved=cur.replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const pv=profileValueForKey(v.key);
+      const badge=(pv!==undefined&&cur===pv)?`<span class="vf-prefill" title="Vast ingevuld vanuit Mijn gegevens">Mijn gegevens</span>`:'';
+      panel+=`<div class="vf"><label>${v.key}${badge}</label>${isArea?`<textarea id="vi_${v.key}" placeholder="${v.key}" oninput="storeVals();updPrev()" rows="3">${saved}</textarea>`:`<input type="text" id="vi_${v.key}" placeholder="${v.key}" value="${saved}" oninput="storeVals();updPrev()"/>`}</div>`;
     });
     panel+='</div>';
   }
@@ -5841,7 +5969,7 @@ function openTools(){
 function closeTc(){document.getElementById('tcBd').style.display='none';document.body.style.overflow='';}
 
 // ── BACK-UP: exporteren / importeren van persoonlijke data ───────────────
-const MKR_KEYS=['mkr-favs','mkr-recent','mkr-copy-counts','mkr-copy-history','mkr-notes','mkr-variants','mkr-collections','mkr-my-votes','mkr-theme'];
+const MKR_KEYS=['mkr-favs','mkr-recent','mkr-copy-counts','mkr-copy-history','mkr-notes','mkr-variants','mkr-collections','mkr-my-votes','mkr-profile','mkr-theme'];
 function openBackup(){
   const favN=favs.size;
   const noteN=Object.keys(getNotes()).length;
@@ -5890,12 +6018,114 @@ function importData(file){
   reader.readAsText(file);
 }
 
+// ── MIJN GEGEVENS: modal ─────────────────────────────────────────────────
+function openProfile(){
+  const p=getProfile();
+  const el=document.getElementById('profileFields');
+  if(el){
+    el.innerHTML=PROFILE_FIELDS.map(f=>{
+      const val=(p[f.id]||'').replace(/"/g,'&quot;');
+      return `<div class="pf-field"><label for="pf_${f.id}">${f.label}</label><input type="text" id="pf_${f.id}" value="${val}" placeholder="${f.ph}"/></div>`;
+    }).join('');
+  }
+  document.getElementById('profileBd').style.display='flex';
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const first=document.getElementById('pf_'+PROFILE_FIELDS[0].id);if(first){try{first.focus();}catch(e){}}},30);
+}
+function closeProfile(){
+  document.getElementById('profileBd').style.display='none';
+  const md=document.getElementById('mdBd');
+  if(!md.style.display||md.style.display==='none')document.body.style.overflow='';
+}
+function saveProfile(){
+  const obj={};
+  PROFILE_FIELDS.forEach(f=>{const el=document.getElementById('pf_'+f.id);if(el)obj[f.id]=el.value.trim();});
+  setProfile(obj);
+  closeProfile();
+  showToast('✓ Mijn gegevens opgeslagen');
+  if(ap){seedProfileValues();renderMd();} // vul nieuwe waarden meteen in de open prompt
+}
+
+// ── CHANGELOG (wat is nieuw) ─────────────────────────────────────────────
+const CHANGELOG_VERSION='2.0';
+const CHANGELOG_DATE='2026-07-02';          // releasedatum; de melding is 1 week actief
+const CHANGELOG_DATE_LABEL='2 juli 2026';
+const CHANGELOG=[
+  {icon:'🔍',group:'Sneller vinden en invullen',items:[
+    '<b>Slimmer zoeken met synoniemen</b>: typ "becijferen", "proefwerk" of "verzorger" en je vindt toch de juiste prompt. Ook ongevoelig voor hoofdletters en accenten.',
+    '<b>Mijn gegevens</b>: vul eenmalig je vak, leerjaar, niveau en klas in. Die velden worden voortaan automatisch ingevuld bij elke prompt.',
+    'Zoeken reageert vloeiender, zonder haperen.',
+    'Betere zoeksuggesties: krijg je geen resultaat, dan zie je nu echt passende prompts.'
+  ]},
+  {icon:'💾',group:'Je werk veiligstellen',items:[
+    '<b>Back-up</b>: exporteer je favorieten, notities, eigen versies en collecties naar een bestand en zet ze over naar een andere laptop of telefoon.'
+  ]},
+  {icon:'♿',group:'Toegankelijkheid',items:[
+    'Alles is nu met het toetsenbord te bedienen (Tab en Enter), met een duidelijke focusrand.',
+    'Betere ondersteuning voor schermlezers.',
+    'De app respecteert de systeeminstelling voor minder beweging.',
+    'Grotere knoppen en een groter zoekveld op mobiel.'
+  ]},
+  {icon:'✅',group:'Verbeteringen en correcties',items:[
+    'Printen gebruikt nu je ingevulde tekst en je eigen versie, inclusief je notitie.',
+    'Sorteren op "Populair" werkt weer correct.',
+    'Escape sluit netjes alleen het bovenste venster.',
+    'Meer contrast in kleine teksten voor betere leesbaarheid.'
+  ]}
+];
+function renderChangelogBody(){
+  const vEl=document.getElementById('clVersion');
+  if(vEl)vEl.textContent='Versie '+CHANGELOG_VERSION+' · '+CHANGELOG_DATE_LABEL;
+  const groups=CHANGELOG.map(g=>{
+    const items=g.items.map(it=>`<li>${it}</li>`).join('');
+    return `<div class="cl-group"><div class="cl-group-title"><span class="cl-group-icon" aria-hidden="true">${g.icon}</span>${g.group}</div><ul class="cl-list">${items}</ul></div>`;
+  }).join('');
+  const body=document.getElementById('clBody');
+  if(body)body.innerHTML=`<div class="cl-intro">Dit is er verbeterd in de bibliotheek. Je kunt deze lijst altijd teruglezen via <span class="sb-changelog-link" onclick="openChangelog()" role="button" tabindex="0">wat is nieuw</span> onder de titel in de zijbalk.</div>${groups}<div class="cl-foot">Deze melding verdwijnt automatisch na een week; de changelog zelf blijft altijd bereikbaar.</div>`;
+}
+function markChangelogSeen(){try{localStorage.setItem('mkr-changelog-dismissed',CHANGELOG_VERSION);}catch(e){}}
+function openChangelog(){
+  renderChangelogBody();
+  document.getElementById('changelogBd').style.display='flex';
+  document.body.style.overflow='hidden';
+  markChangelogSeen(); // bekeken → melding komt niet meer terug
+  const b=document.getElementById('changelogBanner');if(b)b.classList.remove('show');
+  setTimeout(()=>{const c=document.querySelector('#changelogBd .cl-close');if(c){try{c.focus();}catch(e){}}},30);
+}
+function closeChangelog(){
+  document.getElementById('changelogBd').style.display='none';
+  const md=document.getElementById('mdBd');
+  if(!md.style.display||md.style.display==='none')document.body.style.overflow='';
+}
+function dismissChangelogBanner(){
+  const b=document.getElementById('changelogBanner');if(b)b.classList.remove('show');
+  markChangelogSeen();
+}
+function shouldShowChangelogBanner(){
+  let dismissed=null;
+  try{dismissed=localStorage.getItem('mkr-changelog-dismissed');}catch(e){}
+  if(dismissed===CHANGELOG_VERSION)return false;
+  const release=new Date(CHANGELOG_DATE+'T00:00:00').getTime();
+  const weekLater=release+7*24*60*60*1000;
+  return Date.now()<=weekLater; // melding 1 week actief na release
+}
+function initChangelog(){
+  if(shouldShowChangelogBanner()){
+    const b=document.getElementById('changelogBanner');
+    if(b)b.classList.add('show');
+  }
+}
+
 // ── Sluit de bovenste geopende laag (gebruikt door Escape) ───────────────
 function closeTopOverlay(){
   const qr=document.getElementById('qrBd');
   if(qr&&qr.classList.contains('show')){closeQr();return true;}
   const bk=document.getElementById('backupBd');
   if(bk&&bk.style.display==='flex'){closeBackup();return true;}
+  const pr=document.getElementById('profileBd');
+  if(pr&&pr.style.display==='flex'){closeProfile();return true;}
+  const cl=document.getElementById('changelogBd');
+  if(cl&&cl.style.display==='flex'){closeChangelog();return true;}
   const cp=document.getElementById('colPickerBd');
   if(cp&&cp.style.display==='flex'){closeColPicker();return true;}
   const cv=document.getElementById('colViewBd');
